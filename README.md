@@ -55,6 +55,12 @@ I appreciate your team sharing this challenge, it has been by far the most enjoy
 
 ![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
 
+
+### Source Code Notes
+Aside from the boilerplate web app setup. `GeoFoodTruck` is mainly 3 files.
+- /src/Map.tsx is the Application host component
+- /src/SearchComponent.ts contains the Search controls and integrates with the Search API
+- /Api.ts is the data component that interacts with the OpenData endpoint to search for Food Trucks in my area.
 #
 ### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
