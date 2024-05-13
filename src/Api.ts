@@ -10,14 +10,10 @@ export class Api {
     const wordsList = cleanInput.split(' ').map((word) => word.trim());
 
     const foodItems = `fooditems LIKE '%${wordsList.join('% %')}%'`;
-    const onlyApporved = `AND status='APPROVED'`;
+    const inGoodStanding = `AND (status='APPROVED' OR status='REQUESTED' OR status='ISSUED')`;
 
-    // only approved permits and if there are food items, filter by them
-    if (cleanInput.length === 0) {
-      return onlyApporved;
-    }
-    
-    return `${onlyApporved} ${wordsList.length > 0 ? `AND (${foodItems})` : ''}`;
+    // approved, issued, and requested permits and if there are food items, filter by them
+    return `${inGoodStanding} ${cleanInput.length > 0 ? `AND (${foodItems})` : ''}`;
   }
 
   getRadiusFilter = (input: string[]): string => {
