@@ -90,7 +90,8 @@ export class SearchControl extends Control {
       this.searchBounds.remove();
     }
     
-    this.searchBounds = new Circle(center, {radius: radius}).addTo(this.geoLayer._map );
+    this.searchBounds = new Circle(center, {radius: radius}).addTo(this.geoLayer._map);
+    this.geoLayer._map.flyToBounds(this.searchBounds.getBounds());
 
     // cleanup no results popup
     this.searchBounds.on('click', (event) => { 
