@@ -155,7 +155,7 @@ export class SearchControl extends Control {
     const span = DomUtil.create('span', 'btn-group', controlGroup);
     span.role = 'group';
     span.ariaLabel = 'The Buttons';
-    const select = DomUtil.create('select', 'btn btn-default btn-sm', span);
+    const select = DomUtil.create('select', 'btn btn-default btn-sm dropdown-toggle', span);
     select.id = 'searchSelect';
     select.style.color = 'blue';
     select.style.height = '30px';
