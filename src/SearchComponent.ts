@@ -105,12 +105,7 @@ export class SearchControl extends Control {
   // Process results from search api
   processResults = (geoJs: any) => {
     if (geoJs) {
-      // clean up previous markers and popups
-      this.markerArray.forEach((mark) => {
-        mark.remove();
-      });
-      this.markerArray = [];
-      this.geoLayer.clearLayers();
+      this.clearFeatures();
       
       if (geoJs.features.length > 0) {         
         // search results to map    
@@ -122,13 +117,30 @@ export class SearchControl extends Control {
     }
   };
 
+  private clearSearchArea() {
+    // clean up previous search bounds
+    if (this.searchBounds) {
+      this.searchBounds.unbindPopup();
+      this.searchBounds.remove();
+    }
+  }
+  
+  private clearFeatures() {
+    // clean up previous markers and popups
+    this.markerArray.forEach((mark) => {
+      mark.remove();
+    });
+    this.markerArray = [];
+    this.geoLayer.clearLayers();
+  }
+
   // Add search control to map
   onAdd(map: Map) {
     // create search control markup
     const control = DomUtil.create('div', 'leaflet-control');
     control.style.position = 'absolute';
     control.style.left = '50px';
-    control.style.width = '300px';
+    control.style.width = '399px';
 
     const controlGroup = DomUtil.create('div', 'input-group', control);
 
@@ -140,7 +152,9 @@ export class SearchControl extends Control {
     input.style.width = '168px';
 
     // distance drop-down markup
-    const span = DomUtil.create('span', 'input-group-btn', controlGroup);
+    const span = DomUtil.create('span', 'btn-group', controlGroup);
+    span.role = 'group';
+    span.ariaLabel = 'The Buttons';
     const select = DomUtil.create('select', 'btn btn-default btn-sm', span);
     select.id = 'searchSelect';
     select.style.color = 'blue';
@@ -152,10 +166,16 @@ export class SearchControl extends Control {
     '<option value="2">2 Miles</option>';
 
     // search button markup
-    const button = DomUtil.create('button', 'btn btn-default btn-sm', span);
-    button.id = 'searchButton';
-    button.type = 'button';
-    button.innerHTML = 'EAT!';
+    const eat = DomUtil.create('button', 'btn btn-success btn-sm', span);
+    eat.id = 'searchButton';
+    eat.type = 'button';
+    eat.innerHTML = 'EAT!';
+
+    // reset button markup
+    const reset = DomUtil.create('button', 'btn btn-primary btn-sm', span);
+    reset.id = 'resetButton';
+    reset.type = 'button';
+    reset.innerHTML = 'Reset';
 
     // event handlers for searching
     input.onkeyup = (event: any) => {
@@ -165,9 +185,15 @@ export class SearchControl extends Control {
       }
     };
 
-    button.onclick = (event: any) => {
+    eat.onclick = (event: any) => {
         // get search distance and search input text
         this.runSearch(select, input);
+    };
+
+    reset.onclick = (event: any) => {
+        // reset search results
+        this.clearFeatures();
+        this.clearSearchArea();
     };
 
     // prevent map click event
