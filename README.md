@@ -49,11 +49,11 @@ This is where the churn occured.
 Soda clients for Typescript and javascript are quite dated, not having been maintained in several years. My choice in using somewhat-newer web frameworks was actually a handicap with the dated implementations of the Soda clients available to my technology.
 
 ### Overall
-I was able to get my idea out of my head and into working software, took a tad-bit longer than what I had considered particularly in areas where I didn't expect. It's software development never a dull moment.
+I was able to get the idea out of my head and into working software, took a tad-bit longer than what I had considered particularly in areas where I didn't expect. It's software development never a dull moment.
 
 I appreciate your team sharing this challenge, it has been by far the most enjoyable I've had. Thank you for the opportunity.
 
-  
+![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
 
 #
 ### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
