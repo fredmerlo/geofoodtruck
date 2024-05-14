@@ -6,17 +6,23 @@ export class Api {
     // Regular expression that matches non-alphanumeric and non-space characters
     const alphaNumericWhitespace = /[^a-zA-Z0-9\s]/g;
     const cleanInput = input.replace(alphaNumericWhitespace, '');
-
     const lowerCaseWords = cleanInput.split(' ').map((word) => word.trim().toLocaleLowerCase());
-    const pascalCaseWords = lowerCaseWords.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+    const buildLikeClauses = lowerCaseWords.reduce((acc: any, word: any) => {
+      const pascalCaseWord = word.charAt(0).toUpperCase() + word.slice(1);
+      const likeTerm = `(fooditems LIKE '%${word}%' OR fooditems LIKE '%${pascalCaseWord}%')`;
+
+      acc.push(likeTerm);
+      return acc;
+    }, []);
 
     // the version of the soql api is Case Sensitive
     // need to search for both lower and pascal case words
-    const foodItems = `(fooditems LIKE '%${lowerCaseWords.join('% %')}%') OR (fooditems LIKE '%${pascalCaseWords.join('% %')}%')`;
+    const foodItems = `AND ${buildLikeClauses.join(' AND ')}`;
     const inGoodStanding = `AND (status='APPROVED' OR status='REQUESTED' OR status='ISSUED')`;
 
     // approved, issued, and requested permits and if there are food items, filter by them
-    return `${inGoodStanding} ${cleanInput.length > 0 ? `AND (${foodItems})` : ''}`;
+    return `${inGoodStanding} ${cleanInput.length > 0 ? `${foodItems}` : ''}`;
   }
 
   getRadiusFilter = (input: string[]): string => {
