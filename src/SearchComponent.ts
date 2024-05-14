@@ -95,7 +95,7 @@ export class SearchControl extends Control {
 
     // cleanup no results popup
     this.searchBounds.on('click', (event) => { 
-      this.searchBounds?.unbindPopup();;
+      this.searchBounds?.unbindPopup();
     });
 
     // return geo bounds for radius search
@@ -120,7 +120,7 @@ export class SearchControl extends Control {
   private clearSearchArea() {
     // clean up previous search bounds
     if (this.searchBounds) {
-      this.searchBounds.unbindPopup();
+      this.searchBounds.getPopup()?.remove();
       this.searchBounds.remove();
     }
   }
