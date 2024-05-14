@@ -6,10 +6,13 @@ export class Api {
     // Regular expression that matches non-alphanumeric and non-space characters
     const alphaNumericWhitespace = /[^a-zA-Z0-9\s]/g;
     const cleanInput = input.replace(alphaNumericWhitespace, '');
-    
-    const wordsList = cleanInput.split(' ').map((word) => word.trim());
 
-    const foodItems = `fooditems LIKE '%${wordsList.join('% %')}%'`;
+    const lowerCaseWords = cleanInput.split(' ').map((word) => word.trim().toLocaleLowerCase());
+    const pascalCaseWords = lowerCaseWords.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+    // the version of the soql api is Case Sensitive
+    // need to search for both lower and pascal case words
+    const foodItems = `(fooditems LIKE '%${lowerCaseWords.join('% %')}%') OR (fooditems LIKE '%${pascalCaseWords.join('% %')}%')`;
     const inGoodStanding = `AND (status='APPROVED' OR status='REQUESTED' OR status='ISSUED')`;
 
     // approved, issued, and requested permits and if there are food items, filter by them
