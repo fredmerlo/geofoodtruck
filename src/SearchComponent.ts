@@ -140,25 +140,28 @@ export class SearchControl extends Control {
     const control = DomUtil.create('div', 'leaflet-control');
     control.style.position = 'absolute';
     control.style.left = '50px';
-    control.style.width = '399px';
+    control.style.width = 'max-content';
 
-    const controlGroup = DomUtil.create('div', 'input-group', control);
+    const controlGroup = DomUtil.create('div', undefined, control);
+    controlGroup.style.display = '-webkit-inline-box';
 
     // search input markup
     const input = DomUtil.create('input', 'form-control input-sm', controlGroup);
     input.id = 'searchInput';
     input.style.color = 'blue';
     input.placeholder = 'Find Food';
-    input.style.width = '168px';
+    input.style.width = '60%';
+    input.style.borderRadius = '6px 0px 0px 6px';
 
-    // distance drop-down markup
     const span = DomUtil.create('span', 'btn-group', controlGroup);
     span.role = 'group';
     span.ariaLabel = 'The Buttons';
-    const select = DomUtil.create('select', 'btn btn-default btn-sm dropdown-toggle', span);
+
+    const select = DomUtil.create('select', 'btn btn-sm', span);
     select.id = 'searchSelect';
     select.style.color = 'blue';
-    select.style.height = '30px';
+    select.style.borderRadius = '0px';
+    select.style.margin = '0.5px -0.5px -0.5px 0px';
 
     // radius distance options in miles
     select.innerHTML = '<option value="0.25" selected>Near Me</option>'+
