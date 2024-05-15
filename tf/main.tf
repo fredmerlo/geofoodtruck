@@ -68,10 +68,23 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "geofoodtruck_app_bucket_public_access_block" {
+  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
 resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
-  depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
-  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
-  acl        = "private"
+  depends_on = [
+    aws_s3_bucket_ownership_controls.example,
+    aws_s3_bucket_public_access_block.example,
+  ]
+
+  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
+  acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
