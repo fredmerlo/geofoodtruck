@@ -53,10 +53,20 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
         Principal = {
           "Service": "cloudfront.amazonaws.com"
         },
-        Actions   = [
-          "s3:GetObject",
-          "kms:Decrypt"
-        ],
+        Action   = "s3:GetObject",
+        Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
+          }
+        }
+      },
+      {
+        Effect    = "Allow",
+        Principal = {
+          Service = "cloudfront.amazonaws.com"
+        },
+        Action    = "kms:Decrypt",
         Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
         Condition = {
           "StringEquals": {
