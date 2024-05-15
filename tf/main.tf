@@ -89,7 +89,7 @@ resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
         type = "Group"
         uri  = "http://acs.amazonaws.com/groups/global/AllUsers"
       }
-      permission = "READ"
+      permission = "READ_ACP"
     }
 
     owner {
