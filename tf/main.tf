@@ -79,8 +79,8 @@ resource "aws_s3_bucket_public_access_block" "geofoodtruck_app_bucket_public_acc
 
 resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
   depends_on = [
-    aws_s3_bucket_ownership_controls.example,
-    aws_s3_bucket_public_access_block.example,
+    aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols,
+    aws_s3_bucket_public_access_block.geofoodtruck_app_bucket_public_access_block,
   ]
 
   bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
