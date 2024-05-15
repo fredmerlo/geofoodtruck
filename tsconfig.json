@@ -21,4 +21,5 @@
     "jsx": "react-jsx",
   },
   "include": ["src/**/*.ts*"],
+  "exclude": ["node_modules", "build", "dist", "tf"],
 }
