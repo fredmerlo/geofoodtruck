@@ -9,6 +9,28 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
   key_usage       = "ENCRYPT_DECRYPT"
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
 
+  jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Principal = {
+          "Service": "cloudfront.amazonaws.com"
+        },
+        Action   = [
+          "kms:Decrypt",
+          "kms:GenerateDataKey*"
+        ]
+        Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
+          }
+        }
+      }
+    ]
+  })
+
   tags = {
     Name = "geofoodtruck-kms-key"
   }
@@ -21,7 +43,7 @@ resource "aws_s3_bucket" "geofoodtruck_app_bucket" {
 resource "aws_s3_bucket_ownership_controls" "geofoodtruck_s3_bucket_ownership_cotrols" {
   bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
   rule {
-    object_ownership = "BucketOwnerPreferred"
+    object_ownership = "BucketOwnerEnforced"
   }
 }
 
@@ -36,12 +58,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
-resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
-  depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
-  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
-  acl        = "private"
-}
-
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
   bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
 
@@ -54,19 +70,6 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
           "Service": "cloudfront.amazonaws.com"
         },
         Action   = "s3:GetObject",
-        Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
-        Condition = {
-          "StringEquals": {
-            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
-          }
-        }
-      },
-      {
-        Effect    = "Allow",
-        Principal = {
-          Service = "cloudfront.amazonaws.com"
-        },
-        Action    = "kms:Decrypt",
         Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
         Condition = {
           "StringEquals": {
