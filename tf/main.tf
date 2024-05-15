@@ -107,7 +107,7 @@ resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_cont
 resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   origin {
     domain_name              = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
-    origin_id                = "static-${aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name}"
+    origin_id                = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.geofoodtruck_origin_access_control.id
   }
 
@@ -118,7 +118,7 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "static-${aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name}"
+    target_origin_id = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
 
     forwarded_values {
       query_string = false
