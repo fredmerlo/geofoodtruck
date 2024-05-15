@@ -36,8 +36,19 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_NAME }}
         aws-region: ${{ secrets.AWS_REGION }}
+    
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v4
 
-    - name: Upload to S3
+    - name: Initialize Terraform
+      working-directory: ./tf
+      run: terraform init
+
+    - name: Apply Terraform
+      working-directory: ./tf
+      run: terraform apply -auto-approve
+
+    - name: Upload App to S3
       run: |
         aws s3 sync ./build s3://${{ secrets.APP_BUCKET_NAME }} --delete
 
