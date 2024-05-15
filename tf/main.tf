@@ -6,10 +6,10 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
   description = "KMS key for GeoFoodTruck"
   is_enabled  = true
 
-  key_usage       = "ENCRYPT_DECRYPT"
+  key_usage   = "ENCRYPT_DECRYPT"
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
 
-  jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
