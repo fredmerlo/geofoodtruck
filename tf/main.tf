@@ -68,6 +68,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
+data "aws_canonical_user_id" "current" {}
+
 resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
   depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
 
