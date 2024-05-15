@@ -65,18 +65,6 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
   })
 }
 
-resource "aws_s3_bucket_website_configuration" "geofoodtruck_s3_website_configuration" {
-  bucket = aws_s3_bucket.geofoodtruck_app_bucket.bucket
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "index.html"
-  }
-}
-
 resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_control" {
   name = "geofoodtruck-app-oac"
   origin_access_control_origin_type = "s3"
