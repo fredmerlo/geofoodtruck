@@ -27,6 +27,7 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
           "Service": "cloudfront.amazonaws.com"
         },
         Action   = [
+          "kms:Encrypt",
           "kms:Decrypt",
           "kms:GenerateDataKey*"
         ]
