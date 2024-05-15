@@ -9,9 +9,18 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
   key_usage   = "ENCRYPT_DECRYPT"
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
 
-  policy = jsonencode({
+   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
+      {
+          "Sid": "Enable IAM User Permissions",
+          "Effect": "Allow",
+          "Principal": {
+              "AWS": "arn:aws:iam::900357929763:root"
+          },
+          "Action": "kms:*",
+          "Resource": "*"
+      },
       {
         Effect   = "Allow",
         Principal = {
