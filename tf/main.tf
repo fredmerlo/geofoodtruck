@@ -52,7 +52,7 @@ resource "aws_s3_bucket" "geofoodtruck_app_bucket" {
 resource "aws_s3_bucket_ownership_controls" "geofoodtruck_s3_bucket_ownership_cotrols" {
   bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
   rule {
-    object_ownership = "BucketOwnerEnforced"
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
@@ -65,6 +65,12 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
       sse_algorithm     = "aws:kms"
     }
   }
+}
+
+resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
+  depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
+  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
+  acl        = "private"
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
