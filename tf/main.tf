@@ -16,7 +16,10 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
           "Sid": "Enable IAM User Permissions",
           "Effect": "Allow",
           "Principal": {
-              "AWS": "arn:aws:iam::900357929763:root"
+              "AWS": [
+                "arn:aws:iam::900357929763:root",
+                "arn:aws:sts::*:assumed-role/OriginAccessControlRole/*"
+              ]
           },
           "Action": "kms:*",
           "Resource": "*"
