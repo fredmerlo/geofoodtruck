@@ -5,5 +5,5 @@ variable "app_build_dir" {
 }
 
 locals {
-  app_build_files = fileset(var.react_build_dir, "**/**")
+  app_build_files = fileset(var.app_build_dir, "**/**")
 }

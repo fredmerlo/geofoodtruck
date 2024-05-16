@@ -46,8 +46,9 @@ jobs:
 
     - name: Apply Terraform
       working-directory: ./tf
-      run: terraform apply -auto-approve \
-        -var="app_build_dir=./build"
+      run: |
+        terraform apply -auto-approve \
+          -var="app_build_dir=../build"
 
     - name: Invalidate CloudFront cache
       run: |
