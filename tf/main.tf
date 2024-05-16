@@ -18,7 +18,7 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
           "Principal": {
               "AWS": [
                 "arn:aws:iam::900357929763:root",
-                "arn:aws:sts::*:assumed-role/OriginAccessControlRole/*"
+                "arn:aws:sts::856369053181:assumed-role/OriginAccessControlRole/EdgeCredentialsProxy+EdgeHostAuthenticationClient-IAH50-P2"
               ]
           },
           "Action": "kms:*",
@@ -71,34 +71,10 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
-data "aws_canonical_user_id" "current" {}
-
 resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
   depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
-
-  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
-
-  access_control_policy {
-    grant {
-      grantee {
-        id   = data.aws_canonical_user_id.current.id
-        type = "CanonicalUser"
-      }
-      permission = "FULL_CONTROL"
-    }
-
-    grant {
-      grantee {
-        type = "Group"
-        uri  = "http://acs.amazonaws.com/groups/global/AllUsers"
-      }
-      permission = "READ_ACP"
-    }
-
-    owner {
-      id = data.aws_canonical_user_id.current.id
-    }
-  }
+  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
+  acl        = "private"
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
@@ -135,7 +111,7 @@ resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_cont
 resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   origin {
     domain_name              = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
-    origin_id                = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
+    origin_id                = "S3-geofoodtruck-app-bucket"
     origin_access_control_id = aws_cloudfront_origin_access_control.geofoodtruck_origin_access_control.id
   }
 
@@ -146,7 +122,7 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
+    target_origin_id = "S3-geofoodtruck-app-bucket"
 
     forwarded_values {
       query_string = false
