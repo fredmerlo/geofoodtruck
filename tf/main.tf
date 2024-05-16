@@ -155,7 +155,7 @@ resource "aws_s3_object" "app_files" {
   for_each = { for file in local.app_build_files : file => file }
   bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
   key        = each.value
-  source     = "${var.app_build_dir/$each.value}"
+  source     = "${var.app_build_dir}/${each.value}"
   server_side_encryption = "aws:kms"
 }
 
