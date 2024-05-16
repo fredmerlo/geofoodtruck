@@ -151,6 +151,14 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   }
 }
 
+resource "aws_s3_object" "app_files" {
+  for_each = { for file in local.app_build_files : file => file }
+  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
+  key        = each.value
+  source     = "${var.app_build_dir/$each.value}"
+  server_side_encryption = "aws:kms"
+}
+
 output "s3_bucket_name" {
   value = aws_s3_bucket.geofoodtruck_app_bucket.bucket
 }
