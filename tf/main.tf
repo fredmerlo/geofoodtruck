@@ -168,7 +168,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
 }
 
 resource "aws_s3_object" "app_files" {
-  depends_on   = [aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_server_side_encryption_configuration]
+  depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
   for_each = { for file in local.app_build_files : file => file }
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
   key          = each.value
@@ -178,6 +178,7 @@ resource "aws_s3_object" "app_files" {
     element(split(".", each.value), length(split(".", each.value)) - 1),
     "application/octet-stream"
   )
+  etag         = filemd5("${var.app_build_dir}/${each.value}")
 }
 
 output "s3_bucket_name" {
