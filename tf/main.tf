@@ -135,6 +135,8 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+
+  web_acl_id = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
@@ -166,7 +168,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
 }
 
 resource "aws_s3_object" "app_files" {
-  depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
+  depends_on   = [aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_server_side_encryption_configuration]
   for_each = { for file in local.app_build_files : file => file }
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
   key          = each.value
