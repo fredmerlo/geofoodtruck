@@ -2,6 +2,29 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_iam_policy" "aws_key_management_service_power_user" {
+  arn = "arn:aws:iam::aws:policy/AWSKeyManagementServicePowerUser"
+}
+
+resource "aws_iam_role" "aws_iam_role_geofoodtruck_kms_admin_role" {
+  name                = "GeoFoodTruckKmsAdmin"
+
+  assume_role_policy  = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal: {
+          "AWS": "${var.aws_account_id}"
+        },
+      },
+    ]
+  })
+
+  managed_policy_arns = [data.aws_iam_policy.aws_key_management_service_power_user.arn]
+}
+
 resource "aws_kms_key" "geofoodtruck_kms_key" {
   description = "KMS key for GeoFoodTruck"
   is_enabled  = true
@@ -13,16 +36,16 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
     Version = "2012-10-17",
     Statement = [
       {
-          "Sid": "Enable IAM User Permissions",
-          "Effect": "Allow",
-          "Principal": {
-              "AWS": [
-                "arn:aws:iam::900357929763:root",
-                "arn:aws:sts::856369053181:assumed-role/OriginAccessControlRole/EdgeCredentialsProxy+EdgeHostAuthenticationClient-IAH50-P2"
-              ]
-          },
-          "Action": "kms:*",
-          "Resource": "*"
+        Sid = "Enable IAM User Permissions",
+        Effect = "Allow",
+        Principal = {
+            "AWS": [
+              aws_iam_role.aws_iam_role_geofoodtruck_kms_admin_role.arn,
+              "arn:aws:iam::${var.aws_account_id}:root"
+            ]
+        },
+        Action = "kms:*",
+        Resource = "*"
       },
       {
         Effect   = "Allow",
@@ -31,15 +54,9 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
         },
         Action   = [
           "kms:Encrypt",
-          "kms:Decrypt",
-          "kms:GenerateDataKey*"
-        ]
-        Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
-        Condition = {
-          "StringEquals": {
-            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
-          }
-        }
+          "kms:Decrypt"
+        ],
+        Resource = "*"
       }
     ]
   })
@@ -53,13 +70,6 @@ resource "aws_s3_bucket" "geofoodtruck_app_bucket" {
   bucket = "geofoodtruck-app-bucket"
 }
 
-resource "aws_s3_bucket_ownership_controls" "geofoodtruck_s3_bucket_ownership_cotrols" {
-  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_bucket_server_side_encryption_configuration" {
   bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
 
@@ -71,35 +81,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
-resource "aws_s3_bucket_acl" "geofoodtruck_app_bucket_acl" {
-  depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_ownership_cotrols]
-  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
-  acl        = "private"
-}
-
-resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
-  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
-
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect   = "Allow",
-        Principal = {
-          "Service": "cloudfront.amazonaws.com"
-        },
-        Action   = "s3:GetObject",
-        Resource = "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*",
-        Condition = {
-          "StringEquals": {
-            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
-          }
-        }
-      }
-    ]
-  })
-}
-
 resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_control" {
   name = "geofoodtruck-app-oac"
   origin_access_control_origin_type = "s3"
@@ -108,10 +89,22 @@ resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_cont
   description = "Origin Access Control for GeoFoodTruck app"
 }
 
+data "aws_cloudfront_cache_policy" "geofoodtruck_cloudfront_cache_policy" {
+  name = "Managed-CachingOptimized"
+}
+
+data "aws_cloudfront_origin_request_policy" "geofoodtruck_cloudfront_origin_request_policy" {
+  name = "Managed-CORS-S3Origin"
+}
+
+ data "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
+  name = "Managed-SimpleCORS"
+ }
+
 resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   origin {
     domain_name              = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
-    origin_id                = "S3-geofoodtruck-app-bucket"
+    origin_id                = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.geofoodtruck_origin_access_control.id
   }
 
@@ -120,16 +113,15 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   default_root_object = "index.html"
 
   default_cache_behavior {
+    cache_policy_id  = data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy.id
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-geofoodtruck-app-bucket"
+    compress         = true
 
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.geofoodtruck_cloudfront_origin_request_policy.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy.id
+
+    target_origin_id = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
 
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -143,20 +135,47 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+}
 
-  logging_config {
-    include_cookies = false
-    bucket          = "${aws_s3_bucket.geofoodtruck_app_bucket.bucket}.s3.amazonaws.com"
-    prefix          = "log/"
-  }
+resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
+  depends_on = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
+  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Principal = {
+          "Service": "cloudfront.amazonaws.com"
+        },
+        Action   = [
+          "s3:GetObject"
+        ],
+        Resource = [
+          "${aws_s3_bucket.geofoodtruck_app_bucket.arn}/*"
+        ],
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
+          }
+        }
+      }
+    ]
+  })
 }
 
 resource "aws_s3_object" "app_files" {
+  depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
   for_each = { for file in local.app_build_files : file => file }
-  bucket     = aws_s3_bucket.geofoodtruck_app_bucket.id
-  key        = each.value
-  source     = "${var.app_build_dir}/${each.value}"
-  server_side_encryption = "aws:kms"
+  bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
+  key          = each.value
+  source       = "${var.app_build_dir}/${each.value}"
+  content_type = lookup(
+    local.content_types,
+    element(split(".", each.value), length(split(".", each.value)) - 1),
+    "application/octet-stream"
+  )
 }
 
 output "s3_bucket_name" {

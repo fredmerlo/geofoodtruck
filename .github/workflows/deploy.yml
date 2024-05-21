@@ -48,8 +48,4 @@ jobs:
       working-directory: ./tf
       run: |
         terraform apply -auto-approve \
-          -var="app_build_dir=../build"
-
-    - name: Invalidate CloudFront cache
-      run: |
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.APP_DISTRIBUTION_ID }} --paths "/*"
+          -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}"
