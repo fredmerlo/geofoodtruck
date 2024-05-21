@@ -162,11 +162,13 @@ export class SearchControl extends Control {
     select.style.color = 'blue';
     select.style.borderRadius = '0px';
     select.style.margin = '0.5px -0.5px -0.5px 0px';
+    select.style.height = '29px';
 
     // radius distance options in miles
     select.innerHTML = '<option value="0.25" selected>Near Me</option>'+
     '<option value="1">1 Mile</option>'+
-    '<option value="2">2 Miles</option>';
+    '<option value="2">2 Miles</option>'+
+    '<option value="5">Anywhere</option>';
 
     // search button markup
     const eat = DomUtil.create('button', 'btn btn-success btn-sm', span);
@@ -217,6 +219,12 @@ export class SearchControl extends Control {
         return this.addMarker(feature, latlng, this.markerArray);
       },
     }).addTo(map);
+
+    // use sample options.data if provided from the map component
+    if (this.options.data) {
+      this.addSearchArea('0.25'); // default for near me
+      this.geoLayer.addData(this.options.data);
+    }
     
     return control;
   };
