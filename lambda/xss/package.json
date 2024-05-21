@@ -1,0 +1,10 @@
+{
+  "name": "geofoodtruck-xss-lambda",
+  "version": "1.0.0",
+  "description": "GeoFoodTruck XSS Lambda",
+  "main": "index.mjs",
+  "type": "module",
+  "dependencies": {
+    "aws4": "^1.12.0"
+  }
+}
