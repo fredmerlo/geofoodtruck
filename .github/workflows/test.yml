@@ -4,9 +4,9 @@ on:
   deployment_status:
 
 jobs:
+  if: github.event.deployment_status.state == 'success'
   container-test-job:
-    name: Setup Playwright Container
-    if: github.event.deployment_status.state == 'success'
+    name: Playwright Container
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.44.0-jammy
