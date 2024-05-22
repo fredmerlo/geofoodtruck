@@ -8,6 +8,12 @@ jobs:
     if: github.event.deployment_status.state == 'success'
     name: Playwright Container
     runs-on: ubuntu-latest
+    environment: dev
+
+    permissions:
+      id-token: write
+      contents: read
+
     container:
       image: mcr.microsoft.com/playwright:v1.44.0-jammy
 
