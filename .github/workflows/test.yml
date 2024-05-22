@@ -21,9 +21,9 @@ jobs:
     - name: Install AWS CLI
       working-directory: /github/home
       run: |
-        curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh \
-        chmod +x install-aws.sh \
-        ./install-aws.sh "v2" "amd64" \
+        curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh
+        chmod +x install-aws.sh
+        ./install-aws.sh "v2" "amd64"
         rm install-aws.sh  
 
     - name: Checkout code
