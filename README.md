@@ -1,3 +1,4 @@
+[![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml)
 # Getting Started with the GeoFoodTruck app
 
 ### Pre-Requisites
