@@ -1,4 +1,5 @@
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
+[![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://d3n9iqvbhzuqoh.cloudfront.net)
 # Getting Started with the GeoFoodTruck app
 
 ### Pre-Requisites
