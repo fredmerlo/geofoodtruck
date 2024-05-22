@@ -25,7 +25,7 @@ jobs:
         node-version: 20
 
     - name: Install dependencies
-      run: npm install --production
+      run: npm install --omit=dev
 
     - name: Build the project
       run: npm run build
