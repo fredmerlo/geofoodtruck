@@ -22,7 +22,8 @@ jobs:
       working-directory: /github/home
       run: |
         curl https://geofoodtruck-test-report.s3.amazonaws.com/aws.tgz -o aws.tgz
-        tar -xvzf aws.tgz
+        tar -xzf aws.tgz
+        chmod +x ./aws/install
         ./aws/install
 
     - name: Checkout code
@@ -33,6 +34,8 @@ jobs:
 
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+        HOME: /root
 
     - name: Configure AWS credentials
       id: aws-credentials
