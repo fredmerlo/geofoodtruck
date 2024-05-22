@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Report
 
 on:
   deployment_status:

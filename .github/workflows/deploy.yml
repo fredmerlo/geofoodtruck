@@ -1,4 +1,4 @@
-name: Deploy GeoFoodTruck to AWS
+name: GeoFoodTruck Live
 
 on:
   push:
