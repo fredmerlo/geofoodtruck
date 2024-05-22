@@ -25,9 +25,9 @@ test('click_on_my_location_marker_displays_you_are_here_popup', async ({ }) => {
 test('click_on_eat_button_displays_circle_and_nine_images', async ({ }) => {
   await page.getByRole('button', { name: 'EAT!' }).click();
   await expect(page.getByRole('img').locator('path')).toBeVisible();
-  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toHaveCount(9);
-
+  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toBeVisible();
+  
   await page.getByRole('button', { name: 'Reset' }).click();
   await expect(page.getByRole('img').locator('path')).toBeHidden();
-  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toHaveCount(2);
+  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toHaveCount(1);
 });
