@@ -14,20 +14,41 @@ test.afterAll(async () => {
   await page.close();
 });
 
-test('click_on_my_location_marker_displays_you_are_here_popup', async ({ }) => {
-  await page.getByRole('button', { name: 'Marker' }).click();
-  await expect(page.locator('div.leaflet-popup-content')).toBeVisible();
+test.describe('Given I see my location on the map', async () => {
 
-  await page.getByLabel('Close popup').click();
-  await expect(page.locator('div.leaflet-popup-content')).toBeHidden();
+  test.describe('When I click on the location marker', async () => {
+
+    test('Then I should see a popup with the text "You are here"', async () => {
+      await page.getByRole('button', { name: 'Marker' }).click();
+
+      await expect(page.locator('div.leaflet-popup-content')).toBeVisible();
+      await expect(page.locator('div.leaflet-popup-content').textContent()).resolves.toBe('You are here');
+    });
+
+    test('And when I click the close button, the popup should disapear', async () => {
+      await page.locator('a.leaflet-popup-close-button').click();
+
+      await expect(page.locator('div.leaflet-popup-content')).toBeHidden();
+    });
+  });
 });
 
-test('click_on_eat_button_displays_circle_and_nine_images', async ({ }) => {
-  await page.getByRole('button', { name: 'EAT!' }).click();
-  await expect(page.getByRole('img').locator('path')).toBeVisible();
-  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toBeVisible();
-  
-  await page.getByRole('button', { name: 'Reset' }).click();
-  await expect(page.getByRole('img').locator('path')).toBeHidden();
-  await expect(page.locator('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive')).toHaveCount(1);
+test.describe('Given I see the EAT buttonn', async () => {
+
+  test.describe('When I click on the button', async () => {
+
+    test('Then I should a boundary circle with several truck icons inside', async () => {
+      await page.getByRole('button', { name: 'EAT!' }).click();
+
+      await expect(page.locator('path.leaflet-interactive')).toBeVisible();
+      await expect(page.locator(`//img[contains(@src, 'truck-solid.png')]`)).toBeTruthy();
+    });
+
+    test('And when I ckick the Reset button, the boundary circle and truck icons should disapear', async () => {
+      await page.getByRole('button', { name: 'Reset' }).click();
+
+      await expect(page.locator('path.leaflet-interactive')).toBeHidden();
+      await expect(page.locator(`//img[contains(@src, 'truck-solid.png')]`)).toBeHidden();
+    });
+  });
 });
