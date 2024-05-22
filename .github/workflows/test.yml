@@ -4,8 +4,8 @@ on:
   deployment_status:
 
 jobs:
-  if: github.event.deployment_status.state == 'success'
   container-test-job:
+    if: github.event.deployment_status.state == 'success'
     name: Playwright Container
     runs-on: ubuntu-latest
     container:
