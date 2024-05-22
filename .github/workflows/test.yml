@@ -46,4 +46,4 @@ jobs:
 
     - name: Upload to S3
       run: |
-        aws s3 sync ./playwright-report s3://${{ secrets.APP_BUCKET_NAME }} --delete
+        aws s3 sync ./playwright-html-report s3://${{ secrets.APP_BUCKET_NAME }}
