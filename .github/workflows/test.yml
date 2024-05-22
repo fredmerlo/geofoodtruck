@@ -19,9 +19,12 @@ jobs:
 
     steps:
     - name: Install AWS CLI
-      uses: unfor19/install-aws-cli-action@v1
-      with:
-        arch: amd64
+      working-directory: ./tmp
+      run: |
+        curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh \
+        chmod +x install-aws.sh \
+        ./install-aws.sh "v2" "amd64" \
+        rm install-aws.sh  
 
     - name: Checkout code
       uses: actions/checkout@v4
