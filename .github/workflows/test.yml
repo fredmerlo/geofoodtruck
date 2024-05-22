@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Install AWS CLI
-      working-directory: ./tmp
+      working-directory: /github/home
       run: |
         curl -L -o install-aws.sh https://raw.githubusercontent.com/unfor19/install-aws-cli-action/master/entrypoint.sh \
         chmod +x install-aws.sh \
