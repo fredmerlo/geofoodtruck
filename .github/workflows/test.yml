@@ -18,18 +18,19 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.44.0-jammy
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
+    - name: Install AWS CLI
+      run: |
+        apt-get update
+        apt-get install -y awscli
+
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Install dependencies
       run: npm ci
 
     - name: Run Playwright tests
       run: npx playwright test
-      env:
-        HOME: /root
 
     - name: Configure AWS credentials
       id: aws-credentials
