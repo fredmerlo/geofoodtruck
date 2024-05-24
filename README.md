@@ -1,7 +1,7 @@
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://d3n9iqvbhzuqoh.cloudfront.net)
 # Showcase Project
-`GeoFoodTruck` uses the City of San Francisco public dataset of Mobile Food Vendors Registry (Food Trucks), to provide a Map Search application of food trucks close to me, [view screencast](#geofoodtruck-application).
+`GeoFoodTruck` uses the City of San Francisco public dataset of [Mobile Food Facility Permit Registry](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks), to provide a Map Search application of food trucks close to me, [view screencast](#geofoodtruck-application).
 
 ### You can talk-the-talk, but can you walk-the-walk?
 As a `Cloud and Software Engineering` applying my craft over several years, I've been fortunate to contribute and deliver technology solutions in multiple markets.
@@ -14,10 +14,26 @@ All the details of my career journey are documented on my [resume](https://www.l
 
   **Excluding boilerplate React web application elements**
 
-  **All 3rd-party Frameworks and Libraries, are owned by their respective creators**
+  **All 3rd-party Datasets, Frameworks and Libraries, are owned by their respective creators**
 
-### Implementation Focus
-Specifically my implementation demonstrates the following:
+### Implementation
+The goal of my implementation is to represent a baseline `Cloud Product Delivery` Architecture, using Agile Methodologies, Full-Stack development and CI / CD pipelines. 
+
+And of course that I applied my expertise to Design, Create and Integrate the  technologies to make it all work.
+
+The key techonlogies are:
+| Tech | Purpose |
+| --- | --- |
+| React | `GeoFoodTruck` web application |
+| Playwright | UI Automation, UAT and Reporting |
+| Terraform | Infrastructure as Code |
+| Git Workflow | CI / CD for Deploy and Test |
+| AWS KMS | Managed Encryption |
+| AWS Cloudfront | Content Delivery, Caching and TLS Encryption in Transit |
+| AWS OAC | Token Authorization for Cloudfront to S3 |
+| AWS S3 | KMS Encrypted at Rest of Application Files |
+| AWS WAFv2 | Cloudfont Traffic Telemetry, DoS Protection, Bot Filter, Malicious Agents Filter |
+| Docker | Container for running UATs from Test Git Workflow |
 
 1. #### Web Application Design and Development
    Though my expertise spans beyond solely creating web applications, most organizations produce and maintain such systems.
