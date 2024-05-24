@@ -6,6 +6,8 @@ export class MapPage {
   readonly buttonPopupClose: Locator;
   readonly boundaryCircle: Locator;
   readonly iconsTruck: Locator;
+  readonly inputFindFood: Locator;
+  readonly selectDistance: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +15,8 @@ export class MapPage {
     this.buttonPopupClose = page.getByLabel('Close popup');
     this.boundaryCircle = page.locator('path.leaflet-interactive');
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
+    this.inputFindFood = page.locator('#searchInput');
+    this.selectDistance = page.locator('#searchSelect');
   }
 
   async isPopupOpen() {
@@ -55,5 +59,17 @@ export class MapPage {
 
   async areTruckIconsHidden() {
     await expect(this.iconsTruck).toBeHidden();
+  }
+
+  async clickSelectDistance() {
+    await this.selectDistance.click();
+  }
+
+  async clickSelectDistanceOption(option: string) {
+    await this.selectDistance.selectOption(option);
+  }
+
+  async typeInputFindFood(text: string) {
+    await this.inputFindFood.fill(text);
   }
 }

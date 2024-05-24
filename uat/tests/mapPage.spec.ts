@@ -16,6 +16,7 @@ test.afterAll(async () => {
 });
 
 test.describe('Initial Map view', async () => {
+  
   test(`GIVEN I see my location marker
 WHEN I click on my location marker
 THEN I should see a popup with the text "You are here"
@@ -39,6 +40,7 @@ THEN I should not see the popup
 });
 
 test.describe('Basic Food Search', async () => {
+
   test(`GIVEN I see the EAT! button
 WHEN I click on the EAT! button
 THEN I should a boundary circle
@@ -61,5 +63,34 @@ AND I should not see any truck icons
     await mapPage.clickButton('Reset');
     await mapPage.isBoundaryCircleHidden();
     await mapPage.areTruckIconsHidden();
+  });
+});
+
+test.describe('Food Search', async () => {
+
+  test(`GIVEN I see the Find Food input
+WHEN I type "gyro" in the input
+AND I click on the EAT! button
+THEN I should see a popup with the text "No results found"
+`, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.typeInputFindFood('gyro');
+    await mapPage.clickButton('EAT!');
+    await mapPage.isPopupOpen();
+    await mapPage.hasPopupText('No results found');
+  });
+
+  test(`GIVEN I see the "No results found" popup
+WHEN I click on the distance dropdown
+AND I click on the "1 mile" option
+AND I click on the EAT! button
+THEN I should see several truck icons
+`, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.isPopupOpen();
+    await mapPage.clickSelectDistance();
+    await mapPage.clickSelectDistanceOption('1');
+    await mapPage.clickButton('EAT!');
+    await mapPage.areTruckIconsVisible();
   });
 });
