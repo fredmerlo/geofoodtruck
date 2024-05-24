@@ -2,10 +2,11 @@ name: Playwright Report
 
 on:
   deployment_status:
+    types:
+      - success
 
 jobs:
   container-test-job:
-    if: github.event.deployment_status.state == 'success'
     name: Playwright Container
     runs-on: ubuntu-latest
     environment: test
