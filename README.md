@@ -90,11 +90,15 @@ My approach combines hands-on technical leadership and software engineering with
 3. #### Automate Everything
    Or try to Automate as much as resonably possible. The key objective is to strive for `Idempotency`, run once or 100 times, given the same input the result will always be the same. Eliminating manual intervention is another practice to boost Agile Development Teams productivity.
 
-   For `GeoFoodTruck` I implemented OIDC GitHub Authentication for AWS temporary credentials, eliminating the need for manual management of AWS Keys and Secrets necessary to provision Cloud artifacts and infrastructure. 
+   For `GeoFoodTruck`, the CI / CD pipeline acheives `Complete Automation`, from source code modifications to Cloud deployment and Application Quality validation with UATs.
+
+   I implemented OIDC GitHub Authentication to requet AWS temporary credentials, eliminating manual administration of AWS Keys and Secrets, necessary to provision Cloud artifacts and infrastructure. 
    
-   I created two event triggered Workflows: Deploy and Test.
-   - **Deploy** is activated upon detection of code updates in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates.
-   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs preventing blocking of the `Deploy` workflow. The `Test` workflow publishes the `Tests Result Report` available to all of the project collaborators. 
+   I created two event triggered Workflows: **Deploy** and **Test**.
+   - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
+   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking of the `Deploy` workflow. The `Test` workflow publishes the `Tests Result Report` available to all project collaborators.
+
+      ![CI-CD Workflow](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck-ci-cd.gif) 
 
 4. #### Cloud Product Delivery
    A Well Architected Cloud product requires a thorough assessment of the workload being provisioned, at a high-level this evaluation will consider Operations, Security, Performance, Resiliency, Sustainability and Costs.
