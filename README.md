@@ -1,111 +1,77 @@
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://d3n9iqvbhzuqoh.cloudfront.net)
-# Getting Started with the GeoFoodTruck app
+# Showcase Project
+`GeoFoodTruck` uses the City of San Francisco public dataset of Mobile Food Vendors Registry (Food Trucks), to provide a Map Search application of food trucks close to me, [view screencast](#geofoodtruck-application).
 
-### Pre-Requisites
-1. Install Node v18 for your operating system
+### You can talk-the-talk, but can you walk-the-walk?
+As a `Cloud and Software Engineering` applying my craft over several years, I've been fortunate to contribute and deliver technology solutions in multiple markets.
 
-   [Node v18 download page](https://nodejs.org/download/release/v18.19.1/)
+All the details of my career journey are documented on my [resume](https://www.linkedin.com/in/fred-merlo-ab4b10) (*talk-the-talk*), I created this project to Showcase `some` of my skills in action (*walk-the-walk*). 
+#### Attribution
+- I am the `Owner` of the `GeoFoodTruck` repository.
+- I am the `Sole Contributor` on the `GeoFoodTruck` repository.
+- My `Creative Efforts` produced all code artifacts in the `GeoFoodTruck` repository.
 
-   To verify that Node v18 has been correctly installed in your system.
+  **Excluding boilerplate React web application elements**
 
-   Use a shell terminal, run the following command:
+  **All 3rd-party Frameworks and Libraries, are owned by their respective creators**
 
-   ```
-   node --version
-   ```
-   This should display `v18.##.#`
+### Implementation Focus
+Specifically my implementation demonstrates the following:
 
-2. Clone the `geofoodtruck` into a local directory on your system
+1. #### Web Application Design and Development
+   Though my expertise spans beyond solely creating web applications, most organizations produce and maintain such systems.
+
+   `GeoFoodTruck` is a React web application, view [GeoFoodTruck Details](DETAILS.md) for more information.
+2. #### Agile Business Value from Inception to Realization
+   As an architect I collaborate regularly with Stakeholders, Product Owners and Delivery Managers, my primary focus is to understand the business objectives and the desired outcome. I document and define Feature Workstream, create and refine the Stories for the workstream. Each Story will usually contain one or more User Need, documented as Acceptance Criteria (AC).
    
-   Use a shell terminal, run the following commands:
+   - ACs document a specific User Need described in Layman Terms and written in `GIVEN-WHEN-THEN` syntax.
 
-   ```
-   cd <app-clone-directory>/geofoodtruck/
-   npm install
-   ```
-### Approach Rationale
-The challenge is about Food with GeoLocation data, this begs to be a `Map Search Solution`, so why not.
+      ```
+      GIVEN I see my location marker
+      WHEN I click on my location marker
+      THEN I should see a popup with the text "You are here"
+      ```
+   - The Behavior described by the AC is then codified to a User Accptance Test (UAT). This development technique is known as Behavior Driven Developmet (BDD). From the previous AC, this would be the corresponding UAT, using [Playwright](https://playwright.dev) UI Automation and integrated with Page Object Model ([POM](https://playwright.dev/docs/pom)) pattern, resulting in clean tests that closely follow the AC definition.
 
-### Technology Choice
-The primary objective was to have a reasonably useful application with low to moderate time investemnt. So with that in mind these were my selections:
+      ```
+      test('My Location Marker', async () => {
+         // POM instance
+         const mapPage = new MapPage(page);
 
-- React 18, no Redux keeps it simple
-- [Leaflet](https://leafletjs.com/) OSS javascript interactive maps, with strong community support, and Typescript support (somewhat).
-- [Soda-ts](https://github.com/data-depo/soda-ts) OpenData client in Typescript, although OpenData is a fairly basic API using a Soda client is a productivity accelerator decision.
+         // GIVEN I see my location marker
+         await mapPage.hasButton('Marker');
 
-### So how did it go?
-It has been a few years since I last used mapping and geolocation technologies, this was an opportunity to get back into the fray so to speak. I've always have fun and learn plenty when dealing with mapping stuff.
+         // WHEN I click on my location marker
+         await mapPage.clickButton('Marker');
 
-### My workflow
-- Frist I took time to understand the source Soda data set, to see what the data looked like, assess the data structures and identify any potential challenges.
-- Next I identified Soda clients that I could leverage, its http how hard can it be? Famous last words.
-- Next I began the web application setup and development with Leaflet, in my experience this area is the most time consuming so I wanted to get that tackled early on.
+         // THEN I should see a popup
+         await mapPage.isPopupOpen();
 
-As anticipated there was a learning curve with familiarizing myself with the Leaflet platform and Apis, but being familiar with mapping technologies it wasn't exceedingly challenging.
+         // with the text "You are here"
+         await mapPage.hasPopupText('You are here');
+      });
+      ```
+   - Transparent, Frequent and Detailed feedback is paramount to supporting Agile Software Development teams. The UATs paired with the CI / CD pipeline enable `near-real-time` reporting of the application quality. The [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) is published and available to all.
+      
+      **Happy Path**
+      ![Tests Result Happy](https://geofoodtruck-test-report.s3.amazonaws.com/tests-result-happy.png)
 
-Having completed with the Map and UI tasks, I proceeded on integrating with the Soda client and dataset.
+      **Less-Happy Path**
+      ![Tests Result Less-Happy](https://geofoodtruck-test-report.s3.amazonaws.com/tests-result-less-happy.png)
+3. #### Automated Continuous Integration and Deployment (CI / CD)
+4. #### Cloud Product Delivery
+   A Well Architected Cloud product requires a thorough assessment of the workload being provisioned, at a high-level this evaluation will consider Operations, Security, Performance, Resiliency, Sustainability and Costs.
 
-This is where the churn occured.
+   In `GeoFoodTruck` I implemented a sub-set of foundational patterns that are common for web application cloud workloads.
 
-Soda clients for Typescript and javascript are quite dated, not having been maintained in several years. My choice in using somewhat-newer web frameworks was actually a handicap with the dated implementations of the Soda clients available to my technology.
+   - Development Operations (DevOps)
 
-### Overall
-I was able to get the idea out of my head and into working software, took a tad-bit longer than what I had considered particularly in areas where I didn't expect. It's software development never a dull moment.
+   - Shift-Left Security (SecDevOps)
 
-I appreciate your team sharing this challenge, it has been by far the most enjoyable I've had. Thank you for the opportunity.
+   - Performance and Cost (CloudOps)
 
+### GeoFoodTruck Application
 ![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
 
-
-### Source Code Notes
-Aside from the boilerplate web app setup. `GeoFoodTruck` is mainly 3 files.
-- /src/Map.tsx is the Application host component
-- /src/SearchComponent.ts contains the Search controls and integrates with the Search API
-- /Api.ts is the data component that interacts with the OpenData endpoint to search for Food Trucks in my area.
-#
-### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
-### Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

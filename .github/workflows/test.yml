@@ -24,7 +24,7 @@ jobs:
     - name: Install AWS CLI
       working-directory: /github/home
       run: |
-        curl https://geofoodtruck-test-report.s3.amazonaws.com/aws.tgz -o aws.tgz
+        curl https://${{ secrets.APP_BUCKET_NAME }}.s3.amazonaws.com/aws.tgz -o aws.tgz
         tar -xzf aws.tgz
         chmod +x ./aws/install
         ./aws/install
