@@ -2,39 +2,25 @@ import { expect, Page, Locator } from "@playwright/test";
 
 export class MapPage {
   readonly page: Page;
-  readonly markerMyLocation: Locator;
-  readonly popupContent: Locator;
+  readonly contentPopup: Locator;
   readonly buttonPopupClose: Locator;
-  readonly buttonEat: Locator;
-  readonly buttonReset: Locator;
   readonly boundaryCircle: Locator;
   readonly iconsTruck: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.markerMyLocation = page.getByRole('button', { name: 'Marker' });
-    this.popupContent = page.locator('div.leaflet-popup-content');
-    this.buttonPopupClose = page.locator('a.leaflet-popup-close-button');
-    this.buttonEat = page.getByRole('button', { name: 'EAT!' });
-    this.buttonReset = page.getByRole('button', { name: 'Reset' });
+    this.contentPopup = page.locator('div.leaflet-popup-content');
+    this.buttonPopupClose = page.getByLabel('Close popup');
     this.boundaryCircle = page.locator('path.leaflet-interactive');
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
   }
 
-  async hasMyLocation()  {
-    await expect(this.markerMyLocation).toBeVisible();
-  }
-
-  async clickMyLocation() {
-    await this.markerMyLocation.click();
-  }
-
   async isPopupOpen() {
-    await expect(this.popupContent).toBeVisible();
+    await expect(this.contentPopup).toBeVisible();
   }
 
   async hasPopupText(text: string) {
-    await expect(this.popupContent.textContent()).resolves.toContain(text);
+    await expect(this.contentPopup.textContent()).resolves.toContain(text);
   }
 
   async closePopup() {
@@ -42,27 +28,17 @@ export class MapPage {
   }
 
   async isPopupClosed() {
-    await expect(this.popupContent).toBeHidden();
+    await expect(this.contentPopup).toBeHidden();
   }
 
   async hasButton( buttonName: string) {
-    if (buttonName === 'EAT!') {
-      await expect(this.buttonEat).toBeVisible();
-    }
-
-    if (buttonName === 'Reset') {
-      await expect(this.buttonReset).toBeVisible();
-    }
+    const locator: Locator = this.page.getByRole('button', { name: buttonName });
+    await expect(locator).toBeVisible();
   }
 
   async clickButton(buttonName: string) {
-    if (buttonName === 'EAT!') {
-      await this.buttonEat.click();
-    }
-
-    if (buttonName === 'Reset') {
-      await this.buttonReset.click();
-    }
+    const locator: Locator = this.page.getByRole('button', { name: buttonName });
+    await locator.click();
   }
 
   async isBoundaryCircleVisible() {

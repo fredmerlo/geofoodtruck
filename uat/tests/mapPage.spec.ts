@@ -21,8 +21,8 @@ WHEN I click on my location marker
 THEN I should see a popup with the text "You are here"
   `, async () => {
     const mapPage = new MapPage(page);
-    await mapPage.hasMyLocation();
-    await mapPage.clickMyLocation();
+    await mapPage.hasButton('Marker');
+    await mapPage.clickButton('Marker');
     await mapPage.isPopupOpen();
     await mapPage.hasPopupText('You are here');
   });
