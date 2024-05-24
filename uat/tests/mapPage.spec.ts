@@ -88,6 +88,7 @@ THEN I should see several truck icons
 `, async () => {
     const mapPage = new MapPage(page);
     await mapPage.isPopupOpen();
+    await mapPage.hasPopupText('No results found');
     await mapPage.clickSelectDistance();
     await mapPage.clickSelectDistanceOption('1');
     await mapPage.clickButton('EAT!');
