@@ -1,9 +1,10 @@
 name: Playwright Report
 
-workflow_run:
-  workflows: ["GeoFoodTruck Live"]
-  types:
-    - completed
+on:
+  workflow_run:
+    workflows: ["GeoFoodTruck Live"]
+    types:
+      - completed
 
 jobs:
   container-test-job:
