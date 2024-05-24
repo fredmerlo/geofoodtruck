@@ -1,13 +1,13 @@
 name: Playwright Report
 
-on:
-  deployment_status:
-    types:
-      - success
+workflow_run:
+  workflows: ["GeoFoodTruck Live"]
+  types:
+    - completed
 
 jobs:
   container-test-job:
-    if: github.event.deployment_status.state == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Playwright Container
     runs-on: ubuntu-latest
     environment: test
