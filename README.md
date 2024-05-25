@@ -17,9 +17,9 @@ All the details of my career journey are documented on my [resume](https://www.l
   **All 3rd-party Datasets, Frameworks and Libraries, are owned by their respective creators**
 
 ### Implementation
-The goal of my implementation is to represent a baseline `Cloud Product Delivery` Architecture, using Agile Methodologies, Full-Stack development and CI / CD pipelines. 
+The goal of my implementation is to present a foundational `Cloud Product Delivery` Architecture, using Agile Methodologies, Full-Stack development and CI / CD pipelines. 
 
-And of course that I applied my expertise to Design, Create and Integrate the  technologies to make it all work.
+And of course showcase my applied my expertise to Design, Create and Integrate the  technologies to make it all work.
 
 The key techonlogies are:
 | Tech | Purpose |
@@ -80,7 +80,7 @@ My approach combines hands-on technical leadership and software engineering with
          await mapPage.hasPopupText('You are here');
       });
       ```
-   - Transparent, Frequent and Detailed feedback is paramount to supporting Agile Software Development teams. The UATs paired with the CI / CD pipeline enable `near-real-time` reporting of the application quality. The [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) is published and available to all.
+   - Transparent, Frequent and Detailed feedback is paramount to supporting Agile Software Development teams. The UATs paired with the CI / CD pipeline enable `near-real-time` reporting of the application quality. The [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) is published and available to all project collaborators.
       
       **Happy Path**
       ![Tests Result Happy](https://geofoodtruck-test-report.s3.amazonaws.com/tests-result-happy.png)
@@ -88,7 +88,7 @@ My approach combines hands-on technical leadership and software engineering with
       **Less-Happy Path**
       ![Tests Result Less-Happy](https://geofoodtruck-test-report.s3.amazonaws.com/tests-result-less-happy.png)
 3. #### Automate Everything
-   Or try to Automate as much as resonably possible. The key objective is to strive for `Idempotency`, run once or 100 times, given the same input the result will always be the same. Eliminating manual intervention is another practice to boost Agile Development Teams productivity.
+   Or try to Automate as much as resonably possible. The key concept is to strive for `Idempotency`, run once or 100 times, given the same input the outcome will always be the same. Eliminating manual intervention is another practice to boost Agile Development Teams productivity.
 
    For `GeoFoodTruck`, the CI / CD pipeline acheives `Complete Automation`, from source code modifications to Cloud deployment and Application Quality validation with UATs.
 
@@ -96,21 +96,48 @@ My approach combines hands-on technical leadership and software engineering with
    
    I created two event triggered Workflows: **Deploy** and **Test**.
    - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
-   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking of the `Deploy` workflow. The `Test` workflow publishes the `Tests Result Report` available to all project collaborators.
+   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking of the `Deploy` workflow. The `Test` workflow publishes the [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) available to all project collaborators.
+
+      **Deploy and Test in Action**
 
       ![CI-CD Workflow](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck-ci-cd.gif) 
 
 4. #### Cloud Product Delivery
    A Well Architected Cloud product requires a thorough assessment of the workload being provisioned, at a high-level this evaluation will consider Operations, Security, Performance, Resiliency, Sustainability and Costs.
 
-   In `GeoFoodTruck` I implemented a sub-set of foundational patterns that are common for web application cloud workloads.
+   In `GeoFoodTruck` I implemented the baseline patterns that are common for web application cloud workloads.
 
    - Development Operations (DevOps)
 
+     The `GeoFoodTruck` Deploy and Test CI / CD pipeline, although unsophisticated, it is effective in representing a Minimum Viable Product to support DevOps. It very easily can be leveraged as a template for a green-field or POC projects.
+
+     On a more robust DevOps implementations the team would have multi-stage deployments to various environments (Dev, Stage, Pre-Prod, Prod), the Test pipeline may have a scheduled Canary environment for spot-checks. Automated Issue Ticket creation, Monitoring and Telemetry Notifications, the sky is the limit of what can be accomplished.
+
+     However the basic workflow principles apply, Build changes, Deploy changes, Validate deployment. 
+
    - Shift-Left Security (SecDevOps)
+
+     `GeoFoodTruck` does not work with PII or PCI information nor does it use Authentication and Authorization, however I pupurposely applied a Shift-Left security posture, here was Terraform's moment in the spotlight.
+
+     Using Terraform I defined, configured and provisioned the AWS services required to harden security for the `GeoFoodTruck` application. Applying Encryption at Rest, Encryption in Transit, Malicous Traffic Detection and Filtering, Access Abstraction between Web and Backend, Traffic Telemetry, to name a few. WAF provides a plethora of traffic telemetry, exportable to CloudWatch or to JSON for data science die-hards.
+
+     My objective was to highlight the importance of a Shift-Left / Security-First mindset our development teams need to be adopting and applying.
+
+     **Couple WAF Dashboards**
+
+     ![Bot Detection](https://geofoodtruck-test-report.s3.amazonaws.com/waf-bot-detection.png)
+     ![Sampled Requests](https://geofoodtruck-test-report.s3.amazonaws.com/waf-sampled-request.png)
 
    - Performance and Cost (CloudOps)
 
-### GeoFoodTruck Application
-![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
+     The security hardening applied to `GeoFoodTruck` uses and S3 bucket Encryption at Rest of the application files. The downside is that putting data into S3 is free, however getting data out of S3 is `NOT` free. Fortunately Cloudfront provides content caching which actually helps with Performance improvement and Cost savings.
 
+     Cloudfront is an AWS Global Content Deivery Network, and the Cloudfront cache is replicated by AWS, though `GeoFoodTruck` application content is relatvely small, not having to pay S3 object retrieval costs is a big plus. And as an added bonus the `GeoFoodTruck` application is available @Edge to users everywhere.
+
+     **Cloudfront Cache Metrics**
+     
+     ![Cloudfront Cache](https://geofoodtruck-test-report.s3.amazonaws.com/cloudfront-cache.png)
+
+### GeoFoodTruck Application
+
+![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
