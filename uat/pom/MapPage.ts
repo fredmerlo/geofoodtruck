@@ -8,6 +8,7 @@ export class MapPage {
   readonly iconsTruck: Locator;
   readonly inputFindFood: Locator;
   readonly selectDistance: Locator;
+  readonly map: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -17,6 +18,7 @@ export class MapPage {
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
     this.inputFindFood = page.locator('#searchInput');
     this.selectDistance = page.locator('#searchSelect');
+    this.map = page.locator('.leaflet-container');
   }
 
   async isPopupOpen() {
@@ -71,5 +73,36 @@ export class MapPage {
 
   async typeInputFindFood(text: string) {
     await this.inputFindFood.fill(text);
+  }
+
+  async pixelsFor(miles: number) {
+    const p = await this.page.evaluate((miles) => {      
+      return (window as any).milesToPixels(miles);
+    }, miles);
+
+    return p;
+  }
+
+  async clickMapForDistance(milesX: number, milesY: number) {
+    const mapBox = await this.map.boundingBox();
+    
+    await expect(mapBox).not.toBeNull();
+
+    const cleanBox: any = mapBox;
+    const mapCenterX = cleanBox.x + cleanBox.width / 2;
+    const mapCenterY = cleanBox.y + cleanBox.height / 2;
+
+    const pX = await this.pixelsFor(milesX);
+    const pY = await this.pixelsFor(milesY);
+
+    await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }});
+  }
+
+  async keyPress(key: string) {
+    await this.page.keyboard.press(key);
+  }
+
+  async pageRefresh() {
+    await this.page.reload({ waitUntil: 'domcontentloaded'});
   }
 }

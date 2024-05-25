@@ -46,4 +46,18 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+
+  <script>
+    function milesToPixels(miles) {
+      const keys = Object.keys(this.map);
+      const map = this.map[keys[0]].alternate.memoizedProps.children.props.value.map;
+      const metersInAMile = 1609.34;
+      const meters = miles * metersInAMile;
+      const zoom = map.getZoom();
+      const metersPerPixel = 40075016.686 / Math.pow(2, zoom + 8);
+      const pixels = meters / metersPerPixel;
+
+      return pixels;
+    };
+  </script>  
 </html>

@@ -6,9 +6,10 @@ test.describe.configure({ mode: 'serial' });
 let page: Page;
 
 test.beforeAll(async ({ browser }) => {
-  page = await browser.newPage();
+  page = await browser.newPage({viewport: { width: 1400, height: 1050 }});
   
   await page.goto('https://d3n9iqvbhzuqoh.cloudfront.net/');
+  await page.waitForSelector('.leaflet-container');
 });
 
 test.afterAll(async () => {
@@ -92,6 +93,35 @@ THEN I should see several truck icons
     await mapPage.clickSelectDistance();
     await mapPage.clickSelectDistanceOption('1');
     await mapPage.clickButton('EAT!');
+    await mapPage.areTruckIconsVisible();
+    await mapPage.pageRefresh();
+  });
+});
+
+test.describe('Food Search At Other Locations', async () => {
+
+  test(`GIVEN I want to eat chicken gyro
+WHEN I type "chicken gyro" in the input
+AND I press Enter
+THEN I see popup with the text "No results found"
+  `, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.typeInputFindFood('chicken gyro');
+    await mapPage.keyPress('Enter');
+    await mapPage.isPopupOpen();
+    await mapPage.hasPopupText('No results found');
+  });
+
+  test(`GIVEN I still want to eat chicken gyro
+WHEN I click on Zoom Out button
+AND I click on the map 1/2 mile North East of my location
+AND I press Enter
+THEN I see several truck icons
+  `, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.clickButton('Zoom Out');
+    await mapPage.clickMapForDistance(0.5, -0.5);
+    await mapPage.keyPress('Enter');
     await mapPage.areTruckIconsVisible();
   });
 });
