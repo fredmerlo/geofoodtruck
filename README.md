@@ -107,7 +107,7 @@ My approach combines hands-on technical leadership and software engineering with
 
    In `GeoFoodTruck` I implemented the baseline patterns that are common for web application cloud workloads.
 
-   - Development Operations (DevOps)
+   - **Development Operations (DevOps)**
 
      The `GeoFoodTruck` Deploy and Test CI / CD pipeline, although unsophisticated, it is effective in representing a Minimum Viable Product to support DevOps. It very easily can be leveraged as a template for green-field or POC projects.
 
@@ -115,7 +115,7 @@ My approach combines hands-on technical leadership and software engineering with
 
      However the basic workflow principles apply, Build changes, Deploy changes, Validate deployment. 
 
-   - Shift-Left Security (SecDevOps)
+   - **Shift-Left Security (SecDevOps)**
 
      `GeoFoodTruck` does not work with PII or PCI information nor does it use Authentication and Authorization, however I pupurposely applied a Shift-Left security posture, here was Terraform's moment in the spotlight.
 
@@ -128,7 +128,7 @@ My approach combines hands-on technical leadership and software engineering with
      ![Bot Detection](https://geofoodtruck-test-report.s3.amazonaws.com/waf-bot-detection.png)
      ![Sampled Requests](https://geofoodtruck-test-report.s3.amazonaws.com/waf-sampled-request.png)
 
-   - Performance and Cost (CloudOps)
+   - **Performance and Cost (CloudOps)**
 
      The security hardening applied to `GeoFoodTruck` uses an S3 bucket for Server-side Encryption at Rest of the application files. Though uploading data to S3 is free, getting data from S3 is `NOT`.
      Being aware of this drawback from security hardening, I configured Cloudfront with distribution behaviors to provide content caching, benefiting not only from Cost savings, but also Performance enhancements.
