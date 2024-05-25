@@ -92,7 +92,7 @@ My approach combines hands-on technical leadership and software engineering with
 
    For `GeoFoodTruck`, the CI / CD pipeline acheives `Complete Automation`, from source code modifications to Cloud deployment and Application Quality validation with UATs.
 
-   I implemented OIDC GitHub Authentication to requet AWS temporary credentials, eliminating manual administration of AWS Keys and Secrets, necessary to provision Cloud artifacts and infrastructure. 
+   I implemented OIDC GitHub Authentication to request AWS temporary credentials, eliminating manual administration of AWS Keys and Secrets, which are necessary for provisioning Cloud artifacts and infrastructure. 
    
    I created two event triggered Workflows: **Deploy** and **Test**.
    - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
@@ -109,9 +109,9 @@ My approach combines hands-on technical leadership and software engineering with
 
    - Development Operations (DevOps)
 
-     The `GeoFoodTruck` Deploy and Test CI / CD pipeline, although unsophisticated, it is effective in representing a Minimum Viable Product to support DevOps. It very easily can be leveraged as a template for a green-field or POC projects.
+     The `GeoFoodTruck` Deploy and Test CI / CD pipeline, although unsophisticated, it is effective in representing a Minimum Viable Product to support DevOps. It very easily can be leveraged as a template for green-field or POC projects.
 
-     On a more robust DevOps implementations the team would have multi-stage deployments to various environments (Dev, Stage, Pre-Prod, Prod), the Test pipeline may have a scheduled Canary environment for spot-checks. Automated Issue Ticket creation, Monitoring and Telemetry Notifications, the sky is the limit of what can be accomplished.
+     On more robust DevOps implementations the team would have multi-stage deployments to various environments (Dev, Stage, Pre-Prod, Prod), the Test pipeline may have a scheduled Canary environment for spot-checks. Automated Issue Ticket creation, Monitoring and Telemetry Notifications, the sky is the limit of what can be accomplished.
 
      However the basic workflow principles apply, Build changes, Deploy changes, Validate deployment. 
 
@@ -119,7 +119,7 @@ My approach combines hands-on technical leadership and software engineering with
 
      `GeoFoodTruck` does not work with PII or PCI information nor does it use Authentication and Authorization, however I pupurposely applied a Shift-Left security posture, here was Terraform's moment in the spotlight.
 
-     Using Terraform I defined, configured and provisioned the AWS services required to harden security for the `GeoFoodTruck` application. Applying Encryption at Rest, Encryption in Transit, Malicous Traffic Detection and Filtering, Access Abstraction between Web and Backend, Traffic Telemetry, to name a few. WAF provides a plethora of traffic telemetry, exportable to CloudWatch or to JSON for data science die-hards.
+     Using Terraform I defined, configured and provisioned the AWS services required to harden security for the `GeoFoodTruck` application. Applying Encryption at Rest, Encryption in Transit, Malicous Traffic Detection and Filtering, Access Abstraction between Web and Backend, Traffic Telemetry, to name a few. WAF provides a plethora of traffic telemetry, exportable to CloudWatch or to JSON.
 
      My objective was to highlight the importance of a Shift-Left / Security-First mindset our development teams need to be adopting and applying.
 
@@ -130,9 +130,10 @@ My approach combines hands-on technical leadership and software engineering with
 
    - Performance and Cost (CloudOps)
 
-     The security hardening applied to `GeoFoodTruck` uses and S3 bucket Encryption at Rest of the application files. The downside is that putting data into S3 is free, however getting data out of S3 is `NOT` free. Fortunately Cloudfront provides content caching which actually helps with Performance improvement and Cost savings.
+     The security hardening applied to `GeoFoodTruck` uses an S3 bucket for Server-side Encryption at Rest of the application files. Though uploading data to S3 is free, getting data from S3 is `NOT`.
+     Being aware of this drawback from security hardening, I configured Cloudfront with distribution behaviors to provide content caching, benefiting not only from Cost savings, but also Performance enhancements.
 
-     Cloudfront is an AWS Global Content Deivery Network, and the Cloudfront cache is replicated by AWS, though `GeoFoodTruck` application content is relatvely small, not having to pay S3 object retrieval costs is a big plus. And as an added bonus the `GeoFoodTruck` application is available @Edge to users everywhere.
+     Cloudfront is an AWS Global Content Deivery Network, and the Cloudfront cache is replicated by AWS, though the `GeoFoodTruck` application content is relatively small, not having to pay S3 object retrieval costs is a big plus. And as an added bonus the `GeoFoodTruck` application is available @Edge to users everywhere.
 
      **Cloudfront Cache Metrics**
 
