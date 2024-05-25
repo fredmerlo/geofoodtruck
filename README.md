@@ -19,7 +19,7 @@ All the details of my career journey are documented on my [resume](https://www.l
 ### Implementation
 The goal of my implementation is to present a foundational `Cloud Product Delivery` Architecture, using Agile Methodologies, Full-Stack development and CI / CD pipelines. 
 
-And of course showcase my applied my expertise to Design, Create and Integrate the  technologies to make it all work.
+And of course showcase my applied expertise to Design, Create and Integrate the technologies to make it all work.
 
 The key techonlogies are:
 | Tech | Purpose |
@@ -135,9 +135,10 @@ My approach combines hands-on technical leadership and software engineering with
      Cloudfront is an AWS Global Content Deivery Network, and the Cloudfront cache is replicated by AWS, though `GeoFoodTruck` application content is relatvely small, not having to pay S3 object retrieval costs is a big plus. And as an added bonus the `GeoFoodTruck` application is available @Edge to users everywhere.
 
      **Cloudfront Cache Metrics**
-     
+
      ![Cloudfront Cache](https://geofoodtruck-test-report.s3.amazonaws.com/cloudfront-cache.png)
 
 ### GeoFoodTruck Application
+This is a screencast of `GeoFoodTruck` or [Click Here](https://d3n9iqvbhzuqoh.cloudfront.net/) to use the live app.
 
 ![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
