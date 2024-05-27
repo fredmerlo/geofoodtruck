@@ -104,6 +104,7 @@ export class MapPage {
 
   async pageRefresh() {
     await this.page.reload({ waitUntil: 'domcontentloaded'});
+    await this.map.waitFor();
   }
 
   async hasValueInputFindFood(search: string) {
