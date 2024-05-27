@@ -104,7 +104,7 @@ export class MapPage {
 
   async pageRefresh() {
     await this.page.reload({ waitUntil: 'domcontentloaded'});
-    await this.map.waitFor();
+    await this.page.waitForSelector('.leaflet-container');
   }
 
   async hasValueInputFindFood(search: string) {
