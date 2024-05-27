@@ -50,7 +50,7 @@ jobs:
 
     - name: Create GeoFoodTruck Distribution
       run: |
-        echo "<!DOCTYPE html>
+        echo '<!DOCTYPE html>
         <html>
         <head>
             <meta http-equiv="refresh" content="0;url=${{ vars.BASE_URL }}">
@@ -60,7 +60,7 @@ jobs:
             If you are not redirected automatically, follow this <a href="${{ vars.BASE_URL }}">link</a>.
         </body>
         </html>
-        " > ./playwright-html-report/geofoodtruck.html
+        ' > ./playwright-html-report/geofoodtruck.html
 
     - name: Configure AWS credentials
       id: aws-credentials
