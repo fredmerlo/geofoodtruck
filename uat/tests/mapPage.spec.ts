@@ -1,14 +1,15 @@
 import { test, Page } from '@playwright/test';
 import { MapPage } from '../pom/MapPage';
 
+test.use({viewport: { width: 1400, height: 1050 }, baseURL: 'https://d3n9iqvbhzuqoh.cloudfront.net'});
 test.describe.configure({ mode: 'serial' });
 
 let page: Page;
 
 test.beforeAll(async ({ browser }) => {
-  page = await browser.newPage({viewport: { width: 1400, height: 1050 }});
+  page = await browser.newPage();
   
-  await page.goto('https://d3n9iqvbhzuqoh.cloudfront.net/');
+  await page.goto('/');
   await page.waitForSelector('.leaflet-container');
 });
 
@@ -16,7 +17,7 @@ test.afterAll(async () => {
   await page.close();
 });
 
-test.describe('Initial Map view', async () => {
+test.describe('01 Initial Map view', async () => {
   
   test(`GIVEN I see my location marker
 WHEN I click on my location marker
@@ -40,7 +41,7 @@ THEN I should not see the popup
   });
 });
 
-test.describe('Basic Food Search', async () => {
+test.describe('02 Basic Food Search', async () => {
 
   test(`GIVEN I see the EAT! button
 WHEN I click on the EAT! button
@@ -67,7 +68,7 @@ AND I should not see any truck icons
   });
 });
 
-test.describe('Food Search', async () => {
+test.describe('03 Food Search', async () => {
 
   test(`GIVEN I see the Find Food input
 WHEN I type "gyro" in the input
@@ -98,7 +99,7 @@ THEN I should see several truck icons
   });
 });
 
-test.describe('Food Search At Other Locations', async () => {
+test.describe('04 Food Search At Other Locations', async () => {
 
   test(`GIVEN I want to eat chicken gyro
 WHEN I type "chicken gyro" in the input
