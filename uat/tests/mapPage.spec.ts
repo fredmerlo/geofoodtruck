@@ -95,6 +95,7 @@ THEN I should see several truck icons
     await mapPage.clickSelectDistanceOption('1');
     await mapPage.clickButton('EAT!');
     await mapPage.areTruckIconsVisible();
+    await mapPage.pageRefresh();
   });
 });
 
@@ -105,8 +106,6 @@ WHEN I type "chicken gyro" in the input
 AND I press Enter
 THEN I see popup with the text "No results found"
   `, async () => {
-    await page.goto('/');
-    await page.waitForSelector('.leaflet-container');
     const mapPage = new MapPage(page);
     await mapPage.typeInputFindFood('chicken gyro');
     await mapPage.keyPress('Enter');
