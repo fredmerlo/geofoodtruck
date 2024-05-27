@@ -50,7 +50,7 @@ jobs:
       run: |
         terraform apply -auto-approve \
           -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}"
-        echo "base_url=https://${terraform output -raw cloudfront_distribution_domain}" > terraform-output.txt
+        echo "base_url=https://::${terraform output -raw cloudfront_distribution_domain}" > terraform-output.txt
 
     - name: Save Terraform Output
       id: terraform-output
