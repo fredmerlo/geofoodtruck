@@ -18,7 +18,7 @@ export class MapPage {
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
     this.inputFindFood = page.locator('#searchInput');
     this.selectDistance = page.locator('#searchSelect');
-    this.map = page.locator('.leaflet-container');
+    this.map = page.locator('#map');
   }
 
   async isPopupOpen() {

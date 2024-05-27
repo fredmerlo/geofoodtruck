@@ -9,7 +9,7 @@ test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
   
   await page.goto('/');
-  await page.waitForSelector('.leaflet-container');
+  await page.waitForSelector('#map');
 });
 
 test.afterAll(async () => {
