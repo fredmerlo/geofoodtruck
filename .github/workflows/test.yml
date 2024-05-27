@@ -32,17 +32,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Download Terraform Output
-      uses: actions/download-artifact@v4
-      with:
-        name: terraform-output
-        run-id: ${{ github.event.workflow_run.id }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Read Terraform Output
-      id: read-output
-      run: echo "BASE_URL=$(cat terraform-output.txt | grep base_url | cut -d '=' -f 2)" >> $GITHUB_ENV
-
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -57,6 +46,21 @@ jobs:
       continue-on-error: true
       env:
         HOME: /root
+        BASE_URL: ${{ vars.BASE_URL }}
+
+    - name: Create GeoFoodTruck Distribution
+      run: |
+        echo "<!DOCTYPE html>
+        <html>
+        <head>
+            <meta http-equiv="refresh" content="0;url=${{ vars.BASE_URL }}">
+            <title>Redirecting...</title>
+        </head>
+        <body>
+            If you are not redirected automatically, follow this <a href="${{ vars.BASE_URL }}">link</a>.
+        </body>
+        </html>
+        " > ./playwright-html-report/geofoodtruck.html
 
     - name: Configure AWS credentials
       id: aws-credentials

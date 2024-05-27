@@ -1,5 +1,5 @@
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
-[![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://d3n9iqvbhzuqoh.cloudfront.net)
+[![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
 # Showcase Project
 `GeoFoodTruck` uses the City of San Francisco public dataset of [Mobile Food Facility Permit Registry](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks), to provide a Map Search application of food trucks close to me, [view screencast](#geofoodtruck-application).
 
@@ -57,7 +57,7 @@ My approach combines hands-on technical leadership and software engineering with
 1. #### Web Application Design and Development
    Though my expertise spans beyond solely creating web applications, most organizations produce and maintain such systems.
 
-   `GeoFoodTruck` is a React web application, view [GeoFoodTruck Details](DETAILS.md) for more information.
+   `GeoFoodTruck` is a React web application, view [GeoFoodTruck Details](/DETAILS.md) for more information.
 2. #### Agile Business Value from Inception to Realization
    As architect I collaborate regularly with Stakeholders, Product Owners and Delivery Managers, my primary focus is to understand the business objectives and the desired outcome. I document and define Feature Workstreams, create and refine the Stories for each workstream. Each Story will usually contain one or more User Need, documented as Acceptance Criteria (AC).
    - ACs document a specific User Need described in Layman Terms and written in `GIVEN-WHEN-THEN` syntax.
@@ -165,6 +165,6 @@ My approach combines hands-on technical leadership and software engineering with
      </details>
 
 ### GeoFoodTruck Application
-This is a screencast of `GeoFoodTruck` or [Click Here](https://d3n9iqvbhzuqoh.cloudfront.net/) to use the live app.
+This is a screencast of `GeoFoodTruck` or [Click Here](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html) to use the live app.
 
 ![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
