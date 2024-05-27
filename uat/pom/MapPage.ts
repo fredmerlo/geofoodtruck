@@ -95,7 +95,15 @@ export class MapPage {
     const pX = await this.pixelsFor(milesX);
     const pY = await this.pixelsFor(milesY);
 
-    await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }});
+    const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
+
+    // chromium has a random click issue causing timeouts
+    if (isChromium) {
+      await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: true });
+    } else {
+      await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }});
+    }
+    
   }
 
   async keyPress(key: string) {
