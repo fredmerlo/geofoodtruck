@@ -9,7 +9,7 @@ test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
   
   await page.goto('/');
-  await page.waitForSelector('#map');
+  await page.waitForSelector('.leaflet-container');
 });
 
 test.afterAll(async () => {
@@ -121,6 +121,7 @@ THEN I see several truck icons
     const mapPage = new MapPage(page);
     await mapPage.hasValueInputFindFood('chicken gyro');
     await mapPage.clickButton('Zoom Out');
+    await mapPage.hasButton('Zoom Out');
     await mapPage.clickMapForDistance(0.5, -0.5);
     await mapPage.keyPress('Enter');
     await mapPage.areTruckIconsVisible();
