@@ -1,7 +1,7 @@
 import { test, Page } from '@playwright/test';
 import { MapPage } from '../pom/MapPage';
 
-test.use({viewport: { width: 1400, height: 1050 }, baseURL: 'https://d3n9iqvbhzuqoh.cloudfront.net'});
+test.use({viewport: { width: 1400, height: 1050 }});
 
 let page: Page;
 
