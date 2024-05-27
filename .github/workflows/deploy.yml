@@ -50,12 +50,9 @@ jobs:
       run: |
         terraform apply -auto-approve \
           -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}"
-        
-    - name: Save Terraform Output
-      working-directory: ./tf
-      run: echo "base_url=https://${terraform output -raw cloudfront_distribution_domain}" > terraform-output.txt
+        echo "base_url=https://`terraform output -raw cloudfront_distribution_domain`" > terraform-output.txt
 
-    - name: Upload Terraform Output
+    - name: Save Terraform Output
       id: terraform-output
       uses: actions/upload-artifact@v4
       with:
