@@ -37,6 +37,7 @@ jobs:
       with:
         name: terraform-output
         run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Read Terraform Output
       id: read-output
