@@ -119,6 +119,7 @@ AND I press Enter
 THEN I see several truck icons
   `, async () => {
     const mapPage = new MapPage(page);
+    await mapPage.hasValueInputFindFood('chicken gyro');
     await mapPage.clickButton('Zoom Out');
     await mapPage.clickMapForDistance(0.5, -0.5);
     await mapPage.keyPress('Enter');

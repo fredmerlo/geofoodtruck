@@ -105,4 +105,8 @@ export class MapPage {
   async pageRefresh() {
     await this.page.reload({ waitUntil: 'domcontentloaded'});
   }
+
+  async hasValueInputFindFood(search: string) {
+    await expect(this.inputFindFood).toHaveValue(search);
+  }
 }
