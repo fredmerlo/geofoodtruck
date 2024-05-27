@@ -95,15 +95,10 @@ export class MapPage {
     const pX = await this.pixelsFor(milesX);
     const pY = await this.pixelsFor(milesY);
 
+    // chromium has a random click issue causing timeouts
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
-    // chromium has a random click issue causing timeouts
-    if (isChromium) {
-      await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: true });
-    } else {
-      await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }});
-    }
-    
+    await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });    
   }
 
   async keyPress(key: string) {
