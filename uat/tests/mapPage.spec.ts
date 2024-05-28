@@ -126,3 +126,33 @@ THEN I see several truck icons
     await mapPage.areTruckIconsVisible();
   });
 });
+
+test.describe.serial('05 Map Pan Tp Other Locations', async () => {
+
+  test(`GIVEN I want to eat burrito and quesadilla
+WHEN I type "burrito quesadilla" in the input
+AND I press Enter
+THEN I see popup with the text "No results found"
+  `, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.typeInputFindFood('burrito quesadilla');
+    await mapPage.keyPress('Enter');
+    await mapPage.isPopupOpen();
+    await mapPage.hasPopupText('No results found');
+  });
+
+  test(`GIVEN I still want to eat burrito and quesadilla
+WHEN I pan the map Down 4 steps from my location
+AND I pan the map Left 2 steps from my location
+AND I press Enter
+THEN I see several truck icons
+  `, async () => {
+    const mapPage = new MapPage(page);
+    await mapPage.hasValueInputFindFood('burrito quesadilla');
+    await mapPage.clickMapToPan(4, undefined , DirectionY.down);
+    await mapPage.clickMapToPan(2, DirectionX.left);
+    await mapPage.keyPress('Enter');
+    await mapPage.keyPress('Enter');
+    await mapPage.areTruckIconsVisible();
+  });
+});

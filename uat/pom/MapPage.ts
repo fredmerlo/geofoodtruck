@@ -108,10 +108,10 @@ export class MapPage {
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
     await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(1500);
   }
 
-  async clickMapToPan(count: number, x?: DirectionX, y?: DirectionY) {
+  async clickMapToPan(steps: number, x?: DirectionX, y?: DirectionY) {
     const mapBox = await this.map.boundingBox();
     
     await expect(mapBox).not.toBeNull();
@@ -126,8 +126,9 @@ export class MapPage {
     // chromium has a random click issue causing timeouts
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
-    for (let i = 0; i < count; i++) {
-      await this.map.click({ button: 'left', position: { x: (pX *  mapCenterX) + mapCenterX, y: (pY * mapCenterY) + mapCenterY }, force: isChromium });
+    for (let i = 0; i < steps; i++) {
+      await this.map.click({ button: 'left', position: { x: (pX *  mapCenterX) + mapCenterX, y: (pY * (mapCenterY - 2) ) + mapCenterY }, force: isChromium });
+      await this.page.waitForTimeout(1500);
     }
   }
 
