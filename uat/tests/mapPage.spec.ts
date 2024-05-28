@@ -152,7 +152,6 @@ THEN I see several truck icons
     await mapPage.clickMapToPan(4, DirectionX.none , DirectionY.down);
     await mapPage.clickMapToPan(2, DirectionX.left, DirectionY.none);
     await mapPage.keyPress('Enter');
-    await mapPage.keyPress('Enter');
     await mapPage.areTruckIconsVisible();
   });
 });

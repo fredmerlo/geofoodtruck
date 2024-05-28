@@ -86,12 +86,6 @@ export class MapPage {
     return p;
   }
 
-  async mapRecenter() {
-    await this.page.evaluate(() => {
-      (window as any).panMapOnCenter();
-    });
-  }
-
   async clickMapForDistance(milesX: number, milesY: number) {
     const mapBox = await this.map.boundingBox();
     
