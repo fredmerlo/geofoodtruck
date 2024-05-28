@@ -31,9 +31,7 @@ export class Api {
 
   runQuery = async (callback: any, filters: string[]) => {
     // soql client instance
-    const consumer = new soda.Consumer('data.sfgov.org', {
-      apiToken: 'orbgoiQ2VLgXkbNwse15yufEU',
-    });
+    const consumer = new soda.Consumer('d3n9iqvbhzuqoh.cloudfront.net');
 
     // build radius and food items filters
     const radiusFilter = this.getRadiusFilter(filters);
@@ -73,6 +71,3 @@ export class Api {
     });
   };
 };
-
-// sample soql query
-// curl -H X-App-Token: orbgoiQ2VLgXkbNwse15yufEU https://data.sfgov.org/resource/rqzj-sfat.geojson?%24select=applicant%2C%20status%2C%20fooditems%2C%20location%20where%20within_circle%28location%2C37.784279%2C-122.40266096031468%2C1607.5135382417056%29%20AND%20status%3D%27APPROVED%27
