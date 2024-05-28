@@ -108,7 +108,6 @@ export class MapPage {
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
     await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });
-    await this.mapRecenter();
   }
 
   async clickMapToPan(count: number, x?: DirectionX, y?: DirectionY) {
