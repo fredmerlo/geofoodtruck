@@ -42,6 +42,7 @@ jobs:
       run: npm ci
 
     - name: Run Playwright tests
+      id: run-playwright
       run: npx playwright test
       continue-on-error: true
       env:
@@ -74,3 +75,9 @@ jobs:
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/screenshots --recursive
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/traces --recursive
         aws s3 sync ./playwright-html-report s3://${{ secrets.APP_BUCKET_NAME }}
+
+    - name: Check Playwright Tests Outcome
+      if: steps.run-playwright.outcome == 'failure'
+      run: |
+        echo "Playwright tests failed"
+        exit 1
