@@ -3,6 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaf
 import { createControlComponent } from '@react-leaflet/core';
 import { SearchControl, SearchControlOptions } from './SearchComponent';
 import { LatLngExpression } from 'leaflet';
+import { UseConfig } from './Config';
 
 // sample geoJasonData
 // <SearchControl position='topleft' data={geoJsonData} />
@@ -32,9 +33,10 @@ const MyLocation: React.FC = () => {
 };
 
 // create map component
-const Map: React.FC = () => {  
+const Map: React.FC = () => {
+  const config: any = UseConfig();
 
-  return (
+  return (    
     <MapContainer id='map' center={center} zoom={16} style={{ height: '100vh', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -42,7 +44,7 @@ const Map: React.FC = () => {
           OpenStreetMap</a> contributors'
       />
       <MyLocation />
-      <Search position='topleft' />
+      <Search position='topleft' endpoint={config.distribution} />
     </MapContainer>
   )
 };

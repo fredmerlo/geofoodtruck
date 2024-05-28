@@ -1,6 +1,11 @@
 var soda = require('soda-js');
 
 export class Api {
+  readonly endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
 
   getFoodItemsFilter = (input: string): string => {
     // Regular expression that matches non-alphanumeric and non-space characters
@@ -31,7 +36,7 @@ export class Api {
 
   runQuery = async (callback: any, filters: string[]) => {
     // soql client instance
-    const consumer = new soda.Consumer('d3n9iqvbhzuqoh.cloudfront.net');
+    const consumer = new soda.Consumer(this.endpoint);
 
     // build radius and food items filters
     const radiusFilter = this.getRadiusFilter(filters);

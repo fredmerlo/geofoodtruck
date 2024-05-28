@@ -4,6 +4,7 @@ import { Api } from './Api';
 
 export interface SearchControlOptions extends ControlOptions {
     data?: GeoJsonObject; // optionall GeoJsonObject data to render results without search api
+    endpoint: string; // api endpoint for search
 };
 
 export class SearchControl extends Control {
@@ -15,11 +16,11 @@ export class SearchControl extends Control {
 
   constructor(options: SearchControlOptions) {
     super(options);
-    this.options = options || { data: {}};
+    this.options = options || { data: {} };
     this.geoLayer = geoJSON();
     this.markerArray = new Array<Marker>();
     this.searchBounds = undefined;
-    this.api = new Api();
+    this.api = new Api(this.options.endpoint);
   };
 
   // Run search usiig select and input values
