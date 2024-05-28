@@ -97,9 +97,38 @@ data "aws_cloudfront_origin_request_policy" "geofoodtruck_cloudfront_origin_requ
   name = "Managed-CORS-S3Origin"
 }
 
- data "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
+data "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
   name = "Managed-SimpleCORS"
- }
+}
+
+data "aws_cloudfront_cache_policy" "sfgov_geofoodtruck_cloudfront_cache_policy" {
+  name = "Managed-CachingDisabled"
+}
+ 
+resource "aws_cloudfront_origin_request_policy" "sfgov_geofoodtruck_cloudfront_origin_request_policy" {
+  name    = "Custom-DataSFGov-CORS-Origin"
+  comment = "Custom CORS Origin Request Policy for SFGov Data API"
+
+  cookies_config {
+    cookie_behavior = "none"
+  }
+
+  headers_config {
+    header_behavior = "whitelist"
+    headers {
+      items = ["origin"]
+    }
+  }
+
+  query_strings_config {
+    query_string_behavior = "all"
+  }
+}
+
+data "aws_ssm_parameter" "sfgov_geofoodtruck_aws_ssm_parameter" {
+  name = "/geofoodtruck/sfgovkey"
+  with_decryption = true
+}
 
 resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   origin {
@@ -108,9 +137,41 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.geofoodtruck_origin_access_control.id
   }
 
+  origin {
+    domain_name              = "data.sfgov.org"
+    origin_id                = "data.sfgov.org"
+    
+    custom_origin_config {
+      http_port                = 80
+      https_port               = 443
+      origin_protocol_policy   = "https-only"
+      origin_ssl_protocols     = ["TLSv1.2"]
+    }
+    
+    custom_header {
+      name  = "X-App-Token"
+      value = data.aws_ssm_parameter.sfgov_geofoodtruck_aws_ssm_parameter.value
+    }
+  }
+
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
+
+  ordered_cache_behavior {
+    path_pattern     = "/resource/rqzj-sfat.json"
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    compress         = true
+
+    cache_policy_id  = data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy.id
+    origin_request_policy_id = aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy.id
+
+    target_origin_id = "data.sfgov.org"
+
+    viewer_protocol_policy = "https-only"
+  }
 
   default_cache_behavior {
     cache_policy_id  = data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy.id
