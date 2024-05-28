@@ -1,5 +1,8 @@
 import { expect, Page, Locator } from "@playwright/test";
 
+export enum DirectionX { left, right };
+export enum DirectionY { up, down };
+
 export class MapPage {
   readonly page: Page;
   readonly contentPopup: Locator;
@@ -56,7 +59,7 @@ export class MapPage {
   }
 
   async areTruckIconsVisible() {
-    await expect(this.iconsTruck).toBeTruthy();
+    await expect(this.iconsTruck).not.toHaveCount(0);
   }
 
   async areTruckIconsHidden() {
@@ -83,6 +86,14 @@ export class MapPage {
     return p;
   }
 
+  async mapRecenter() {
+    const p = await this.page.evaluate(() => {
+      return (window as any).panMapOnCenter();
+    });
+
+    return p;
+  }
+
   async clickMapForDistance(milesX: number, milesY: number) {
     const mapBox = await this.map.boundingBox();
     
@@ -98,11 +109,32 @@ export class MapPage {
     // chromium has a random click issue causing timeouts
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
-    await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });    
+    await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });
+    await this.mapRecenter();
+  }
+
+  async clickMapToPan(count: number, x?: DirectionX, y?: DirectionY) {
+    const mapBox = await this.map.boundingBox();
+    
+    await expect(mapBox).not.toBeNull();
+
+    const cleanBox: any = mapBox;
+    const mapCenterX = cleanBox.x + cleanBox.width / 2;
+    const mapCenterY = cleanBox.y + cleanBox.height / 2;
+    
+    const pX = x === undefined ? 0 : x === DirectionX.left ? -1 : 1;
+    const pY = y === undefined ? 0 : y === DirectionY.up ? -1 : 1;
+
+    // chromium has a random click issue causing timeouts
+    const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
+
+    for (let i = 0; i < count; i++) {
+      await this.map.click({ button: 'left', position: { x: (pX *  mapCenterX) + mapCenterX, y: (pY * mapCenterY) + mapCenterY }, force: isChromium });
+    }
   }
 
   async keyPress(key: string) {
-    await this.page.keyboard.press(key);
+    await this.inputFindFood.press(key);
   }
 
   async pageRefresh() {

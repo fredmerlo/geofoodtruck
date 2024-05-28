@@ -1,5 +1,5 @@
 import { test, Page } from '@playwright/test';
-import { MapPage } from '../pom/MapPage';
+import { DirectionX, DirectionY, MapPage } from '../pom/MapPage';
 
 test.use({viewport: { width: 1400, height: 1050 }});
 
@@ -110,6 +110,9 @@ THEN I see popup with the text "No results found"
     await mapPage.keyPress('Enter');
     await mapPage.isPopupOpen();
     await mapPage.hasPopupText('No results found');
+    await mapPage.clickButton('Reset');
+    await mapPage.clickSelectDistance();
+    await mapPage.clickSelectDistanceOption('1');
   });
 
   test(`GIVEN I still want to eat chicken gyro
