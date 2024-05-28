@@ -71,15 +71,5 @@
 
       return miles;
     };
-
-    function panMapOnCenter() {
-      const keys = Object.keys(this.map);
-      const map = this.map[keys[0]].alternate.memoizedProps.children.props.value.map;
-      const center = map.getCenter();
-      
-      map.stop();
-      map.invalidateSize(false)
-      map.panTo(center, {animate: false});
-    };
   </script>  
 </html>

@@ -1,7 +1,7 @@
 import { expect, Page, Locator } from "@playwright/test";
 
-export enum DirectionX { left, right };
-export enum DirectionY { up, down };
+export enum DirectionX { left, right, none };
+export enum DirectionY { up, down, none };
 
 export class MapPage {
   readonly page: Page;
@@ -111,7 +111,7 @@ export class MapPage {
     await this.page.waitForTimeout(1500);
   }
 
-  async clickMapToPan(steps: number, x?: DirectionX, y?: DirectionY) {
+  async clickMapToPan(steps: number, x: DirectionX, y: DirectionY) {
     const mapBox = await this.map.boundingBox();
     
     await expect(mapBox).not.toBeNull();
@@ -120,8 +120,8 @@ export class MapPage {
     const mapCenterX = cleanBox.x + cleanBox.width / 2;
     const mapCenterY = cleanBox.y + cleanBox.height / 2;
     
-    const pX = x === undefined ? 0 : x === DirectionX.left ? -1 : 1;
-    const pY = y === undefined ? 0 : y === DirectionY.up ? -1 : 1;
+    const pX = x === DirectionX.none ? 0 : x === DirectionX.left ? -1 : 1;
+    const pY = y === DirectionY.none ? 0 : y === DirectionY.up ? -1 : 1;
 
     // chromium has a random click issue causing timeouts
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';

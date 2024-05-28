@@ -127,7 +127,7 @@ THEN I see several truck icons
   });
 });
 
-test.describe.serial('05 Map Pan Tp Other Locations', async () => {
+test.describe.serial('05 Map Pan To Other Locations', async () => {
 
   test(`GIVEN I want to eat burrito and quesadilla
 WHEN I type "burrito quesadilla" in the input
@@ -149,8 +149,8 @@ THEN I see several truck icons
   `, async () => {
     const mapPage = new MapPage(page);
     await mapPage.hasValueInputFindFood('burrito quesadilla');
-    await mapPage.clickMapToPan(4, undefined , DirectionY.down);
-    await mapPage.clickMapToPan(2, DirectionX.left);
+    await mapPage.clickMapToPan(4, DirectionX.none , DirectionY.down);
+    await mapPage.clickMapToPan(2, DirectionX.left, DirectionY.none);
     await mapPage.keyPress('Enter');
     await mapPage.keyPress('Enter');
     await mapPage.areTruckIconsVisible();
