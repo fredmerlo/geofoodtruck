@@ -21,7 +21,7 @@ export class MapPage {
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
     this.inputFindFood = page.locator('#searchInput');
     this.selectDistance = page.locator('#searchSelect');
-    this.map = page.locator('.leaflet-container');
+    this.map = page.locator('#map');
   }
 
   async isPopupOpen() {
@@ -41,12 +41,14 @@ export class MapPage {
   }
 
   async hasButton( buttonName: string) {
-    const locator: Locator = this.page.getByRole('button', { name: buttonName });
+    const locator = this.page.getByRole('button', { name: buttonName });
+    await locator.waitFor({ state: 'visible' });
     await expect(locator).toBeVisible();
   }
 
   async clickButton(buttonName: string) {
-    const locator: Locator = this.page.getByRole('button', { name: buttonName });
+    const locator = this.page.getByRole('button', { name: buttonName });
+    locator.waitFor({ state: 'visible' });
     await locator.click();
   }
 
@@ -127,6 +129,7 @@ export class MapPage {
   }
 
   async keyPress(key: string) {
+    await this.inputFindFood.click();
     await this.inputFindFood.press(key);
   }
 
