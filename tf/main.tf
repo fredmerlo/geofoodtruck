@@ -98,7 +98,7 @@ data "aws_cloudfront_origin_request_policy" "geofoodtruck_cloudfront_origin_requ
 }
 
 data "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
-  name = "Managed-SimpleCORS"
+  name = "Managed-CORS-With-Preflight"
 }
 
 data "aws_cloudfront_cache_policy" "sfgov_geofoodtruck_cloudfront_cache_policy" {
@@ -160,8 +160,8 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
 
   ordered_cache_behavior {
     path_pattern     = "/resource/rqzj-sfat.json"
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
     compress         = true
 
     cache_policy_id  = data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy.id
