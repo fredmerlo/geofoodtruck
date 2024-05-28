@@ -87,11 +87,9 @@ export class MapPage {
   }
 
   async mapRecenter() {
-    const p = await this.page.evaluate(() => {
-      return (window as any).panMapOnCenter();
+    await this.page.evaluate(() => {
+      (window as any).panMapOnCenter();
     });
-
-    return p;
   }
 
   async clickMapForDistance(milesX: number, milesY: number) {
