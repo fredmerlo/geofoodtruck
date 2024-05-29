@@ -12,6 +12,7 @@ export class MapPage {
   readonly inputFindFood: Locator;
   readonly selectDistance: Locator;
   readonly map: Locator;
+  readonly mapWaitTime: number = 2000;
 
   constructor(page: Page) {
     this.page = page;
@@ -104,7 +105,7 @@ export class MapPage {
     const isChromium = this.page.context().browser()?.browserType().name() === 'chromium';
 
     await this.map.click({ button: 'left', position: { x: pX + mapCenterX, y: pY + mapCenterY }, force: isChromium });
-    await this.page.waitForTimeout(1500);
+    await this.page.waitForTimeout(this.mapWaitTime);
   }
 
   async clickMapToPan(steps: number, x: DirectionX, y: DirectionY) {
@@ -124,7 +125,7 @@ export class MapPage {
 
     for (let i = 0; i < steps; i++) {
       await this.map.click({ button: 'left', position: { x: (pX *  mapCenterX) + mapCenterX, y: (pY * (mapCenterY - 2) ) + mapCenterY }, force: isChromium });
-      await this.page.waitForTimeout(1500);
+      await this.page.waitForTimeout(this.mapWaitTime);
     }
   }
 
