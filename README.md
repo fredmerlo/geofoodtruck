@@ -1,4 +1,4 @@
-[![GeoFoodTruck](https://geofoodtruck-test-report.s3.amazonaws.com/gft-new.gif)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
+[![GeoFoodTruck](https://geofoodtruck-test-report.s3.amazonaws.com/gft.gif)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
 
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
