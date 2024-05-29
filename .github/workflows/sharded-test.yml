@@ -1,0 +1,63 @@
+name: Playwright Test Shards
+
+on:
+  workflow_run:
+    workflows: ["GeoFoodTruck Live"]
+    types:
+      - completed
+
+jobs:
+  playwright-tests:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Playwright Test Matrix
+    runs-on: ubuntu-latest
+    environment: test
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    permissions:
+      id-token: write
+      contents: read
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.0-jammy
+
+    steps:
+    - name: Install AWS CLI
+      working-directory: /github/home
+      run: |
+        curl https://${{ secrets.APP_BUCKET_NAME }}.s3.amazonaws.com/aws.tgz -o aws.tgz
+        tar -xzf aws.tgz
+        chmod +x ./aws/install
+        ./aws/install
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Playwright tests
+      id: run-playwright
+      run: npx playwright test --project=${{ matrix.browser }}
+      continue-on-error: true
+      env:
+        HOME: /root
+        BASE_URL: ${{ vars.BASE_URL }}
+
+    - name: Upload blob report to GitHub Actions Artifacts
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: blob-report-${{ matrix.browser }}
+        path: blob-report
+        retention-days: 1
