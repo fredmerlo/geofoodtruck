@@ -168,6 +168,6 @@ My approach combines hands-on technical leadership and software engineering with
      </details>
 
 ### GeoFoodTruck Application
-This is a screencast of `GeoFoodTruck` or [Click Here](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html) to use the live app.
+This is a screencast of `GeoFoodTruck`, [Click Here](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html) to use the live app.
 
 ![GeoFoodTruck](https://raw.githubusercontent.com/fredmerlo/geofoodtruck/main/geofoodtruck.gif)
