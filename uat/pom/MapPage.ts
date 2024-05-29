@@ -12,7 +12,7 @@ export class MapPage {
   readonly inputFindFood: Locator;
   readonly selectDistance: Locator;
   readonly map: Locator;
-  readonly mapWaitTime: number = 2000;
+  readonly mapWaitTime: number = 2500;
 
   constructor(page: Page) {
     this.page = page;
