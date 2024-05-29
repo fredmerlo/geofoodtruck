@@ -6,18 +6,27 @@ export const Provider = ({ children }: any) => {
   const [config, setConfig] = useState(null);
 
   const fetchConfig = async () => {
-    try {
-      const response = await fetch("/config.json");
+    const queryParams = new URLSearchParams(window.location.search);
+    const isTest = queryParams.get('isTest') === 'true';
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch configuration");
+    if (isTest) {
+      setConfig((window as any).testConfig());
+      return;
+    } else {
+      try {
+
+        const response = await fetch('/config.json');
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch configuration");
+        }
+
+        const config = await response.json();
+        setConfig(config);
+
+      } catch (err) {
+        console.error(err);
       }
-
-      const config = await response.json();
-      setConfig(config);
-
-    } catch (err) {
-      console.error(err);
     }
   };
 
