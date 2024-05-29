@@ -1,12 +1,15 @@
+[![GeoFoodTruck](https://geofoodtruck-test-report.s3.amazonaws.com/gft-new.gif)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
+
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
-# Showcase Project
-`GeoFoodTruck` uses the City of San Francisco public dataset of [Mobile Food Facility Permit Registry](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks), to provide a Map Search application of food trucks close to me, [view screencast](#geofoodtruck-application).
+
+### Overview
+`GeoFoodTruck` is a GIS (Geographic Information System) application that performs radius searches for Food Truck vendors using [Leaflet](https://leafletjs.com/) and the City of San Francisco [Mobile Food Facility Permit Registry](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks), public dataset. GeoFoodTruck is visually interactive and applies Leaflet and Custom UI elements to deliver an engaging user experience. The core functionality is map interactions and dynamic radius searches, providing users with relevant spatial information within a specified distance, view GeoFoodTruck [Screencast](#geofoodtruck-application).
 
 ### You can talk-the-talk, but can you walk-the-walk?
 As a `Cloud and Software Engineering` applying my craft over several years, I've been fortunate to contribute and deliver technology solutions in multiple markets.
 
-All the details of my career journey are documented on my [resume](https://www.linkedin.com/in/fred-merlo-ab4b10) (*talk-the-talk*), I created this project to Showcase `some` of my skills in action (*walk-the-walk*). 
+All the details of my career journey are documented on my [resume](https://www.linkedin.com/in/fred-merlo-ab4b10) (*talk-the-talk*), I created this project to Showcase `Some` of my skills in action (*walk-the-walk*). 
 <details>
 <summary>NOTE</summary>
 
@@ -21,9 +24,9 @@ All the details of my career journey are documented on my [resume](https://www.l
 </details>
 
 ### Implementation
-The goal of my implementation is to present a foundational `Cloud Product Delivery` Architecture, using Agile Methodologies, Full-Stack development and CI / CD pipelines. 
+The goal of my implementation is to present a foundational `Cloud Product Delivery` Architecture and Process, using Agile Methodologies, Full-Stack development and CI / CD and E2E pipelines. 
 
-And of course showcase my applied expertise to Design, Create and Integrate the technologies to make it all work.
+And of course showcase my applied expertise in Architecture and Engineering, to reate and integrate the technologies to make it work.
 
 The key techonlogies are:
 | Tech | Purpose |
