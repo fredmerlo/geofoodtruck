@@ -97,7 +97,45 @@ data "aws_cloudfront_origin_request_policy" "geofoodtruck_cloudfront_origin_requ
   name = "Managed-CORS-S3Origin"
 }
 
-data "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
+resource "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_response_header_policy" {
+  name = "Custom-GeoFoodTruck-CORS-With-Preflight"
+  comment = "Custom CORS with Preflight Response Policy for GeoFoodTruck"
+
+  cors_config {
+    access_control_allow_credentials = false
+
+    access_control_allow_headers {
+      items = ["*"]
+    }
+
+    access_control_allow_methods {
+      items = ["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE", "OPTIONS"]
+    }
+
+    access_control_allow_origins {
+      items = ["*"]
+    }
+
+    access_control_expose_headers {
+      items = ["*"]
+    }
+
+    origin_override = false
+  }
+
+  remove_headers_config {
+    items {
+      header = "X-Amz-Server-Side-Encryption"
+    }
+
+    items {
+      header = "X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id"
+    }
+  } 
+
+}
+
+data "aws_cloudfront_response_headers_policy" "sfgov_geofoodtruck_cloudfront_response_header_policy" {
   name = "Managed-CORS-With-Preflight"
 }
 
@@ -166,7 +204,7 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
 
     cache_policy_id  = data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy.id
     origin_request_policy_id = aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy.id
-    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy.id
+    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.sfgov_geofoodtruck_cloudfront_response_header_policy.id
 
     target_origin_id = "data.sfgov.org"
 
@@ -174,13 +212,13 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   }
 
   default_cache_behavior {
-    cache_policy_id  = data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy.id
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     compress         = true
 
+    cache_policy_id  = data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy.id
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.geofoodtruck_cloudfront_origin_request_policy.id
-    response_headers_policy_id = data.aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy.id
 
     target_origin_id = aws_s3_bucket.geofoodtruck_app_bucket.bucket_regional_domain_name
 
