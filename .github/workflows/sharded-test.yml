@@ -105,7 +105,7 @@ jobs:
 
     - name: Merge Playwright tests
       id: merge-playwright
-      run: npx playwright merge-reports --config playwright.config.ts --reporter html ./all-blob-reports
+      run: npx playwright merge-reports --reporter html ./all-blob-reports
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}
@@ -122,7 +122,7 @@ jobs:
             If you are not redirected automatically, follow this <a href="${{ vars.BASE_URL }}">link</a>.
         </body>
         </html>
-        ' > ./playwright-html-report/geofoodtruck.html
+        ' > ./html-report/geofoodtruck.html
 
     - name: Configure AWS credentials
       id: aws-credentials
@@ -135,7 +135,7 @@ jobs:
       run: |
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/screenshots --recursive
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/traces --recursive
-        aws s3 sync ./playwright-html-report s3://${{ secrets.APP_BUCKET_NAME }}
+        aws s3 sync ./html-report s3://${{ secrets.APP_BUCKET_NAME }}
 
     - name: Check Merge Playwright Tests Outcome
       if: ${{ failure() }}
