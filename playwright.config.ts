@@ -23,7 +23,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['blob'],
-    ['playwright-html', { 
+    ['html', { 
       testFolder: 'uat/tests',
       title: 'Playwright Test Report',
       project: 'GeoFoodTruck',

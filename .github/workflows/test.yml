@@ -43,7 +43,7 @@ jobs:
 
     - name: Run Playwright tests
       id: run-playwright
-      run: npx playwright test --reporter=playwright-html
+      run: npx playwright test --reporter=html
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}

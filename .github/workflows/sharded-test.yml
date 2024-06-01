@@ -46,9 +46,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run Playwright tests --reporter=blob
+    - name: Run Playwright tests
       id: run-playwright
-      run: npx playwright test --project=${{ matrix.browser }}
+      run: npx playwright test --project=${{ matrix.browser }}  --reporter=blob
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}
