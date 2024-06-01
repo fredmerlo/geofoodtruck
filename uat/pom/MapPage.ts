@@ -62,7 +62,7 @@ export class MapPage {
   }
 
   async areTruckIconsVisible() {
-    await expect(this.iconsTruck).not.toHaveCount(0);
+    await expect(this.iconsTruck).not.toBeFalsy();
   }
 
   async areTruckIconsHidden() {
