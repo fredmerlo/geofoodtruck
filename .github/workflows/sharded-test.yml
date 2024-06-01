@@ -2,10 +2,6 @@ name: Playwright Test Shards
 
 on:
   workflow_dispatch:
-    inputs:
-      shards:
-        description: 'Number of shards to split the tests into'
-        required: false
 
 jobs:
   playwright-tests:
