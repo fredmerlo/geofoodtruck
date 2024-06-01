@@ -125,6 +125,10 @@ resource "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_respo
 
   remove_headers_config {
     items {
+      header = "Server"
+    }
+
+    items {
       header = "X-Amz-Server-Side-Encryption"
     }
 
