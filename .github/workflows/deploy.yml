@@ -35,6 +35,8 @@ jobs:
 
     - name: Build the project
       run: npm run build
+      env:
+        GENERATE_SOURCEMAP: false
 
     - name: Configure AWS credentials
       id: aws-credentials
