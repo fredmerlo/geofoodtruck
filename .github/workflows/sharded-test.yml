@@ -5,7 +5,7 @@ on:
     inputs:
       shards:
         description: 'Number of shards to split the tests into'
-        required: true
+        required: false
 
 jobs:
   playwright-tests:
@@ -46,10 +46,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run Playwright tests
+    - name: Run Playwright tests --reporter=blob
       id: run-playwright
       run: npx playwright test --project=${{ matrix.browser }}
-      continue-on-error: true
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}

@@ -43,13 +43,13 @@ jobs:
 
     - name: Run Playwright tests
       id: run-playwright
-      run: npx playwright test
-      continue-on-error: true
+      run: npx playwright test --reporter=playwright-html
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}
 
     - name: Create GeoFoodTruck Distribution
+      if: ${{ !cancelled() }}
       run: |
         echo '<!DOCTYPE html>
         <html>
@@ -64,6 +64,7 @@ jobs:
         ' > ./playwright-html-report/geofoodtruck.html
 
     - name: Configure AWS credentials
+      if: ${{ !cancelled() }}
       id: aws-credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -71,13 +72,14 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Publish Playwright Report
+      if: ${{ !cancelled() }}
       run: |
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/screenshots --recursive
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/traces --recursive
         aws s3 sync ./playwright-html-report s3://${{ secrets.APP_BUCKET_NAME }}
 
     - name: Check Playwright Tests Outcome
-      if: steps.run-playwright.outcome == 'failure'
+      if: ${{ !cancelled() }}
       run: |
         echo "Playwright tests failed"
         exit 1
