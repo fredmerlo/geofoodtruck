@@ -16,7 +16,7 @@ export class MapPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.contentPopup = page.locator('div > .leaflet-popup-content');
+    this.contentPopup = page.locator('.leaflet-popup-content');
     this.buttonPopupClose = page.getByLabel('Close popup');
     this.boundaryCircle = page.locator('path.leaflet-interactive');
     this.iconsTruck = page.locator(`//img[contains(@src, 'truck-solid.png')]`);
