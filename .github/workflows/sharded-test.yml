@@ -122,7 +122,7 @@ jobs:
             If you are not redirected automatically, follow this <a href="${{ vars.BASE_URL }}">link</a>.
         </body>
         </html>
-        ' > ./html-report/geofoodtruck.html
+        ' > ./playwright-report/geofoodtruck.html
 
     - name: Configure AWS credentials
       id: aws-credentials
@@ -135,7 +135,7 @@ jobs:
       run: |
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/screenshots --recursive
         aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/traces --recursive
-        aws s3 sync ./html-report s3://${{ secrets.APP_BUCKET_NAME }}
+        aws s3 sync ./playwright-report s3://${{ secrets.APP_BUCKET_NAME }}
 
     - name: Check Merge Playwright Tests Outcome
       if: ${{ failure() }}
