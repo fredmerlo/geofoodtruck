@@ -105,7 +105,7 @@ jobs:
 
     - name: Merge Playwright tests
       id: merge-playwright
-      run: npx playwright merge-reports reporter playwright-html ./all-blob-reports
+      run: npx playwright merge-reports --reporter playwright-html ./all-blob-reports
       env:
         HOME: /root
         BASE_URL: ${{ vars.BASE_URL }}
