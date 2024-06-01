@@ -4,7 +4,7 @@
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
 
 ### Overview
-`GeoFoodTruck` is a GIS (Geographic Information System) application that performs radius searches for Food Truck vendors using [Leaflet](https://leafletjs.com/) and the City of San Francisco [Mobile Food Facility Permit Registry](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks), public dataset. GeoFoodTruck is visually interactive and applies Leaflet and Custom UI elements to deliver an engaging user experience. The core functionality is map interactions and dynamic radius searches, providing users with relevant spatial information within a specified distance, view GeoFoodTruck [Screencast](#geofoodtruck-application).
+`GeoFoodTruck` is a GIS (Geographic Information System) application that performs radius searches for Food Truck vendors using [Leaflet](https://leafletjs.com/) and the City of San Francisco, public dataset of [Mobile Food Facility Permits](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data) (Food Trucks). GeoFoodTruck is visually interactive and applies Leaflet and Custom UI elements to deliver an engaging user experience. The core functionality is map interactions and dynamic radius searches, providing users with relevant spatial information within a specified distance, view GeoFoodTruck [Screencast](#geofoodtruck-application).
 
 ### You can talk-the-talk, but can you walk-the-walk?
 As a `Cloud and Software Engineering` applying my craft over several years, I've been fortunate to contribute and deliver technology solutions in multiple markets.
