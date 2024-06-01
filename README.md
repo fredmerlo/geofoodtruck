@@ -28,7 +28,7 @@ All the details of my career journey are documented on my [resume](https://www.l
 ### Implementation
 The goal of my implementation is to present a foundational `Cloud Product Delivery` Architecture and Process, using Agile Methodologies, Full-Stack development and CI / CD and E2E pipelines. 
 
-And of course showcase my applied expertise in Architecture and Engineering, to reate and integrate the technologies to make it work.
+And of course showcase my applied expertise in Architecture and Engineering, to create and integrate the technologies to make it work.
 
 The key techonlogies are:
 | Tech | Purpose |
