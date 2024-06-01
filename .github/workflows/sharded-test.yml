@@ -60,3 +60,85 @@ jobs:
         name: blob-report-${{ matrix.browser }}
         path: blob-report
         retention-days: 1
+  
+  merge-reports:
+    if: ${{ !cancelled() }}
+    name: Merge Playwright Tests Report Container
+    runs-on: ubuntu-latest
+    needs: [playwright-tests]
+    environment: test
+
+    permissions:
+      id-token: write
+      contents: read
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.0-jammy
+
+    steps:
+    - name: Install AWS CLI
+      working-directory: /github/home
+      run: |
+        curl https://${{ secrets.APP_BUCKET_NAME }}.s3.amazonaws.com/aws.tgz -o aws.tgz
+        tar -xzf aws.tgz
+        chmod +x ./aws/install
+        ./aws/install
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Download blob reports from GitHub Actions Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: all-blob-reports
+        pattern: blob-report-*
+        merge-multiple: true
+
+    - name: Merge Playwright tests
+      id: merge-playwright
+      run: npx playwright merge-reports ./all-blob-reports
+      env:
+        HOME: /root
+        BASE_URL: ${{ vars.BASE_URL }}
+  
+    - name: Create GeoFoodTruck Distribution
+      run: |
+        echo '<!DOCTYPE html>
+        <html>
+        <head>
+            <meta http-equiv="refresh" content="0;url=${{ vars.BASE_URL }}">
+            <title>Redirecting...</title>
+        </head>
+        <body>
+            If you are not redirected automatically, follow this <a href="${{ vars.BASE_URL }}">link</a>.
+        </body>
+        </html>
+        ' > ./playwright-html-report/geofoodtruck.html
+
+    - name: Configure AWS credentials
+      id: aws-credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_NAME }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Publish Merge Playwright Report
+      run: |
+        aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/screenshots --recursive
+        aws s3 rm s3://${{ secrets.APP_BUCKET_NAME }}/traces --recursive
+        aws s3 sync ./playwright-html-report s3://${{ secrets.APP_BUCKET_NAME }}
+
+    - name: Check Merge Playwright Tests Outcome
+      if: ${{ failure() }}
+      run: |
+        echo "Merge Playwright tests failed"
+        exit 1
