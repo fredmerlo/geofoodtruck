@@ -101,10 +101,6 @@ resource "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_respo
   name = "Custom-GeoFoodTruck-CORS-With-Preflight"
   comment = "Custom CORS with Preflight Response Policy for GeoFoodTruck"
 
-  transport_security {
-    tls_version = "TLSv1.2"
-  }
-
   cors_config {
     access_control_allow_credentials = false
 
@@ -143,8 +139,8 @@ resource "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_respo
 
   security_headers_config {
     strict_transport_security {
-      max_age         = 31536000
-      origin_override = false
+      access_control_max_age_sec = 31536000
+      override                   = false
     }
   }
 
