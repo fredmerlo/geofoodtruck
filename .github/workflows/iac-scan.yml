@@ -40,10 +40,16 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_NAME }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Get Remote Terraform State
+        run: |
+          aws s3 cp s3://${{ secrets.TF_BUCKET_NAME }}/terraform.tfstate ./plan.json
+
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          directory: ./tf
+          file: ./plan.json
+          repo_root_for_plan_enrichment: ./tf
+          deep_analysis: true
           framework: terraform
           soft_fail: true
           output_format: cli,sarif
