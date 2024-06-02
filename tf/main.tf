@@ -271,6 +271,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
 }
 
 resource "local_file" "geofoodtruck_config_json" {
+  depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
   filename     = "config.json"
   content      = jsonencode({
     distribution = "${aws_cloudfront_distribution.geofoodtruck_app_distribution.domain_name}"
@@ -278,6 +279,7 @@ resource "local_file" "geofoodtruck_config_json" {
 }
 
 resource "aws_s3_object" "aws_s3_object_geofoodtruck_config_json" {
+  depends_on   = [local_file.geofoodtruck_config_json]
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
   key          = local_file.geofoodtruck_config_json.filename
   source       = local_file.geofoodtruck_config_json.filename
