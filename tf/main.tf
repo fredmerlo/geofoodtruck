@@ -279,6 +279,7 @@ resource "local_file" "geofoodtruck_config_json" {
 }
 
 resource "aws_s3_object" "aws_s3_object_geofoodtruck_config_json" {
+  depends_on   = [local_file.geofoodtruck_config_json]
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
   key          = "config.json"
   source       = local_file.geofoodtruck_config_json.filename
