@@ -72,8 +72,16 @@
       return miles;
     };
     
-    function testConfig() {
-      return { "distribution": "d3n9iqvbhzuqoh.cloudfront.net" }
+    function getConfig() {
+      const queryParams = new URLSearchParams(window.location.search);
+      const hostName = window.location.hostname;
+      const isTest = queryParams.get('isTest') === 'true' || hostName === 'localhost';
+
+      if (isTest) {
+        return { "distribution": "d3n9iqvbhzuqoh.cloudfront.net" }
+      } else {
+        return { "distribution": hostName }
+      }        
     };
   </script>  
 </html>
