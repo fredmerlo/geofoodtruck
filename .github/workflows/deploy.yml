@@ -73,7 +73,7 @@ jobs:
     - name: Apply Terraform
       working-directory: ./tf
       run: |
-        terraform apply -auto-approve "tfplan.bin"
+        terraform apply -auto-approve ".plan/tfplan.bin"
           echo '{"value":"https://'`terraform output -raw cloudfront_distribution_domain`'"}' | \
           curl -L \
           -X PATCH \
