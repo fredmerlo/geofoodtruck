@@ -33,14 +33,6 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get Terraform Output
-        uses: actions/download-artifact@v4
-        with:
-          name: terraform-output
-          path: ./tf
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Configure AWS credentials
         id: aws-credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -51,7 +43,7 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: ./tf/tfplan.json
+          file: ./tf/.plan/tfplan.json
           repo_root_for_plan_enrichment: ./tf
           deep_analysis: true
           soft_fail: true
