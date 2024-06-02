@@ -83,6 +83,7 @@ jobs:
           -d @- https://api.github.com/repos/fredmerlo/geofoodtruck/actions/variables/BASE_URL
 
     - uses: stefanzweifel/git-auto-commit-action@v5
+      name: Commit Terraform Plan
       with:
         commit_message: "Terraform Plan"
-        file_pattern: "/tf/.plan/**"
+        file_pattern: "./.plan/**"
