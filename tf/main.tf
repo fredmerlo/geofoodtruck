@@ -277,12 +277,12 @@ resource "local_file" "geofoodtruck_config_json" {
   })
 }
 
-resource "aws_s3_bucket_object" "aws_s3_object_geofoodtruck_config_json" {
+resource "aws_s3_object" "aws_s3_object_geofoodtruck_config_json" {
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
   key          = local_file.geofoodtruck_config_json.filename
   source       = local_file.geofoodtruck_config_json.filename
   content_type = "application/json"
-  etag         = filemd5("${var.app_build_dir}/${local_file.geofoodtruck_config_json.filename}")
+  etag         = filemd5(local_file.geofoodtruck_config_json.filename)
 }
 
 resource "aws_s3_object" "app_files" {
