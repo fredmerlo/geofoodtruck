@@ -272,19 +272,18 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
 
 resource "local_file" "geofoodtruck_config_json" {
   depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
-  filename     = "config.json"
+  filename     = "${var.app_build_dir}/config.json"
   content      = jsonencode({
     distribution = "${aws_cloudfront_distribution.geofoodtruck_app_distribution.domain_name}"
   })
 }
 
 resource "aws_s3_object" "aws_s3_object_geofoodtruck_config_json" {
-  depends_on   = [local_file.geofoodtruck_config_json]
   bucket       = aws_s3_bucket.geofoodtruck_app_bucket.id
-  key          = local_file.geofoodtruck_config_json.filename
+  key          = "config.json"
   source       = local_file.geofoodtruck_config_json.filename
   content_type = "application/json"
-  etag         = filemd5("${local_file.geofoodtruck_config_json.filename}")
+  etag         = filemd5(local_file.geofoodtruck_config_json.filename)
 }
 
 resource "aws_s3_object" "app_files" {
