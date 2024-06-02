@@ -81,8 +81,7 @@ jobs:
     - name: Apply Terraform
       working-directory: ./tf
       run: |
-        terraform apply -auto-approve \
-          -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" "tfplan.bin"
+        terraform apply -auto-approve "tfplan.bin"
           echo '{"value":"https://'`terraform output -raw cloudfront_distribution_domain`'"}' | \
           curl -L \
           -X PATCH \
