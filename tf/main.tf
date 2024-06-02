@@ -272,7 +272,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
 
 resource "local_file" "geofoodtruck_config_json" {
   depends_on   = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
-  filename     = "${var.app_build_dir}/config.json"
+  filename     = "${path.module}/config.json"
   content      = jsonencode({
     distribution = "${aws_cloudfront_distribution.geofoodtruck_app_distribution.domain_name}"
   })
