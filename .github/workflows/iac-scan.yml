@@ -33,6 +33,14 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get Terraform Output
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-output
+          path: ./tf
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Configure AWS credentials
         id: aws-credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -40,14 +48,10 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_NAME }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Get Remote Terraform State
-        run: |
-          aws s3 cp s3://${{ secrets.TF_BUCKET_NAME }}/terraform.tfstate ./plan.json
-
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: ./plan.json
+          file: ./tfplan.json
           repo_root_for_plan_enrichment: ./tf
           deep_analysis: true
           framework: terraform

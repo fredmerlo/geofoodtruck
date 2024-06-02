@@ -47,6 +47,7 @@ jobs:
         name: build-output
         path: ./build
         overwrite: true
+        retention-days: 1
 
     - name: Configure AWS credentials
       id: aws-credentials
@@ -61,12 +62,27 @@ jobs:
     - name: Initialize Terraform
       working-directory: ./tf
       run: terraform init
+      
+    - name: Plan Terraform
+      working-directory: ./tf
+      run: |
+        terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out=tfplan.bin \
+        terraform show -json tfplan.bin | jq  > tfplan.json
+
+    - name: Save Terraform Output
+      id: terraform-output
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-output
+        path: ./tf/tfplan.json
+        overwrite: true
+        retention-days: 1
 
     - name: Apply Terraform
       working-directory: ./tf
       run: |
         terraform apply -auto-approve \
-          -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}"
+          -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" "tfplan.bin"
           echo '{"value":"https://'`terraform output -raw cloudfront_distribution_domain`'"}' | \
           curl -L \
           -X PATCH \
