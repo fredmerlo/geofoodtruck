@@ -284,7 +284,7 @@ resource "aws_s3_object" "aws_s3_object_geofoodtruck_config_json" {
   key          = "config.json"
   source       = local_file.geofoodtruck_config_json.filename
   content_type = "application/json"
-  etag         = filemd5(local_file.geofoodtruck_config_json.filename)
+  etag         = filemd5("${local_file.geofoodtruck_config_json.filename}")
 }
 
 resource "aws_s3_object" "app_files" {
