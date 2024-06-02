@@ -57,7 +57,6 @@ jobs:
           soft_fail: true
           output_format: cli,sarif
           output_file_path: console,results.sarif
-          log_level: DEBUG
         
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
