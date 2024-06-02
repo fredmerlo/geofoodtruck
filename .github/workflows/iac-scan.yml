@@ -1,6 +1,11 @@
 name: Checkov IaC Scan
 
 on:
+  workflow_run:
+    workflows: ["GeoFoodTruck Live"]
+    types:
+      - completed
+
   workflow_dispatch:
 
 jobs:
