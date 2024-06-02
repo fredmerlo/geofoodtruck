@@ -51,7 +51,7 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: ./tfplan.json
+          file: ./tf/tfplan.json
           repo_root_for_plan_enrichment: ./tf
           deep_analysis: true
           framework: terraform
