@@ -10,9 +10,7 @@ export const Provider = ({ children }: any) => {
     const isTest = queryParams.get('isTest') === 'true';
 
     if (isTest) {
-      const distribution = await ((window as any).cookieStore.get('distribution'));
-
-      setConfig({ distribution: distribution } as any);
+      setConfig((window as any).testConfig());
       return;
     } else {
       try {

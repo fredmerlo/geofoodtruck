@@ -52,26 +52,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: './uat/cookies.json'
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: './uat/cookies.json'
-       },
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: './uat/cookies.json'
-      },
+      use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
