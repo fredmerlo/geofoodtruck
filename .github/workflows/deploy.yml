@@ -10,6 +10,8 @@ on:
       - '.gitignore'
       - '.vscode/**'
 
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -37,6 +39,14 @@ jobs:
       run: npm run build
       env:
         GENERATE_SOURCEMAP: false
+
+    - name: Save Build Output
+      id: build-output
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: ./build
+        overwrite: true
 
     - name: Configure AWS credentials
       id: aws-credentials
