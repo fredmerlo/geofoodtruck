@@ -7,7 +7,8 @@ export const Provider = ({ children }: any) => {
 
   const fetchConfig = async () => {
     const queryParams = new URLSearchParams(window.location.search);
-    const isTest = queryParams.get('isTest') === 'true';
+    const hostName = window.location.hostname;
+    const isTest = queryParams.get('isTest') === 'true' || hostName === 'localhost';
 
     if (isTest) {
       setConfig((window as any).testConfig());
