@@ -1,10 +1,16 @@
 name: Checkov IaC Scan
 
 on:
+  workflow_run:
+    workflows: ["GeoFoodTruck Live"]
+    types:
+      - completed
+
   workflow_dispatch:
 
 jobs:
   scan:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Scan
     runs-on: ubuntu-latest
     environment: test
@@ -19,13 +25,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get Build Output
+        uses: actions/download-artifact@v4
+        with:
+         name: build-output
+         path: ./build
+         run-id: ${{ github.event.workflow_run.id }}
+         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure AWS credentials
+        id: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_NAME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
           directory: ./tf
           file: .github/tfplan.json
           repo_root_for_plan_enrichment: ./tf
-          deep_analysis: true
           soft_fail: true
           output_format: cli,sarif
           output_file_path: console,results.sarif

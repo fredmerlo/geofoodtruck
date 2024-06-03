@@ -41,6 +41,15 @@ jobs:
       env:
         GENERATE_SOURCEMAP: false
 
+    - name: Save Build Output
+      id: build-output
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: ./build
+        overwrite: true
+        retention-days: 1
+  
     - name: Configure AWS credentials
       id: aws-credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -60,6 +69,7 @@ jobs:
       run: |
         terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out="../.github/tfplan.bin"
         terraform show -json "../.github/tfplan.bin" | jq  > "../.github/tfplan.json"
+        ../.github/sanitize.sh
 
     - name: Apply Terraform
       working-directory: ./tf
