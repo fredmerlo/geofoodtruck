@@ -41,15 +41,6 @@ jobs:
       env:
         GENERATE_SOURCEMAP: false
 
-    - name: Save Build Output
-      id: build-output
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-output
-        path: ./build
-        overwrite: true
-        retention-days: 1
-
     - name: Configure AWS credentials
       id: aws-credentials
       uses: aws-actions/configure-aws-credentials@v4
