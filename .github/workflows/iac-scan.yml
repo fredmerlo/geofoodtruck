@@ -30,7 +30,7 @@ jobs:
           output_file_path: console,results.sarif
           config_file: .github/checkov.yaml
           download_external_modules: true
-          framework: terraform-json
+          framework: terraform_json, terraform
           log_level: DEBUG
         
       - name: Upload SARIF file
