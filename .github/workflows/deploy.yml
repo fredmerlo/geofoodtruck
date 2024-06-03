@@ -78,7 +78,7 @@ jobs:
       name: Commit Terraform Plan
       with:
         commit_message: "Terraform Plan"
-        file_pattern: "../.github/tfplan.*"
+        file_pattern: ".github/tfplan.*"
         commit_user_name: fredmerlo
         commit_user_email: fredmerlo@gmail.com
         commit_author: fredmerlo <fredmerlo@gmail.com>
