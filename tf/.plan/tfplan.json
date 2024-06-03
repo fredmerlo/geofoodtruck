@@ -422,7 +422,7 @@
                   {
                     "access_control_max_age_sec": 31536000,
                     "include_subdomains": false,
-                    "override": false,
+                    "override": true,
                     "preload": false
                   }
                 ],
@@ -691,6 +691,7 @@
             "block_public_acls": true,
             "block_public_policy": true,
             "bucket": "geofoodtruck-app-bucket",
+            "id": "geofoodtruck-app-bucket",
             "ignore_public_acls": true,
             "restrict_public_buckets": true
           },
@@ -2949,7 +2950,7 @@
       "provider_name": "registry.terraform.io/hashicorp/aws",
       "change": {
         "actions": [
-          "no-op"
+          "update"
         ],
         "before": {
           "comment": "Custom CORS with Preflight Response Policy for GeoFoodTruck",
@@ -3104,7 +3105,7 @@
                 {
                   "access_control_max_age_sec": 31536000,
                   "include_subdomains": false,
-                  "override": false,
+                  "override": true,
                   "preload": false
                 }
               ],
@@ -3608,20 +3609,26 @@
       "provider_name": "registry.terraform.io/hashicorp/aws",
       "change": {
         "actions": [
-          "create"
+          "no-op"
         ],
-        "before": null,
+        "before": {
+          "block_public_acls": true,
+          "block_public_policy": true,
+          "bucket": "geofoodtruck-app-bucket",
+          "id": "geofoodtruck-app-bucket",
+          "ignore_public_acls": true,
+          "restrict_public_buckets": true
+        },
         "after": {
           "block_public_acls": true,
           "block_public_policy": true,
           "bucket": "geofoodtruck-app-bucket",
+          "id": "geofoodtruck-app-bucket",
           "ignore_public_acls": true,
           "restrict_public_buckets": true
         },
-        "after_unknown": {
-          "id": true
-        },
-        "before_sensitive": false,
+        "after_unknown": {},
+        "before_sensitive": {},
         "after_sensitive": {}
       }
     },
@@ -3716,7 +3723,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "3d51239077de341cf16da852a3b81b23",
+          "etag": "182a10569e67880cdc40d774e97028bd",
           "force_destroy": false,
           "id": "asset-manifest.json",
           "key": "asset-manifest.json",
@@ -3819,7 +3826,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/x-icon",
-          "etag": "8411484c2a3a78b6a1437657cba77d9c",
+          "etag": "ff17012ec34eacb1ab688ab0f971048a",
           "force_destroy": false,
           "id": "favicon.ico",
           "key": "favicon.ico",
@@ -3922,7 +3929,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/html",
-          "etag": "103c40502e83969105bf7d91c59489f2",
+          "etag": "add25c17f146422fb5402bf01123deb4",
           "force_destroy": false,
           "id": "index.html",
           "key": "index.html",
@@ -4025,7 +4032,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "6705dd4174168ae5222c4ebbc60a1434",
+          "etag": "bac79fd89e761acfaff6591ae3565eff",
           "force_destroy": false,
           "id": "logo192.png",
           "key": "logo192.png",
@@ -4128,7 +4135,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "bf959919cd3f92e397b5ab1a553c6e83",
+          "etag": "77ced92e54be018805e2291104d443b1",
           "force_destroy": false,
           "id": "logo512.png",
           "key": "logo512.png",
@@ -4231,7 +4238,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "b474b5921fd968ce7f2758effbff4e2f",
+          "etag": "4a488229e755f32b401175c9f6a097d4",
           "force_destroy": false,
           "id": "manifest.json",
           "key": "manifest.json",
@@ -4334,7 +4341,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "6fb6b0d672181e0dc0d28992ad46b9cf",
+          "etag": "535614cabb73445add58c468ca56cc10",
           "force_destroy": false,
           "id": "robots.txt",
           "key": "robots.txt",
@@ -4437,7 +4444,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/css",
-          "etag": "4f09b51c6140f5dea4b7423ef7381de2",
+          "etag": "1e569316acd834975f136adf57092fdc",
           "force_destroy": false,
           "id": "static/css/main.414097bf.css",
           "key": "static/css/main.414097bf.css",
@@ -4540,7 +4547,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "e9b8a63ca73faff18638849bce5ae1c3",
+          "etag": "f529f40f0ff49a57f722213c88aadfd9",
           "force_destroy": false,
           "id": "static/js/206.85c6594b.chunk.js",
           "key": "static/js/206.85c6594b.chunk.js",
@@ -4643,7 +4650,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "9fbeb4e61fe65771cee78508b49f88c4",
+          "etag": "4c2408c7a36784d8f146f7cef16040e5",
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js",
           "key": "static/js/main.95d1b778.js",
@@ -4746,7 +4753,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "e4d683cca513e958143ad5986f8c53d0",
+          "etag": "45bba5aaf13739f6cb3956de526996b3",
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js.LICENSE.txt",
           "key": "static/js/main.95d1b778.js.LICENSE.txt",
@@ -4849,7 +4856,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "c3bc4214de3262c1f17d3940b7e4fb03",
+          "etag": "d6df860c363ccfd4b153b4eccdedb71a",
           "force_destroy": false,
           "id": "truck-solid.png",
           "key": "truck-solid.png",
@@ -7942,6 +7949,26 @@
             ]
           },
           {
+            "address": "aws_s3_bucket_public_access_block.geofoodtruck_s3_bucket_public_access_block",
+            "mode": "managed",
+            "type": "aws_s3_bucket_public_access_block",
+            "name": "geofoodtruck_s3_bucket_public_access_block",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "schema_version": 0,
+            "values": {
+              "block_public_acls": true,
+              "block_public_policy": true,
+              "bucket": "geofoodtruck-app-bucket",
+              "id": "geofoodtruck-app-bucket",
+              "ignore_public_acls": true,
+              "restrict_public_buckets": true
+            },
+            "sensitive_values": {},
+            "depends_on": [
+              "aws_s3_bucket.geofoodtruck_app_bucket"
+            ]
+          },
+          {
             "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_server_side_encryption_configuration",
             "mode": "managed",
             "type": "aws_s3_bucket_server_side_encryption_configuration",
@@ -8005,7 +8032,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "3d51239077de341cf16da852a3b81b23",
+              "etag": "182a10569e67880cdc40d774e97028bd",
               "force_destroy": false,
               "id": "asset-manifest.json",
               "key": "asset-manifest.json",
@@ -8069,7 +8096,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/x-icon",
-              "etag": "8411484c2a3a78b6a1437657cba77d9c",
+              "etag": "ff17012ec34eacb1ab688ab0f971048a",
               "force_destroy": false,
               "id": "favicon.ico",
               "key": "favicon.ico",
@@ -8133,7 +8160,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/html",
-              "etag": "103c40502e83969105bf7d91c59489f2",
+              "etag": "add25c17f146422fb5402bf01123deb4",
               "force_destroy": false,
               "id": "index.html",
               "key": "index.html",
@@ -8197,7 +8224,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "6705dd4174168ae5222c4ebbc60a1434",
+              "etag": "bac79fd89e761acfaff6591ae3565eff",
               "force_destroy": false,
               "id": "logo192.png",
               "key": "logo192.png",
@@ -8261,7 +8288,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "bf959919cd3f92e397b5ab1a553c6e83",
+              "etag": "77ced92e54be018805e2291104d443b1",
               "force_destroy": false,
               "id": "logo512.png",
               "key": "logo512.png",
@@ -8325,7 +8352,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "b474b5921fd968ce7f2758effbff4e2f",
+              "etag": "4a488229e755f32b401175c9f6a097d4",
               "force_destroy": false,
               "id": "manifest.json",
               "key": "manifest.json",
@@ -8389,7 +8416,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "6fb6b0d672181e0dc0d28992ad46b9cf",
+              "etag": "535614cabb73445add58c468ca56cc10",
               "force_destroy": false,
               "id": "robots.txt",
               "key": "robots.txt",
@@ -8453,7 +8480,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/css",
-              "etag": "4f09b51c6140f5dea4b7423ef7381de2",
+              "etag": "1e569316acd834975f136adf57092fdc",
               "force_destroy": false,
               "id": "static/css/main.414097bf.css",
               "key": "static/css/main.414097bf.css",
@@ -8517,7 +8544,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "e9b8a63ca73faff18638849bce5ae1c3",
+              "etag": "f529f40f0ff49a57f722213c88aadfd9",
               "force_destroy": false,
               "id": "static/js/206.85c6594b.chunk.js",
               "key": "static/js/206.85c6594b.chunk.js",
@@ -8581,7 +8608,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "9fbeb4e61fe65771cee78508b49f88c4",
+              "etag": "4c2408c7a36784d8f146f7cef16040e5",
               "force_destroy": false,
               "id": "static/js/main.95d1b778.js",
               "key": "static/js/main.95d1b778.js",
@@ -8645,7 +8672,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "e4d683cca513e958143ad5986f8c53d0",
+              "etag": "45bba5aaf13739f6cb3956de526996b3",
               "force_destroy": false,
               "id": "static/js/main.95d1b778.js.LICENSE.txt",
               "key": "static/js/main.95d1b778.js.LICENSE.txt",
@@ -8709,7 +8736,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "c3bc4214de3262c1f17d3940b7e4fb03",
+              "etag": "d6df860c363ccfd4b153b4eccdedb71a",
               "force_destroy": false,
               "id": "truck-solid.png",
               "key": "truck-solid.png",
@@ -10132,7 +10159,7 @@
                       "constant_value": 31536000
                     },
                     "override": {
-                      "constant_value": false
+                      "constant_value": true
                     }
                   }
                 ]
@@ -10881,7 +10908,7 @@
       ]
     }
   ],
-  "timestamp": "2024-06-03T04:32:10Z",
+  "timestamp": "2024-06-03T04:56:14Z",
   "applyable": true,
   "complete": true,
   "errored": false
