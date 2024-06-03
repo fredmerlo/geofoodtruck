@@ -88,3 +88,6 @@ jobs:
       with:
         commit_message: "Terraform Plan"
         file_pattern: "**/.plan/tfplan.json"
+        commit_user_name: fredmerlo
+        commit_user_email: fredmerlo@gmail.com
+        commit_author: fredmerlo <fredmerlo@gmail.com>
