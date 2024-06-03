@@ -11,7 +11,7 @@ values=(
     "6c1ead8a-5e71-4e33-ae37-010dbcd3c063"
 )
 
-input_file=".github/tfplan.json"
+input_file="../.github/tfplan.json"
 
 for value in "${values[@]}"; do
     sed -i "s/$value/***/g" "$input_file"
