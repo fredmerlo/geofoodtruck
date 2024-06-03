@@ -28,13 +28,14 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: ./tf/.plan/tfplan.json
-          repo_root_for_plan_enrichment: /fredmerlo/geofoodtruck/blob/main/tf
+          file: tf/.plan/tfplan.json
+          repo_root_for_plan_enrichment: tf/
           deep_analysis: true
           soft_fail: true
+          framework: terraform 
           output_format: cli,sarif
           output_file_path: console,results.sarif
-          config_file: ./.github/checkov.yaml
+          config_file: .github/checkov.yaml
         
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
