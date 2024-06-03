@@ -52,7 +52,6 @@ jobs:
           config_file: .github/checkov.yaml
           download_external_modules: true
           enable_secrets_scan_all_files: true
-          log_level: DEBUG
         env:
           TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
         
