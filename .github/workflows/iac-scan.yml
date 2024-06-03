@@ -23,13 +23,14 @@ jobs:
         uses: bridgecrewio/checkov-action@v12
         with:
           file: .github/tfplan.json
-          repo_root_for_plan_enrichment: tf/
+          repo_root_for_plan_enrichment: ./tf
           deep_analysis: true
           soft_fail: true
           output_format: cli,sarif
           output_file_path: console,results.sarif
           config_file: .github/checkov.yaml
           download_external_modules: true
+          enable_secrets_scan_all_files: true
           framework: terraform_json
           log_level: DEBUG
         
