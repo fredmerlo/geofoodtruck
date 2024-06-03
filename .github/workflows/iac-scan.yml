@@ -22,14 +22,15 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: .github/tfplan.json, /tf/main.tf, /tf/waf.tf, /tf/variables.tf,
+          file: .github/tfplan.json, /tf/main.tf, /tf/waf.tf, /tf/variables.tf
           repo_root_for_plan_enrichment: /tf
           deep_analysis: true
           soft_fail: true
           output_format: cli,sarif
           output_file_path: console,results.sarif
           config_file: .github/checkov.yaml
-          framework: terraform
+          download_external_modules: true
+          framework: terraform-json
           log_level: DEBUG
         
       - name: Upload SARIF file
