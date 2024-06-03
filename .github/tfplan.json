@@ -6,7 +6,7 @@
       "value": "../build"
     },
     "aws_account_id": {
-      "value": "900357929763"
+      "value": "***"
     },
     "lambda_dir": {
       "value": "../lambda"
@@ -36,7 +36,7 @@
           "schema_version": 1,
           "values": {
             "aliases": [],
-            "arn": "arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L",
+            "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
             "caller_reference": "terraform-20240521104331355600000001",
             "comment": null,
             "continuous_deployment_policy_id": "",
@@ -120,7 +120,7 @@
                 "custom_header": [
                   {
                     "name": "X-App-Token",
-                    "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                    "value": "***"
                   }
                 ],
                 "custom_origin_config": [
@@ -194,7 +194,7 @@
               }
             ],
             "wait_for_deployment": true,
-            "web_acl_id": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
+            "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
           },
           "sensitive_values": {
             "aliases": [],
@@ -503,8 +503,8 @@
           "provider_name": "registry.terraform.io/hashicorp/aws",
           "schema_version": 0,
           "values": {
-            "arn": "arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin",
-            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"900357929763\"}}],\"Version\":\"2012-10-17\"}",
+            "arn": "arn:aws:iam::***:role/GeoFoodTruckKmsAdmin",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"***\"}}],\"Version\":\"2012-10-17\"}",
             "create_date": "2024-05-21T10:43:30Z",
             "description": "",
             "force_detach_policies": false,
@@ -540,7 +540,7 @@
           "provider_name": "registry.terraform.io/hashicorp/aws",
           "schema_version": 0,
           "values": {
-            "arn": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "arn": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "bypass_policy_lockout_safety_check": false,
             "custom_key_store_id": "",
             "customer_master_key_spec": "SYMMETRIC_DEFAULT",
@@ -552,7 +552,7 @@
             "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "key_usage": "ENCRYPT_DECRYPT",
             "multi_region": false,
-            "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::900357929763:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
             "rotation_period_in_days": 180,
             "tags": {
               "Name": "geofoodtruck-kms-key"
@@ -602,7 +602,7 @@
             "logging": [],
             "object_lock_configuration": [],
             "object_lock_enabled": false,
-            "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
+            "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
             "region": "us-east-1",
             "replication_configuration": [],
             "request_payer": "BucketOwner",
@@ -612,7 +612,7 @@
                   {
                     "apply_server_side_encryption_by_default": [
                       {
-                        "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                        "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                         "sse_algorithm": "aws:kms"
                       }
                     ],
@@ -676,7 +676,7 @@
           "values": {
             "bucket": "geofoodtruck-app-bucket",
             "id": "geofoodtruck-app-bucket",
-            "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
+            "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
           },
           "sensitive_values": {}
         },
@@ -712,7 +712,7 @@
               {
                 "apply_server_side_encryption_by_default": [
                   {
-                    "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                    "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                     "sse_algorithm": "aws:kms"
                   }
                 ],
@@ -759,7 +759,7 @@
             "force_destroy": false,
             "id": "asset-manifest.json",
             "key": "asset-manifest.json",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -809,7 +809,7 @@
             "force_destroy": false,
             "id": "favicon.ico",
             "key": "favicon.ico",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -859,7 +859,7 @@
             "force_destroy": false,
             "id": "index.html",
             "key": "index.html",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -909,7 +909,7 @@
             "force_destroy": false,
             "id": "logo192.png",
             "key": "logo192.png",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -959,7 +959,7 @@
             "force_destroy": false,
             "id": "logo512.png",
             "key": "logo512.png",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1009,7 +1009,7 @@
             "force_destroy": false,
             "id": "manifest.json",
             "key": "manifest.json",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1059,7 +1059,7 @@
             "force_destroy": false,
             "id": "robots.txt",
             "key": "robots.txt",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1109,7 +1109,7 @@
             "force_destroy": false,
             "id": "static/css/main.414097bf.css",
             "key": "static/css/main.414097bf.css",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1159,7 +1159,7 @@
             "force_destroy": false,
             "id": "static/js/206.85c6594b.chunk.js",
             "key": "static/js/206.85c6594b.chunk.js",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1209,7 +1209,7 @@
             "force_destroy": false,
             "id": "static/js/main.95d1b778.js",
             "key": "static/js/main.95d1b778.js",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1259,7 +1259,7 @@
             "force_destroy": false,
             "id": "static/js/main.95d1b778.js.LICENSE.txt",
             "key": "static/js/main.95d1b778.js.LICENSE.txt",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1309,7 +1309,7 @@
             "force_destroy": false,
             "id": "truck-solid.png",
             "key": "truck-solid.png",
-            "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+            "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "metadata": {},
             "object_lock_legal_hold_status": "",
             "object_lock_mode": "",
@@ -1339,7 +1339,7 @@
           "schema_version": 0,
           "values": {
             "application_integration_url": "",
-            "arn": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
+            "arn": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
             "association_config": [],
             "capacity": 975,
             "captcha_config": [],
@@ -2331,7 +2331,7 @@
         ],
         "before": {
           "aliases": [],
-          "arn": "arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L",
+          "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
           "caller_reference": "terraform-20240521104331355600000001",
           "comment": null,
           "continuous_deployment_policy_id": "",
@@ -2415,7 +2415,7 @@
               "custom_header": [
                 {
                   "name": "X-App-Token",
-                  "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                  "value": "***"
                 }
               ],
               "custom_origin_config": [
@@ -2489,11 +2489,11 @@
             }
           ],
           "wait_for_deployment": true,
-          "web_acl_id": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
+          "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
         },
         "after": {
           "aliases": [],
-          "arn": "arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L",
+          "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
           "caller_reference": "terraform-20240521104331355600000001",
           "comment": null,
           "continuous_deployment_policy_id": "",
@@ -2577,7 +2577,7 @@
               "custom_header": [
                 {
                   "name": "X-App-Token",
-                  "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                  "value": "***"
                 }
               ],
               "custom_origin_config": [
@@ -2651,7 +2651,7 @@
             }
           ],
           "wait_for_deployment": true,
-          "web_acl_id": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
+          "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
         },
         "after_unknown": {},
         "before_sensitive": {
@@ -3254,8 +3254,8 @@
           "no-op"
         ],
         "before": {
-          "arn": "arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin",
-          "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"900357929763\"}}],\"Version\":\"2012-10-17\"}",
+          "arn": "arn:aws:iam::***:role/GeoFoodTruckKmsAdmin",
+          "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"***\"}}],\"Version\":\"2012-10-17\"}",
           "create_date": "2024-05-21T10:43:30Z",
           "description": "",
           "force_detach_policies": false,
@@ -3274,8 +3274,8 @@
           "unique_id": "AROA5DIMDXMR6ITLNBKXN"
         },
         "after": {
-          "arn": "arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin",
-          "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"900357929763\"}}],\"Version\":\"2012-10-17\"}",
+          "arn": "arn:aws:iam::***:role/GeoFoodTruckKmsAdmin",
+          "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"***\"}}],\"Version\":\"2012-10-17\"}",
           "create_date": "2024-05-21T10:43:30Z",
           "description": "",
           "force_detach_policies": false,
@@ -3325,7 +3325,7 @@
           "no-op"
         ],
         "before": {
-          "arn": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "arn": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "bypass_policy_lockout_safety_check": false,
           "custom_key_store_id": "",
           "customer_master_key_spec": "SYMMETRIC_DEFAULT",
@@ -3337,7 +3337,7 @@
           "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "key_usage": "ENCRYPT_DECRYPT",
           "multi_region": false,
-          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::900357929763:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
           "rotation_period_in_days": 180,
           "tags": {
             "Name": "geofoodtruck-kms-key"
@@ -3349,7 +3349,7 @@
           "xks_key_id": ""
         },
         "after": {
-          "arn": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "arn": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "bypass_policy_lockout_safety_check": false,
           "custom_key_store_id": "",
           "customer_master_key_spec": "SYMMETRIC_DEFAULT",
@@ -3361,7 +3361,7 @@
           "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "key_usage": "ENCRYPT_DECRYPT",
           "multi_region": false,
-          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::900357929763:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
           "rotation_period_in_days": 180,
           "tags": {
             "Name": "geofoodtruck-kms-key"
@@ -3421,7 +3421,7 @@
           "logging": [],
           "object_lock_configuration": [],
           "object_lock_enabled": false,
-          "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
+          "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
           "region": "us-east-1",
           "replication_configuration": [],
           "request_payer": "BucketOwner",
@@ -3431,7 +3431,7 @@
                 {
                   "apply_server_side_encryption_by_default": [
                     {
-                      "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                      "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                       "sse_algorithm": "aws:kms"
                     }
                   ],
@@ -3479,7 +3479,7 @@
           "logging": [],
           "object_lock_configuration": [],
           "object_lock_enabled": false,
-          "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
+          "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
           "region": "us-east-1",
           "replication_configuration": [],
           "request_payer": "BucketOwner",
@@ -3489,7 +3489,7 @@
                 {
                   "apply_server_side_encryption_by_default": [
                     {
-                      "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                      "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                       "sse_algorithm": "aws:kms"
                     }
                   ],
@@ -3589,12 +3589,12 @@
         "before": {
           "bucket": "geofoodtruck-app-bucket",
           "id": "geofoodtruck-app-bucket",
-          "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
+          "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
         },
         "after": {
           "bucket": "geofoodtruck-app-bucket",
           "id": "geofoodtruck-app-bucket",
-          "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
+          "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
         },
         "after_unknown": {},
         "before_sensitive": {},
@@ -3650,7 +3650,7 @@
             {
               "apply_server_side_encryption_by_default": [
                 {
-                  "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                  "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                   "sse_algorithm": "aws:kms"
                 }
               ],
@@ -3666,7 +3666,7 @@
             {
               "apply_server_side_encryption_by_default": [
                 {
-                  "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                  "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                   "sse_algorithm": "aws:kms"
                 }
               ],
@@ -3723,11 +3723,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "1d8051506e7c93bdacdbfe05a3875454",
+          "etag": "a011c1f571c4931771f2b0cf11e9f40b",
           "force_destroy": false,
           "id": "asset-manifest.json",
           "key": "asset-manifest.json",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -3763,7 +3763,7 @@
           "force_destroy": false,
           "id": "asset-manifest.json",
           "key": "asset-manifest.json",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -3826,11 +3826,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/x-icon",
-          "etag": "79479ed720737a52fab0382ae3e16b83",
+          "etag": "408e491d2fe86e41686703a2b4d137ec",
           "force_destroy": false,
           "id": "favicon.ico",
           "key": "favicon.ico",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -3866,7 +3866,7 @@
           "force_destroy": false,
           "id": "favicon.ico",
           "key": "favicon.ico",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -3929,11 +3929,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/html",
-          "etag": "3fed4be207a0862fddf9a84198832a15",
+          "etag": "9a02bc61686bfd78efa8be21b1edfcb2",
           "force_destroy": false,
           "id": "index.html",
           "key": "index.html",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -3969,7 +3969,7 @@
           "force_destroy": false,
           "id": "index.html",
           "key": "index.html",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4032,11 +4032,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "d1b728eae75a98644531158d997e4d6e",
+          "etag": "8a5782cf92be43536e8be083606a842b",
           "force_destroy": false,
           "id": "logo192.png",
           "key": "logo192.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4072,7 +4072,7 @@
           "force_destroy": false,
           "id": "logo192.png",
           "key": "logo192.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4135,11 +4135,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "f1841d61e723ad197e32fd7539e0a2ef",
+          "etag": "bd0c08b2da63676cb1c0716cb7c47f86",
           "force_destroy": false,
           "id": "logo512.png",
           "key": "logo512.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4175,7 +4175,7 @@
           "force_destroy": false,
           "id": "logo512.png",
           "key": "logo512.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4238,11 +4238,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "0fabfb07235c3aa36b8976a2707fb79d",
+          "etag": "a54d985a2b730e2da3e54fdb83639d24",
           "force_destroy": false,
           "id": "manifest.json",
           "key": "manifest.json",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4278,7 +4278,7 @@
           "force_destroy": false,
           "id": "manifest.json",
           "key": "manifest.json",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4341,11 +4341,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "e042b534584009d9054fa2fcbd7f09b0",
+          "etag": "e6f96659279a162ffb2f066ae6a25b26",
           "force_destroy": false,
           "id": "robots.txt",
           "key": "robots.txt",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4381,7 +4381,7 @@
           "force_destroy": false,
           "id": "robots.txt",
           "key": "robots.txt",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4444,11 +4444,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/css",
-          "etag": "0fc02c766cd2f162a91c1997d3e4138d",
+          "etag": "84b44719c277cf981ba25de2574d2c17",
           "force_destroy": false,
           "id": "static/css/main.414097bf.css",
           "key": "static/css/main.414097bf.css",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4484,7 +4484,7 @@
           "force_destroy": false,
           "id": "static/css/main.414097bf.css",
           "key": "static/css/main.414097bf.css",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4547,11 +4547,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "c8f44ceac82883b02516878ce35467bf",
+          "etag": "0b4b6e84b704af9d2becaa6045249b0b",
           "force_destroy": false,
           "id": "static/js/206.85c6594b.chunk.js",
           "key": "static/js/206.85c6594b.chunk.js",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4587,7 +4587,7 @@
           "force_destroy": false,
           "id": "static/js/206.85c6594b.chunk.js",
           "key": "static/js/206.85c6594b.chunk.js",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4650,11 +4650,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "1db4ac624ab1b1e7dd2bd88be03b87f9",
+          "etag": "e0faab5370e164bab64198a8fce5c4e4",
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js",
           "key": "static/js/main.95d1b778.js",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4690,7 +4690,7 @@
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js",
           "key": "static/js/main.95d1b778.js",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4753,11 +4753,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "a688d35170aaab9e5f3539f15e9194fd",
+          "etag": "7d31f4239e8e5c36a8806c60afcb436e",
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js.LICENSE.txt",
           "key": "static/js/main.95d1b778.js.LICENSE.txt",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4793,7 +4793,7 @@
           "force_destroy": false,
           "id": "static/js/main.95d1b778.js.LICENSE.txt",
           "key": "static/js/main.95d1b778.js.LICENSE.txt",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4856,11 +4856,11 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "29634b2f11e8895c1f4c16521994f3e3",
+          "etag": "e2ebf22ee5e3471df928e13fd13c2518",
           "force_destroy": false,
           "id": "truck-solid.png",
           "key": "truck-solid.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4896,7 +4896,7 @@
           "force_destroy": false,
           "id": "truck-solid.png",
           "key": "truck-solid.png",
-          "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+          "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "metadata": {},
           "object_lock_legal_hold_status": "",
           "object_lock_mode": "",
@@ -4943,7 +4943,7 @@
         ],
         "before": {
           "application_integration_url": "",
-          "arn": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
+          "arn": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
           "association_config": [],
           "capacity": 975,
           "captcha_config": [],
@@ -5466,7 +5466,7 @@
         },
         "after": {
           "application_integration_url": "",
-          "arn": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
+          "arn": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
           "association_config": [],
           "capacity": 975,
           "captcha_config": [],
@@ -7250,12 +7250,12 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "schema_version": 0,
             "values": {
-              "arn": "arn:aws:ssm:us-east-1:900357929763:parameter/geofoodtruck/sfgovkey",
+              "arn": "arn:aws:ssm:us-east-1:***:parameter/geofoodtruck/sfgovkey",
               "id": "/geofoodtruck/sfgovkey",
               "insecure_value": "",
               "name": "/geofoodtruck/sfgovkey",
               "type": "SecureString",
-              "value": "GrXGgigVGyUzWjE0ppVRMRUgR",
+              "value": "***",
               "version": 2,
               "with_decryption": true
             },
@@ -7272,7 +7272,7 @@
             "schema_version": 1,
             "values": {
               "aliases": [],
-              "arn": "arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L",
+              "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
               "caller_reference": "terraform-20240521104331355600000001",
               "comment": null,
               "continuous_deployment_policy_id": "",
@@ -7356,7 +7356,7 @@
                   "custom_header": [
                     {
                       "name": "X-App-Token",
-                      "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                      "value": "***"
                     }
                   ],
                   "custom_origin_config": [
@@ -7430,7 +7430,7 @@
                 }
               ],
               "wait_for_deployment": true,
-              "web_acl_id": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
+              "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
             },
             "sensitive_values": {
               "aliases": [],
@@ -7751,8 +7751,8 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "schema_version": 0,
             "values": {
-              "arn": "arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin",
-              "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"900357929763\"}}],\"Version\":\"2012-10-17\"}",
+              "arn": "arn:aws:iam::***:role/GeoFoodTruckKmsAdmin",
+              "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"***\"}}],\"Version\":\"2012-10-17\"}",
               "create_date": "2024-05-21T10:43:30Z",
               "description": "",
               "force_detach_policies": false,
@@ -7791,7 +7791,7 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "schema_version": 0,
             "values": {
-              "arn": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "arn": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "bypass_policy_lockout_safety_check": false,
               "custom_key_store_id": "",
               "customer_master_key_spec": "SYMMETRIC_DEFAULT",
@@ -7803,7 +7803,7 @@
               "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "key_usage": "ENCRYPT_DECRYPT",
               "multi_region": false,
-              "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::900357929763:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::900357929763:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+              "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
               "rotation_period_in_days": 180,
               "tags": {
                 "Name": "geofoodtruck-kms-key"
@@ -7857,7 +7857,7 @@
               "logging": [],
               "object_lock_configuration": [],
               "object_lock_enabled": false,
-              "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
+              "policy": "{\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"arn:aws:s3:::geofoodtruck-app-bucket/*\"}],\"Version\":\"2012-10-17\"}",
               "region": "us-east-1",
               "replication_configuration": [],
               "request_payer": "BucketOwner",
@@ -7867,7 +7867,7 @@
                     {
                       "apply_server_side_encryption_by_default": [
                         {
-                          "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                          "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                           "sse_algorithm": "aws:kms"
                         }
                       ],
@@ -7931,7 +7931,7 @@
             "values": {
               "bucket": "geofoodtruck-app-bucket",
               "id": "geofoodtruck-app-bucket",
-              "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::900357929763:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
+              "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
             },
             "sensitive_values": {},
             "depends_on": [
@@ -7983,7 +7983,7 @@
                 {
                   "apply_server_side_encryption_by_default": [
                     {
-                      "kms_master_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                      "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
                       "sse_algorithm": "aws:kms"
                     }
                   ],
@@ -8032,11 +8032,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "1d8051506e7c93bdacdbfe05a3875454",
+              "etag": "a011c1f571c4931771f2b0cf11e9f40b",
               "force_destroy": false,
               "id": "asset-manifest.json",
               "key": "asset-manifest.json",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8096,11 +8096,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/x-icon",
-              "etag": "79479ed720737a52fab0382ae3e16b83",
+              "etag": "408e491d2fe86e41686703a2b4d137ec",
               "force_destroy": false,
               "id": "favicon.ico",
               "key": "favicon.ico",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8160,11 +8160,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/html",
-              "etag": "3fed4be207a0862fddf9a84198832a15",
+              "etag": "9a02bc61686bfd78efa8be21b1edfcb2",
               "force_destroy": false,
               "id": "index.html",
               "key": "index.html",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8224,11 +8224,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "d1b728eae75a98644531158d997e4d6e",
+              "etag": "8a5782cf92be43536e8be083606a842b",
               "force_destroy": false,
               "id": "logo192.png",
               "key": "logo192.png",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8288,11 +8288,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "f1841d61e723ad197e32fd7539e0a2ef",
+              "etag": "bd0c08b2da63676cb1c0716cb7c47f86",
               "force_destroy": false,
               "id": "logo512.png",
               "key": "logo512.png",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8352,11 +8352,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "0fabfb07235c3aa36b8976a2707fb79d",
+              "etag": "a54d985a2b730e2da3e54fdb83639d24",
               "force_destroy": false,
               "id": "manifest.json",
               "key": "manifest.json",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8416,11 +8416,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "e042b534584009d9054fa2fcbd7f09b0",
+              "etag": "e6f96659279a162ffb2f066ae6a25b26",
               "force_destroy": false,
               "id": "robots.txt",
               "key": "robots.txt",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8480,11 +8480,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/css",
-              "etag": "0fc02c766cd2f162a91c1997d3e4138d",
+              "etag": "84b44719c277cf981ba25de2574d2c17",
               "force_destroy": false,
               "id": "static/css/main.414097bf.css",
               "key": "static/css/main.414097bf.css",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8544,11 +8544,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "c8f44ceac82883b02516878ce35467bf",
+              "etag": "0b4b6e84b704af9d2becaa6045249b0b",
               "force_destroy": false,
               "id": "static/js/206.85c6594b.chunk.js",
               "key": "static/js/206.85c6594b.chunk.js",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8608,11 +8608,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "1db4ac624ab1b1e7dd2bd88be03b87f9",
+              "etag": "e0faab5370e164bab64198a8fce5c4e4",
               "force_destroy": false,
               "id": "static/js/main.95d1b778.js",
               "key": "static/js/main.95d1b778.js",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8672,11 +8672,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "a688d35170aaab9e5f3539f15e9194fd",
+              "etag": "7d31f4239e8e5c36a8806c60afcb436e",
               "force_destroy": false,
               "id": "static/js/main.95d1b778.js.LICENSE.txt",
               "key": "static/js/main.95d1b778.js.LICENSE.txt",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8736,11 +8736,11 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "29634b2f11e8895c1f4c16521994f3e3",
+              "etag": "e2ebf22ee5e3471df928e13fd13c2518",
               "force_destroy": false,
               "id": "truck-solid.png",
               "key": "truck-solid.png",
-              "kms_key_id": "arn:aws:kms:us-east-1:900357929763:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+              "kms_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
               "metadata": {},
               "object_lock_legal_hold_status": "",
               "object_lock_mode": "",
@@ -8784,7 +8784,7 @@
             "schema_version": 0,
             "values": {
               "application_integration_url": "",
-              "arn": "arn:aws:wafv2:us-east-1:900357929763:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
+              "arn": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36",
               "association_config": [],
               "capacity": 975,
               "captcha_config": [],
@@ -10914,7 +10914,7 @@
       ]
     }
   ],
-  "timestamp": "2024-06-03T10:02:45Z",
+  "timestamp": "2024-06-03T10:17:40Z",
   "applyable": true,
   "complete": true,
   "errored": false
