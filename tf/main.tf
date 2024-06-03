@@ -81,6 +81,15 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_b
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "geofoodtruck_s3_bucket_public_access_block" {
+  bucket = aws_s3_bucket.geofoodtruck_app_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_control" {
   name = "geofoodtruck-app-oac"
   origin_access_control_origin_type = "s3"
