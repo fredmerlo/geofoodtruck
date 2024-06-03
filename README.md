@@ -2,6 +2,7 @@
 
 [![Playwright Tests](https://github.com/fredmerlo/geofoodtruck/actions/workflows/test.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/index.html)
 [![GeoFoodTruck Live](https://github.com/fredmerlo/geofoodtruck/actions/workflows/deploy.yml/badge.svg)](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck.html)
+[![Checkov IaC Scan](https://github.com/fredmerlo/geofoodtruck/actions/workflows/iac-scan.yml/badge.svg?event=workflow_run)](https://github.com/fredmerlo/geofoodtruck/security/code-scanning)
 
 ### Overview
 `GeoFoodTruck` is a GIS (Geographic Information System) application that performs proximity searches of Food Truck vendors using [LeafletJS](https://leafletjs.com/) and the City of San Francisco, public dataset of [Mobile Food Facility Permits](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data).
