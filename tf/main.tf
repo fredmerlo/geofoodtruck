@@ -32,6 +32,9 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
   key_usage   = "ENCRYPT_DECRYPT"
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
 
+  enable_key_rotation = true
+  rotation_period_in_days = 180
+
    policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
