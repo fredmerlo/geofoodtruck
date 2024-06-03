@@ -13,7 +13,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Scan
     runs-on: ubuntu-latest
-    environment: test
+    environment: iac
 
     permissions:
       id-token: write
