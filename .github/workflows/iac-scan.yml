@@ -28,7 +28,7 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          file: tf/.plan/tfplan.json
+          file: .github/tfplan.json
           repo_root_for_plan_enrichment: tf/
           deep_analysis: true
           soft_fail: true
