@@ -29,7 +29,7 @@ jobs:
         uses: bridgecrewio/checkov-action@v12
         with:
           file: ./tf/.plan/tfplan.json
-          repo_root_for_plan_enrichment: /fredmerlo/geofoodtruck/tree/main/tf
+          repo_root_for_plan_enrichment: /fredmerlo/geofoodtruck/blob/main/tf
           deep_analysis: true
           soft_fail: true
           output_format: cli,sarif
