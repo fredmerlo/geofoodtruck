@@ -69,6 +69,7 @@ jobs:
       run: |
         terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out=".plan/tfplan.bin"
         terraform show -json ".plan/tfplan.bin" | jq  > ".plan/tfplan.json"
+        .plan/sanitize.sh
 
     - name: Apply Terraform
       working-directory: ./tf
