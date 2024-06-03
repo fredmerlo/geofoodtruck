@@ -149,7 +149,7 @@ resource "aws_cloudfront_response_headers_policy" "geofoodtruck_cloudfront_respo
   security_headers_config {
     strict_transport_security {
       access_control_max_age_sec = 31536000
-      override                   = false
+      override                   = true
     }
   }
 
