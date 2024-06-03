@@ -23,7 +23,7 @@ jobs:
         uses: bridgecrewio/checkov-action@v12
         with:
           file: .github/tfplan.json
-          repo_root_for_plan_enrichment: /
+          repo_root_for_plan_enrichment: tf/
           deep_analysis: true
           soft_fail: true
           output_format: cli,sarif
