@@ -87,4 +87,4 @@ jobs:
       name: Commit Terraform Plan
       with:
         commit_message: "Terraform Plan"
-        file_pattern: "./.plan/**"
+        file_pattern: "**/.plan/tfplan.json"
