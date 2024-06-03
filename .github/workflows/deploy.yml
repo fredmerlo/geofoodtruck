@@ -58,14 +58,14 @@ jobs:
     - name: Plan Terraform
       working-directory: ./tf
       run: |
-        terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out=".plan/tfplan.bin"
-        terraform show -json ".plan/tfplan.bin" | jq  > ".plan/tfplan.json"
-        .plan/sanitize.sh
+        terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out="../.github/tfplan.bin"
+        terraform show -json "../.github/tfplan.bin" | jq  > "../.github/tfplan.json"
+        ../.github/sanitize.sh
 
     - name: Apply Terraform
       working-directory: ./tf
       run: |
-        terraform apply -auto-approve ".plan/tfplan.bin"
+        terraform apply -auto-approve "../.github/tfplan.bin"
           echo '{"value":"https://'`terraform output -raw cloudfront_distribution_domain`'"}' | \
           curl -L \
           -X PATCH \
@@ -78,7 +78,7 @@ jobs:
       name: Commit Terraform Plan
       with:
         commit_message: "Terraform Plan"
-        file_pattern: "**/.plan/tfplan.json"
+        file_pattern: "../.github/tfplan.*"
         commit_user_name: fredmerlo
         commit_user_email: fredmerlo@gmail.com
         commit_author: fredmerlo <fredmerlo@gmail.com>
