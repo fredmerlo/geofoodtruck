@@ -114,7 +114,7 @@ My approach combines hands-on technical leadership and software engineering with
 3. #### Automate Everything
    Or try to Automate as much as resonably possible. The key concept is to strive for `Idempotency`, run once or 100 times, given the same input the outcome will always be the same. Eliminating manual intervention is another practice to boost Agile Development Teams productivity.
 
-   For `GeoFoodTruck`, the CI / CD pipeline is configured to support a [Continous Flow](https://martinfowler.com/bliki/ContinuousFlow.html) Agile Delivery workflow, where commits are fully assessed and the pipeline is not interrupted upon stage failues.
+   For `GeoFoodTruck`, the CI / CD pipeline is configured to support a [Continous Flow](https://martinfowler.com/bliki/ContinuousFlow.html) Agile Delivery workflow, where commits are fully assessed and the pipeline is not interrupted upon stage failure.
    
    I created three event triggered Workflows: **Deploy**, **Test** and **IaC**
    - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
