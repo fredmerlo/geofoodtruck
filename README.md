@@ -118,7 +118,7 @@ My approach combines hands-on technical leadership and software engineering with
    
    I created three event triggered Workflows: **Deploy**, **Test** and **IaC**
    - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
-   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking of the `Deploy` workflow. The `Test` workflow publishes the [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) available to all project collaborators.
+   - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking other stages in the pipeline. The `Test` workflow publishes the [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) available to all project collaborators.
       <details>
       <summary>Screenshot</summary>
 
