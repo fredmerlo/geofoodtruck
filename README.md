@@ -114,11 +114,9 @@ My approach combines hands-on technical leadership and software engineering with
 3. #### Automate Everything
    Or try to Automate as much as resonably possible. The key concept is to strive for `Idempotency`, run once or 100 times, given the same input the outcome will always be the same. Eliminating manual intervention is another practice to boost Agile Development Teams productivity.
 
-   For `GeoFoodTruck`, the CI / CD pipeline acheives `Complete Automation`, from source code modifications to Cloud deployment and Application Quality validation with UATs.
-
-   I implemented OIDC GitHub Authentication to request AWS temporary credentials, eliminating manual administration of AWS Keys and Secrets, which are necessary for provisioning Cloud artifacts and infrastructure. 
+   For `GeoFoodTruck`, the CI / CD pipeline is configured to support a [Continious Flow](https://martinfowler.com/bliki/ContinuousFlow.html) Agile Delivery workflow, where commits are fully assessed and the pipeline is not interrupted upon stage failues.
    
-   I created two event triggered Workflows: **Deploy** and **Test**.
+   I created three event triggered Workflows: **Deploy**, **Test** and **IaC**
    - **Deploy** is activated upon detection of source code changes in the repository. Triggering a new build for the web application and a new deployment of the AWS infrastructure using the Terraform IaC templates. Terraform dynamically identifies if any modifications require infrastructure updates.
    - **Test** is activated upon successful completion of the `Deploy` workflow, using a Docker container to run all UATs to avoid blocking of the `Deploy` workflow. The `Test` workflow publishes the [Tests Result Report](https://geofoodtruck-test-report.s3.amazonaws.com/index.html) available to all project collaborators.
       <details>
@@ -127,6 +125,14 @@ My approach combines hands-on technical leadership and software engineering with
       **Deploy and Test in Action**
 
       ![CI-CD Workflow](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck-ci-cd.gif) 
+      </details>
+   - **IaC** is activated uppon successful completion of the `Deploy` workflow, and performs a Security Compliance Infrastructre Scan of the Terraform IaC Templates. The `IaC` workflow publishes the [Security Scan Report](https://github.com/fredmerlo/geofoodtruck/security/code-scanning) available to all project collaborators.
+      <details>
+      <summary>Screenshot</summary>
+
+      **GitHub Security Scan**
+
+      ![Checkov Security Scan](https://geofoodtruck-test-report.s3.amazonaws.com/geofoodtruck-iac.png)
       </details>
 4. #### Cloud Product Delivery
    A Well Architected Cloud product requires a thorough assessment of the workload being provisioned, at a high-level this evaluation will consider Operations, Security, Performance, Resiliency, Sustainability and Costs.
