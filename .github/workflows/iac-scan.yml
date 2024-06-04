@@ -19,7 +19,7 @@ jobs:
       id-token: write
       contents: read
       security-events: write
-      actions: read
+      actions: write
 
     steps:
       - name: Checkout code
