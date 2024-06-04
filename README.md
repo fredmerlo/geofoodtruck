@@ -37,6 +37,7 @@ The key techonlogies are:
 | React | `GeoFoodTruck` web application |
 | Playwright | UI Automation, UAT and Reporting |
 | Terraform | Infrastructure as Code |
+| Checkov | IaC Security Compliance Scan |
 | Git Workflow | CI / CD for Deploy and Test |
 | AWS KMS | Managed Encryption |
 | AWS Cloudfront | Content Delivery, Caching and TLS Encryption in Transit |
