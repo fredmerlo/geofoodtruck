@@ -60,7 +60,6 @@ jobs:
         with:
           sarif_file: results.sarif
 
-
       - name: Add cancel message and cancel workflow if condition is met
         if: failure()
         uses: actions/github-script@v6
