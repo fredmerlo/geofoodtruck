@@ -153,8 +153,7 @@ export class SearchControl extends Control {
     input.placeholder = 'Find Food';
     input.style.width = 'inherit';
     input.style.borderRadius = '6px 0px 0px 6px';
-    input.style.touchAction = 'none';
-    input.style.maxWidth = '100%'
+    input.style.fontSize = '16px';
 
     const span = DomUtil.create('span', 'btn-group', controlGroup);
     span.role = 'group';
