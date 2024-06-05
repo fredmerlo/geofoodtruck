@@ -90,4 +90,3 @@ jobs:
         commit_user_name: ${{ github.event.head_commit.author.name }}
         commit_user_email: ${{ github.event.head_commit.author.email }}
         commit_author: ${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>
-        commit_options: "--amend"
