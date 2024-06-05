@@ -54,7 +54,6 @@ jobs:
           deep_analysis: true
         env:
           TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-          REPO_ROOT_FOR_PLAN_ENRICHMENT: "./tf"
         
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
