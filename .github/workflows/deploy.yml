@@ -9,7 +9,6 @@ on:
       - '*.md'
       - '.gitignore'
       - '.vscode/**'
-      - '/tf/.plan/**'
 
   workflow_dispatch:
 
@@ -21,7 +20,7 @@ jobs:
 
     permissions:
       id-token: write
-      contents: write
+      contents: read
 
     steps:
     - name: Checkout code
@@ -67,14 +66,23 @@ jobs:
     - name: Plan Terraform
       working-directory: ./tf
       run: |
-        terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out="../.github/tfplan.bin"
-        terraform show -json "../.github/tfplan.bin" | jq  > "../.github/tfplan.json"
+        terraform plan -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" -out="tfplan.bin"
+        terraform show -json "tfplan.bin" | jq  > "tfplan.json"
         ../.github/sanitize.sh
+
+    - name: Save Build Output
+      id: terraform-output
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-output
+        path: ./tf/tfplan.json
+        overwrite: true
+        retention-days: 1
 
     - name: Apply Terraform
       working-directory: ./tf
       run: |
-        terraform apply -auto-approve "../.github/tfplan.bin"
+        terraform apply -auto-approve "tfplan.bin"
           echo '{"value":"https://'`terraform output -raw cloudfront_distribution_domain`'"}' | \
           curl -L \
           -X PATCH \
@@ -82,12 +90,3 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.USE_VARS }}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           -d @- https://api.github.com/repos/fredmerlo/geofoodtruck/actions/variables/BASE_URL
-
-    - uses: stefanzweifel/git-auto-commit-action@v5
-      name: Commit Terraform Plan
-      with:
-        commit_message: "Terraform Plan"
-        file_pattern: ".github/tfplan.*"
-        commit_user_name: fredmerlo
-        commit_user_email: fredmerlo@gmail.com
-        commit_author: fredmerlo <fredmerlo@gmail.com>
