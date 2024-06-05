@@ -85,8 +85,8 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v5
       name: Commit Terraform Plan
       with:
-        commit_message: ${{ github.event.head_commit.message }}
+        commit_message: ${{ github.event.head_commit.message }} | "Terraform Plan"
         file_pattern: ".github/tfplan.*"
-        commit_user_name: ${{ github.event.head_commit.author.name }}
-        commit_user_email: ${{ github.event.head_commit.author.email }}
-        commit_author: ${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>
+        commit_user_name: ${{ github.event.head_commit.author.name }} | "fredmerlo"
+        commit_user_email: ${{ github.event.head_commit.author.email }} | "fredmerlo@gmail.com"
+        commit_author: ${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}> | "fredmerlo <fredmerlo@gmail.com>"
