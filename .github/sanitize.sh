@@ -16,7 +16,7 @@ values=(
     "GrXGgigVGyUzWjE0ppVRMRUgR"
 )
 
-input_file="../.github/tfplan.json"
+input_file="tfplan.json"
 
 for value in "${values[@]}"; do
     sed -i "s/$value/***/g" "$input_file"

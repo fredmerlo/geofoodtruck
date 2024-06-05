@@ -44,14 +44,13 @@ jobs:
         uses: bridgecrewio/checkov-action@v12
         with:
           directory: ./tf
-          file: .github/tfplan.json
+          file: ./tf/tfplan.json
           repo_root_for_plan_enrichment: ./tf
           output_format: cli,sarif
           output_file_path: console,results.sarif
           config_file: .github/checkov.yaml
           download_external_modules: true
           enable_secrets_scan_all_files: true
-          deep_analysis: false
         env:
           TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
         
