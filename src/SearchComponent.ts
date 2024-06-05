@@ -144,14 +144,14 @@ export class SearchControl extends Control {
     control.style.width = '80vw';
 
     const controlGroup = DomUtil.create('div', undefined, control);
-    controlGroup.style.display = 'inline-flex';
+    controlGroup.style.display = 'flex';
 
     // search input markup
     const input = DomUtil.create('input', 'form-control input-sm', controlGroup);
     input.id = 'searchInput';
     input.style.color = 'blue';
     input.placeholder = 'Find Food';
-    input.style.width = 'auto';
+    input.style.width = 'inherit';
     input.style.borderRadius = '6px 0px 0px 6px';
 
     const span = DomUtil.create('span', 'btn-group', controlGroup);
