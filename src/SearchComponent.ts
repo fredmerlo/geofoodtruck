@@ -141,17 +141,17 @@ export class SearchControl extends Control {
     const control = DomUtil.create('div', 'leaflet-control');
     control.style.position = 'absolute';
     control.style.left = '50px';
-    control.style.width = 'max-content';
+    control.style.width = '80vw';
 
     const controlGroup = DomUtil.create('div', undefined, control);
-    controlGroup.style.display = '-webkit-inline-box';
+    controlGroup.style.display = 'inline-flex';
 
     // search input markup
     const input = DomUtil.create('input', 'form-control input-sm', controlGroup);
     input.id = 'searchInput';
     input.style.color = 'blue';
     input.placeholder = 'Find Food';
-    input.style.width = '60%';
+    input.style.width = 'auto';
     input.style.borderRadius = '6px 0px 0px 6px';
 
     const span = DomUtil.create('span', 'btn-group', controlGroup);
