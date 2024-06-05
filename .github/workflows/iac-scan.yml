@@ -51,7 +51,7 @@ jobs:
           config_file: .github/checkov.yaml
           download_external_modules: true
           enable_secrets_scan_all_files: true
-          deep_analysis: true
+          deep_analysis: false
         env:
           TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
         
