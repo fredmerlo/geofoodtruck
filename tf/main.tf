@@ -108,11 +108,6 @@ resource "aws_s3_bucket" "geofoodtruck_log_bucket" {
   bucket = "geofoodtruck-log-bucket"
 }
 
-# resource "aws_s3_bucket_acl" "geofoodtruck_log_bucket_acl" {
-#   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
-#   acl    = "private"
-# }
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_bucket_log_server_side_encryption_configuration" {
   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
 
@@ -139,6 +134,13 @@ resource "aws_s3_bucket_ownership_controls" "geofoodtruck_s3_bucket_log_ownershi
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
+}
+
+resource "aws_s3_bucket_acl" "geofoodtruck_log_bucket_acl" {
+  depends_on = [aws_s3_bucket_ownership_controls.geofoodtruck_s3_bucket_log_ownership_controls]
+
+  bucket     = aws_s3_bucket.geofoodtruck_log_bucket.id
+  acl        = "private"
 }
 
 # resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
