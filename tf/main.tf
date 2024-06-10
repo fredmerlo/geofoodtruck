@@ -77,7 +77,7 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
       {
         Effect = "Allow",
         Principal = {
-            "Service": "logs.region.amazonaws.com"
+            "Service": "logs.${data.aws_region.current.name}.amazonaws.com"
         },
         Action  = [
             "kms:Encrypt*",
