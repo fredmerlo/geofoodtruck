@@ -300,7 +300,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
       {
         Effect   = "Allow",
         Principal = {
-          "Service": "cloudfront.amazonaws.com"
+          "Service": "logging.s3.amazonaws.com"
         },
         Action   = [
           "s3:PutObject"
@@ -310,7 +310,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
         ],
         Condition = {
           "StringEquals": {
-            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
+            "AWS:SourceAccount": "${var.aws_account_id}"
           }
         }
       }
