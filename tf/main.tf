@@ -259,10 +259,10 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
 
-  # logging_config {
-  #   include_cookies = false
-  #   bucket          = aws_s3_bucket.geofoodtruck_log_bucket.bucket_regional_domain_name
-  # }
+  logging_config {
+    include_cookies = false
+    bucket          = aws_s3_bucket.geofoodtruck_log_bucket.bucket_regional_domain_name
+  }
 
   ordered_cache_behavior {
     path_pattern     = "/resource/rqzj-sfat.json"
