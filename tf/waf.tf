@@ -211,10 +211,6 @@ resource "aws_wafv2_web_acl" "geofoodtruck_waf_web_acl" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "geofoodtruck_waf_log_group" {
-  name = "aws-waf-logs-geofoodtruck-log-group"
-}
-
 resource "aws_wafv2_web_acl_logging_configuration" "geofoodtruck_waf_logging_configuration" {
   log_destination_configs = [aws_cloudwatch_log_group.geofoodtruck_waf_log_group.arn]
   resource_arn            = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn

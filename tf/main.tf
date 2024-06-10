@@ -2,6 +2,13 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_region" "current" {}
+
+resource "aws_cloudwatch_log_group" "geofoodtruck_waf_log_group" {
+  name = "aws-waf-logs-geofoodtruck-log-group"
+  kms_key_id = aws_kms_key.geofoodtruck_kms_key.arn
+}
+
 data "aws_iam_policy" "aws_key_management_service_power_user" {
   arn = "arn:aws:iam::aws:policy/AWSKeyManagementServicePowerUser"
 }
@@ -71,6 +78,25 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
           "kms:Decrypt"
         ],
         Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Principal = {
+            "Service": "logs.region.amazonaws.com"
+        },
+        Action  = [
+            "kms:Encrypt*",
+            "kms:Decrypt*",
+            "kms:ReEncrypt*",
+            "kms:GenerateDataKey*",
+            "kms:Describe*"
+        ],
+        Resource = "*",
+        Condition = {
+            "ArnLike": {
+                "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:${data.aws_region.current.name}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.geofoodtruck_waf_log_group.name}"
+            }
+        }
       }
     ]
   })
