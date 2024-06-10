@@ -97,11 +97,6 @@ resource "aws_s3_bucket" "geofoodtruck_log_bucket" {
   bucket = "geofoodtruck-log-bucket"
 }
 
-resource "aws_s3_bucket_acl" "geofoodtruck_log_bucket_acl" {
-  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_bucket_log_server_side_encryption_configuration" {
   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
 
@@ -293,6 +288,34 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   }
 
   web_acl_id = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn
+}
+
+resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
+  depends_on = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
+  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Principal = {
+          "Service": "logging.s3.amazonaws.com"
+        },
+        Action   = [
+          "s3:PutObject"
+        ],
+        Resource = [
+          "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
+        ],
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceArn": "${aws_cloudfront_distribution.geofoodtruck_app_distribution.arn}"
+          }
+        }
+      }
+    ]
+  })
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
