@@ -164,33 +164,6 @@ resource "aws_s3_bucket_acl" "geofoodtruck_log_bucket_acl" {
   acl        = "private"
 }
 
-# resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
-#   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
-
-#   policy = jsonencode({
-#     Version = "2012-10-17",
-#     Statement = [
-#       {
-#         Effect   = "Allow",
-#         Principal = {
-#           "Service": "delivery.logs.amazonaws.com"
-#         },
-#         Action   = [
-#           "s3:*"
-#         ],
-#         Resource = [
-#           "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
-#         ],
-#         Condition = {
-#           "StringEquals": {
-#             "AWS:SourceAccount": "${var.aws_account_id}"
-#           }
-#         }
-#       }
-#     ]
-#   })
-# }
-
 resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_control" {
   name = "geofoodtruck-app-oac"
   origin_access_control_origin_type = "s3"
