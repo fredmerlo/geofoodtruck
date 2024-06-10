@@ -97,6 +97,11 @@ resource "aws_s3_bucket" "geofoodtruck_log_bucket" {
   bucket = "geofoodtruck-log-bucket"
 }
 
+resource "aws_s3_bucket_acl" "geofoodtruck_log_bucket_acl" {
+  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
+  acl    = "private"
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "geofoodtruck_s3_bucket_log_server_side_encryption_configuration" {
   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
 
