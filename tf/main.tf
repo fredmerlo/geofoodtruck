@@ -53,10 +53,7 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
       {
         Effect   = "Allow",
         Principal = {
-          "Service": [
-            "cloudfront.amazonaws.com",
-            "delivery.logs.amazonaws.com"
-          ]
+          "Service": "cloudfront.amazonaws.com"
         },
         Action   = [
           "kms:Encrypt",
@@ -70,12 +67,6 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
   tags = {
     Name = "geofoodtruck-kms-key"
   }
-}
-
-resource "aws_cloudwatch_log_group" "geofoodtruck_waf_log_group" {
-  name              = "aws-waf-logs-geofoodtruck-log-group"
-  retention_in_days = 14
-  kms_key_id        = aws_kms_key.geofoodtruck_kms_key.arn
 }
 
 resource "aws_s3_bucket" "geofoodtruck_app_bucket" {
