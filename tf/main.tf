@@ -55,7 +55,7 @@ resource "aws_kms_key" "geofoodtruck_kms_key" {
         Principal = {
           "Service": [
             "cloudfront.amazonaws.com",
-            "cloudwatch.amazonaws.com"
+            "delivery.logs.amazonaws.com"
           ]
         },
         Action   = [
