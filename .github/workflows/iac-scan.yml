@@ -48,7 +48,6 @@ jobs:
           repo_root_for_plan_enrichment: ./tf
           output_format: cli,sarif
           output_file_path: console,results.sarif
-          config_file: .github/checkov.yaml
           download_external_modules: true
           enable_secrets_scan_all_files: true
         env:
