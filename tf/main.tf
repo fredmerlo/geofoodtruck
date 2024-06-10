@@ -300,7 +300,7 @@ resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
       {
         Effect   = "Allow",
         Principal = {
-          "Service": "logging.s3.amazonaws.com"
+          "Service": "cloudfront.amazonaws.com"
         },
         Action   = [
           "s3:PutObject"
