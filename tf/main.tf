@@ -133,6 +133,33 @@ resource "aws_s3_bucket_public_access_block" "geofoodtruck_s3_bucket_log_public_
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
+  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Principal = {
+          "Service": "delivery.logs.amazonaws.com"
+        },
+        Action   = [
+          "s3:*"
+        ],
+        Resource = [
+          "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
+        ],
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceAccount": "${var.aws_account_id}"
+          }
+        }
+      }
+    ]
+  })
+}
+
 resource "aws_cloudfront_origin_access_control" "geofoodtruck_origin_access_control" {
   name = "geofoodtruck-app-oac"
   origin_access_control_origin_type = "s3"
@@ -304,34 +331,6 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   }
 
   web_acl_id = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn
-}
-
-resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
-  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
-
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect   = "Allow",
-        Principal = {
-          "Service": "delivery.logs.amazonaws.com"
-        },
-        Action   = [
-          "s3:PutBucketAcl",
-          "s3:GetBucketAcl"
-        ],
-        Resource = [
-          "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
-        ],
-        Condition = {
-          "StringEquals": {
-            "AWS:SourceAccount": "${var.aws_account_id}"
-          }
-        }
-      }
-    ]
-  })
 }
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
