@@ -306,34 +306,33 @@ resource "aws_cloudfront_distribution" "geofoodtruck_app_distribution" {
   web_acl_id = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn
 }
 
-# resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
-#   depends_on = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
-#   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
+resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
+  bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
 
-#   policy = jsonencode({
-#     Version = "2012-10-17",
-#     Statement = [
-#       {
-#         Effect   = "Allow",
-#         Principal = {
-#           "Service": "logging.s3.amazonaws.com"
-#         },
-#         Action   = [
-#           "s3:PutObject",
-#           "s3:PutBucketAcl"
-#         ],
-#         Resource = [
-#           "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
-#         ],
-#         Condition = {
-#           "StringEquals": {
-#             "AWS:SourceAccount": "${var.aws_account_id}"
-#           }
-#         }
-#       }
-#     ]
-#   })
-# }
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Principal = {
+          "Service": "delivery.logs.amazonaws.com"
+        },
+        Action   = [
+          "s3:PutBucketAcl",
+          "s3:GetBucketAcl"
+        ],
+        Resource = [
+          "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
+        ],
+        Condition = {
+          "StringEquals": {
+            "AWS:SourceAccount": "${var.aws_account_id}"
+          }
+        }
+      }
+    ]
+  })
+}
 
 resource "aws_s3_bucket_policy" "geofoodtruck_app_bucket_policy" {
   depends_on = [aws_cloudfront_distribution.geofoodtruck_app_distribution]
