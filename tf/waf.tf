@@ -210,3 +210,44 @@ resource "aws_wafv2_web_acl" "geofoodtruck_waf_web_acl" {
     sampled_requests_enabled   = true
   }
 }
+
+resource "aws_cloudwatch_log_group" "geofoodtruck_waf_log_group" {
+  name = "geofoodtruck-waf-log-group"
+}
+
+resource "aws_wafv2_web_acl_logging_configuration" "geofoodtruck_waf_logging_configuration" {
+  log_destination_configs = [aws_cloudwatch_log_group.geofoodtruck_waf_log_group.arn]
+  resource_arn            = aws_wafv2_web_acl.geofoodtruck_waf_web_acl.arn
+}
+
+resource "aws_cloudwatch_log_resource_policy" "geofoodtruck_waf_log_resource_policy" {
+  policy_document = data.aws_iam_policy_document.geofoodtruck_waf_log_policy_document.json
+  policy_name     = "geofoodtruck-webacl-log-resource-policy"
+}
+
+data "aws_iam_policy_document" "geofoodtruck_waf_log_policy_document" {
+  version = "2012-10-17"
+  statement {
+    effect = "Allow"
+    principals {
+      identifiers = ["delivery.logs.amazonaws.com"]
+      type        = "Service"
+    }
+    actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
+    resources = ["${aws_cloudwatch_log_group.geofoodtruck_waf_log_group.arn}:*"]
+    condition {
+      test     = "ArnLike"
+      values   = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
+      variable = "aws:SourceArn"
+    }
+    condition {
+      test     = "StringEquals"
+      values   = [tostring(data.aws_caller_identity.current.account_id)]
+      variable = "aws:SourceAccount"
+    }
+  }
+}
+
+data "aws_region" "current" {}
+
+data "aws_caller_identity" "current" {}
