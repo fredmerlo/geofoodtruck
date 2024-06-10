@@ -299,7 +299,8 @@ resource "aws_s3_bucket_policy" "geofoodtruck_log_bucket_policy" {
           "Service": "logging.s3.amazonaws.com"
         },
         Action   = [
-          "s3:PutObject"
+          "s3:PutObject",
+          "s3:PutBucketAcl"
         ],
         Resource = [
           "${aws_s3_bucket.geofoodtruck_log_bucket.arn}/*"
