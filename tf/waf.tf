@@ -244,6 +244,4 @@ data "aws_iam_policy_document" "geofoodtruck_waf_log_policy_document" {
   }
 }
 
-data "aws_region" "current" {}
-
 data "aws_caller_identity" "current" {}
