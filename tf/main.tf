@@ -152,6 +152,7 @@ resource "aws_s3_bucket_public_access_block" "geofoodtruck_s3_bucket_log_public_
 resource "aws_s3_bucket_ownership_controls" "geofoodtruck_s3_bucket_log_ownership_controls" {
   bucket = aws_s3_bucket.geofoodtruck_log_bucket.id
 
+    #checkov:skip=CKV2_AWS_65:CloudFront Standard Logging requires S3 log bucket to have ACLs enabled
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
