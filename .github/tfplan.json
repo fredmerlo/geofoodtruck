@@ -590,7 +590,7 @@
             "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
             "key_usage": "ENCRYPT_DECRYPT",
             "multi_region": false,
-            "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"},{\"Action\":[\"kms:GenerateDataKey*\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"delivery.logs.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
             "rotation_period_in_days": 180,
             "tags": {
               "Name": "geofoodtruck-kms-key"
@@ -705,6 +705,32 @@
           }
         },
         {
+          "address": "aws_s3_bucket.geofoodtruck_log_bucket",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "geofoodtruck_log_bucket",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "bucket": "geofoodtruck-log-bucket",
+            "force_destroy": false,
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "cors_rule": [],
+            "grant": [],
+            "lifecycle_rule": [],
+            "logging": [],
+            "object_lock_configuration": [],
+            "replication_configuration": [],
+            "server_side_encryption_configuration": [],
+            "tags_all": {},
+            "versioning": [],
+            "website": []
+          }
+        },
+        {
           "address": "aws_s3_bucket_policy.geofoodtruck_app_bucket_policy",
           "mode": "managed",
           "type": "aws_s3_bucket_policy",
@@ -715,6 +741,21 @@
             "bucket": "geofoodtruck-app-bucket",
             "id": "geofoodtruck-app-bucket",
             "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceArn\":\"arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L\"}},\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::geofoodtruck-app-bucket/*\"]}],\"Version\":\"2012-10-17\"}"
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "aws_s3_bucket_public_access_block.geofoodtruck_s3_bucket_log_public_access_block",
+          "mode": "managed",
+          "type": "aws_s3_bucket_public_access_block",
+          "name": "geofoodtruck_s3_bucket_log_public_access_block",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "block_public_acls": true,
+            "block_public_policy": true,
+            "ignore_public_acls": true,
+            "restrict_public_buckets": true
           },
           "sensitive_values": {}
         },
@@ -734,6 +775,37 @@
             "restrict_public_buckets": true
           },
           "sensitive_values": {}
+        },
+        {
+          "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
+          "mode": "managed",
+          "type": "aws_s3_bucket_server_side_encryption_configuration",
+          "name": "geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "expected_bucket_owner": null,
+            "rule": [
+              {
+                "apply_server_side_encryption_by_default": [
+                  {
+                    "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
+                    "sse_algorithm": "aws:kms"
+                  }
+                ],
+                "bucket_key_enabled": null
+              }
+            ]
+          },
+          "sensitive_values": {
+            "rule": [
+              {
+                "apply_server_side_encryption_by_default": [
+                  {}
+                ]
+              }
+            ]
+          }
         },
         {
           "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_server_side_encryption_configuration",
@@ -2380,487 +2452,6 @@
       ]
     }
   },
-  "resource_drift": [
-    {
-      "address": "aws_cloudfront_distribution.geofoodtruck_app_distribution",
-      "mode": "managed",
-      "type": "aws_cloudfront_distribution",
-      "name": "geofoodtruck_app_distribution",
-      "provider_name": "registry.terraform.io/hashicorp/aws",
-      "change": {
-        "actions": [
-          "update"
-        ],
-        "before": {
-          "aliases": [],
-          "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
-          "caller_reference": "terraform-20240521104331355600000001",
-          "comment": null,
-          "continuous_deployment_policy_id": "",
-          "custom_error_response": [],
-          "default_cache_behavior": [
-            {
-              "allowed_methods": [
-                "GET",
-                "HEAD"
-              ],
-              "cache_policy_id": "658327ea-f89d-4fab-a63d-7e88639e58f6",
-              "cached_methods": [
-                "GET",
-                "HEAD"
-              ],
-              "compress": true,
-              "default_ttl": 0,
-              "field_level_encryption_id": "",
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "max_ttl": 0,
-              "min_ttl": 0,
-              "origin_request_policy_id": "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf",
-              "realtime_log_config_arn": "",
-              "response_headers_policy_id": "6ae32cb9-4d76-4741-8724-55e74a6500ac",
-              "smooth_streaming": false,
-              "target_origin_id": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "trusted_key_groups": [],
-              "trusted_signers": [],
-              "viewer_protocol_policy": "redirect-to-https"
-            }
-          ],
-          "default_root_object": "index.html",
-          "domain_name": "d3n9iqvbhzuqoh.cloudfront.net",
-          "enabled": true,
-          "etag": "E25KJTJF614CU2",
-          "hosted_zone_id": "Z2FDTNDATAQYW2",
-          "http_version": "http2",
-          "id": "E263E8AHYXLO8L",
-          "in_progress_validation_batches": 0,
-          "is_ipv6_enabled": true,
-          "last_modified_time": "2024-06-01 07:17:06.631 +0000 UTC",
-          "logging_config": [
-            {
-              "bucket": "geofoodtruck-log-bucket.s3.us-east-1.amazonaws.com",
-              "include_cookies": false,
-              "prefix": ""
-            }
-          ],
-          "ordered_cache_behavior": [
-            {
-              "allowed_methods": [
-                "GET",
-                "HEAD",
-                "OPTIONS"
-              ],
-              "cache_policy_id": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
-              "cached_methods": [
-                "GET",
-                "HEAD",
-                "OPTIONS"
-              ],
-              "compress": true,
-              "default_ttl": 0,
-              "field_level_encryption_id": "",
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "max_ttl": 0,
-              "min_ttl": 0,
-              "origin_request_policy_id": "3908a424-7b48-4b76-8830-6fc572388376",
-              "path_pattern": "/resource/rqzj-sfat.json",
-              "realtime_log_config_arn": "",
-              "response_headers_policy_id": "5cc3b908-e619-4b99-88e5-2cf7f45965bd",
-              "smooth_streaming": false,
-              "target_origin_id": "data.sfgov.org",
-              "trusted_key_groups": [],
-              "trusted_signers": [],
-              "viewer_protocol_policy": "https-only"
-            }
-          ],
-          "origin": [
-            {
-              "connection_attempts": 3,
-              "connection_timeout": 10,
-              "custom_header": [
-                {
-                  "name": "X-App-Token",
-                  "value": "***"
-                }
-              ],
-              "custom_origin_config": [
-                {
-                  "http_port": 80,
-                  "https_port": 443,
-                  "origin_keepalive_timeout": 5,
-                  "origin_protocol_policy": "https-only",
-                  "origin_read_timeout": 30,
-                  "origin_ssl_protocols": [
-                    "TLSv1.2"
-                  ]
-                }
-              ],
-              "domain_name": "data.sfgov.org",
-              "origin_access_control_id": "",
-              "origin_id": "data.sfgov.org",
-              "origin_path": "",
-              "origin_shield": [],
-              "s3_origin_config": []
-            },
-            {
-              "connection_attempts": 3,
-              "connection_timeout": 10,
-              "custom_header": [],
-              "custom_origin_config": [],
-              "domain_name": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "origin_access_control_id": "EOBBYJPMYN9AX",
-              "origin_id": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "origin_path": "",
-              "origin_shield": [],
-              "s3_origin_config": []
-            }
-          ],
-          "origin_group": [],
-          "price_class": "PriceClass_All",
-          "restrictions": [
-            {
-              "geo_restriction": [
-                {
-                  "locations": [],
-                  "restriction_type": "none"
-                }
-              ]
-            }
-          ],
-          "retain_on_delete": false,
-          "staging": false,
-          "status": "Deployed",
-          "tags": {},
-          "tags_all": {},
-          "trusted_key_groups": [
-            {
-              "enabled": false,
-              "items": []
-            }
-          ],
-          "trusted_signers": [
-            {
-              "enabled": false,
-              "items": []
-            }
-          ],
-          "viewer_certificate": [
-            {
-              "acm_certificate_arn": "",
-              "cloudfront_default_certificate": true,
-              "iam_certificate_id": "",
-              "minimum_protocol_version": "TLSv1",
-              "ssl_support_method": ""
-            }
-          ],
-          "wait_for_deployment": true,
-          "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
-        },
-        "after": {
-          "aliases": [],
-          "arn": "arn:aws:cloudfront::***:distribution/E263E8AHYXLO8L",
-          "caller_reference": "terraform-20240521104331355600000001",
-          "comment": null,
-          "continuous_deployment_policy_id": "",
-          "custom_error_response": [],
-          "default_cache_behavior": [
-            {
-              "allowed_methods": [
-                "GET",
-                "HEAD"
-              ],
-              "cache_policy_id": "658327ea-f89d-4fab-a63d-7e88639e58f6",
-              "cached_methods": [
-                "GET",
-                "HEAD"
-              ],
-              "compress": true,
-              "default_ttl": 0,
-              "field_level_encryption_id": "",
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "max_ttl": 0,
-              "min_ttl": 0,
-              "origin_request_policy_id": "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf",
-              "realtime_log_config_arn": "",
-              "response_headers_policy_id": "6ae32cb9-4d76-4741-8724-55e74a6500ac",
-              "smooth_streaming": false,
-              "target_origin_id": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "trusted_key_groups": [],
-              "trusted_signers": [],
-              "viewer_protocol_policy": "redirect-to-https"
-            }
-          ],
-          "default_root_object": "index.html",
-          "domain_name": "d3n9iqvbhzuqoh.cloudfront.net",
-          "enabled": true,
-          "etag": "E25KJTJF614CU2",
-          "hosted_zone_id": "Z2FDTNDATAQYW2",
-          "http_version": "http2",
-          "id": "E263E8AHYXLO8L",
-          "in_progress_validation_batches": 0,
-          "is_ipv6_enabled": true,
-          "last_modified_time": "2024-06-01 07:17:06.631 +0000 UTC",
-          "logging_config": [],
-          "ordered_cache_behavior": [
-            {
-              "allowed_methods": [
-                "GET",
-                "HEAD",
-                "OPTIONS"
-              ],
-              "cache_policy_id": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
-              "cached_methods": [
-                "GET",
-                "HEAD",
-                "OPTIONS"
-              ],
-              "compress": true,
-              "default_ttl": 0,
-              "field_level_encryption_id": "",
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "max_ttl": 0,
-              "min_ttl": 0,
-              "origin_request_policy_id": "3908a424-7b48-4b76-8830-6fc572388376",
-              "path_pattern": "/resource/rqzj-sfat.json",
-              "realtime_log_config_arn": "",
-              "response_headers_policy_id": "5cc3b908-e619-4b99-88e5-2cf7f45965bd",
-              "smooth_streaming": false,
-              "target_origin_id": "data.sfgov.org",
-              "trusted_key_groups": [],
-              "trusted_signers": [],
-              "viewer_protocol_policy": "https-only"
-            }
-          ],
-          "origin": [
-            {
-              "connection_attempts": 3,
-              "connection_timeout": 10,
-              "custom_header": [
-                {
-                  "name": "X-App-Token",
-                  "value": "***"
-                }
-              ],
-              "custom_origin_config": [
-                {
-                  "http_port": 80,
-                  "https_port": 443,
-                  "origin_keepalive_timeout": 5,
-                  "origin_protocol_policy": "https-only",
-                  "origin_read_timeout": 30,
-                  "origin_ssl_protocols": [
-                    "TLSv1.2"
-                  ]
-                }
-              ],
-              "domain_name": "data.sfgov.org",
-              "origin_access_control_id": "",
-              "origin_id": "data.sfgov.org",
-              "origin_path": "",
-              "origin_shield": [],
-              "s3_origin_config": []
-            },
-            {
-              "connection_attempts": 3,
-              "connection_timeout": 10,
-              "custom_header": [],
-              "custom_origin_config": [],
-              "domain_name": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "origin_access_control_id": "EOBBYJPMYN9AX",
-              "origin_id": "geofoodtruck-app-bucket.s3.us-east-1.amazonaws.com",
-              "origin_path": "",
-              "origin_shield": [],
-              "s3_origin_config": []
-            }
-          ],
-          "origin_group": [],
-          "price_class": "PriceClass_All",
-          "restrictions": [
-            {
-              "geo_restriction": [
-                {
-                  "locations": [],
-                  "restriction_type": "none"
-                }
-              ]
-            }
-          ],
-          "retain_on_delete": false,
-          "staging": false,
-          "status": "Deployed",
-          "tags": {},
-          "tags_all": {},
-          "trusted_key_groups": [
-            {
-              "enabled": false,
-              "items": []
-            }
-          ],
-          "trusted_signers": [
-            {
-              "enabled": false,
-              "items": []
-            }
-          ],
-          "viewer_certificate": [
-            {
-              "acm_certificate_arn": "",
-              "cloudfront_default_certificate": true,
-              "iam_certificate_id": "",
-              "minimum_protocol_version": "TLSv1",
-              "ssl_support_method": ""
-            }
-          ],
-          "wait_for_deployment": true,
-          "web_acl_id": "arn:aws:wafv2:us-east-1:***:global/webacl/GeoFoodTruckWebACL/37f7809b-ea93-46f1-9d10-4050e2957f36"
-        },
-        "after_unknown": {},
-        "before_sensitive": {
-          "aliases": [],
-          "custom_error_response": [],
-          "default_cache_behavior": [
-            {
-              "allowed_methods": [
-                false,
-                false
-              ],
-              "cached_methods": [
-                false,
-                false
-              ],
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "trusted_key_groups": [],
-              "trusted_signers": []
-            }
-          ],
-          "logging_config": [
-            {}
-          ],
-          "ordered_cache_behavior": [
-            {
-              "allowed_methods": [
-                false,
-                false,
-                false
-              ],
-              "cached_methods": [
-                false,
-                false,
-                false
-              ],
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "trusted_key_groups": [],
-              "trusted_signers": []
-            }
-          ],
-          "origin": true,
-          "origin_group": [],
-          "restrictions": [
-            {
-              "geo_restriction": [
-                {
-                  "locations": []
-                }
-              ]
-            }
-          ],
-          "tags": {},
-          "tags_all": {},
-          "trusted_key_groups": [
-            {
-              "items": []
-            }
-          ],
-          "trusted_signers": [
-            {
-              "items": []
-            }
-          ],
-          "viewer_certificate": [
-            {}
-          ]
-        },
-        "after_sensitive": {
-          "aliases": [],
-          "custom_error_response": [],
-          "default_cache_behavior": [
-            {
-              "allowed_methods": [
-                false,
-                false
-              ],
-              "cached_methods": [
-                false,
-                false
-              ],
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "trusted_key_groups": [],
-              "trusted_signers": []
-            }
-          ],
-          "logging_config": [],
-          "ordered_cache_behavior": [
-            {
-              "allowed_methods": [
-                false,
-                false,
-                false
-              ],
-              "cached_methods": [
-                false,
-                false,
-                false
-              ],
-              "forwarded_values": [],
-              "function_association": [],
-              "lambda_function_association": [],
-              "trusted_key_groups": [],
-              "trusted_signers": []
-            }
-          ],
-          "origin": true,
-          "origin_group": [],
-          "restrictions": [
-            {
-              "geo_restriction": [
-                {
-                  "locations": []
-                }
-              ]
-            }
-          ],
-          "tags": {},
-          "tags_all": {},
-          "trusted_key_groups": [
-            {
-              "items": []
-            }
-          ],
-          "trusted_signers": [
-            {
-              "items": []
-            }
-          ],
-          "viewer_certificate": [
-            {}
-          ]
-        }
-      }
-    }
-  ],
   "resource_changes": [
     {
       "address": "aws_cloudfront_distribution.geofoodtruck_app_distribution",
@@ -3935,7 +3526,7 @@
       "provider_name": "registry.terraform.io/hashicorp/aws",
       "change": {
         "actions": [
-          "no-op"
+          "update"
         ],
         "before": {
           "arn": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
@@ -3974,7 +3565,7 @@
           "key_id": "6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
           "key_usage": "ENCRYPT_DECRYPT",
           "multi_region": false,
-          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+          "policy": "{\"Statement\":[{\"Action\":\"kms:*\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::***:role/GeoFoodTruckKmsAdmin\",\"arn:aws:iam::***:root\"]},\"Resource\":\"*\",\"Sid\":\"Enable IAM User Permissions\"},{\"Action\":[\"kms:Encrypt\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"cloudfront.amazonaws.com\"},\"Resource\":\"*\"},{\"Action\":[\"kms:GenerateDataKey*\",\"kms:Decrypt\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"delivery.logs.amazonaws.com\"},\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
           "rotation_period_in_days": 180,
           "tags": {
             "Name": "geofoodtruck-kms-key"
@@ -4197,102 +3788,55 @@
       "provider_name": "registry.terraform.io/hashicorp/aws",
       "change": {
         "actions": [
-          "delete"
+          "create"
         ],
-        "before": {
-          "acceleration_status": "",
-          "acl": null,
-          "arn": "arn:aws:s3:::geofoodtruck-log-bucket",
+        "before": null,
+        "after": {
           "bucket": "geofoodtruck-log-bucket",
-          "bucket_domain_name": "geofoodtruck-log-bucket.s3.amazonaws.com",
-          "bucket_prefix": "",
-          "bucket_regional_domain_name": "geofoodtruck-log-bucket.s3.us-east-1.amazonaws.com",
-          "cors_rule": [],
           "force_destroy": false,
-          "grant": [
-            {
-              "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
-              "permissions": [
-                "FULL_CONTROL"
-              ],
-              "type": "CanonicalUser",
-              "uri": ""
-            }
-          ],
-          "hosted_zone_id": "Z3AQBSTGFYJSTF",
-          "id": "geofoodtruck-log-bucket",
-          "lifecycle_rule": [],
-          "logging": [],
-          "object_lock_configuration": [],
-          "object_lock_enabled": false,
-          "policy": "",
-          "region": "us-east-1",
-          "replication_configuration": [],
-          "request_payer": "BucketOwner",
-          "server_side_encryption_configuration": [
-            {
-              "rule": [
-                {
-                  "apply_server_side_encryption_by_default": [
-                    {
-                      "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
-                      "sse_algorithm": "aws:kms"
-                    }
-                  ],
-                  "bucket_key_enabled": false
-                }
-              ]
-            }
-          ],
-          "tags": {},
-          "tags_all": {},
-          "timeouts": null,
-          "versioning": [
-            {
-              "enabled": false,
-              "mfa_delete": false
-            }
-          ],
-          "website": [],
-          "website_domain": null,
-          "website_endpoint": null
+          "tags": null,
+          "timeouts": null
         },
-        "after": null,
-        "after_unknown": {},
-        "before_sensitive": {
+        "after_unknown": {
+          "acceleration_status": true,
+          "acl": true,
+          "arn": true,
+          "bucket_domain_name": true,
+          "bucket_prefix": true,
+          "bucket_regional_domain_name": true,
+          "cors_rule": true,
+          "grant": true,
+          "hosted_zone_id": true,
+          "id": true,
+          "lifecycle_rule": true,
+          "logging": true,
+          "object_lock_configuration": true,
+          "object_lock_enabled": true,
+          "policy": true,
+          "region": true,
+          "replication_configuration": true,
+          "request_payer": true,
+          "server_side_encryption_configuration": true,
+          "tags_all": true,
+          "versioning": true,
+          "website": true,
+          "website_domain": true,
+          "website_endpoint": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
           "cors_rule": [],
-          "grant": [
-            {
-              "permissions": [
-                false
-              ]
-            }
-          ],
+          "grant": [],
           "lifecycle_rule": [],
           "logging": [],
           "object_lock_configuration": [],
           "replication_configuration": [],
-          "server_side_encryption_configuration": [
-            {
-              "rule": [
-                {
-                  "apply_server_side_encryption_by_default": [
-                    {}
-                  ]
-                }
-              ]
-            }
-          ],
-          "tags": {},
+          "server_side_encryption_configuration": [],
           "tags_all": {},
-          "versioning": [
-            {}
-          ],
+          "versioning": [],
           "website": []
-        },
-        "after_sensitive": false
-      },
-      "action_reason": "delete_because_no_resource_config"
+        }
+      }
     },
     {
       "address": "aws_s3_bucket_policy.geofoodtruck_app_bucket_policy",
@@ -4316,6 +3860,31 @@
         },
         "after_unknown": {},
         "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_s3_bucket_public_access_block.geofoodtruck_s3_bucket_log_public_access_block",
+      "mode": "managed",
+      "type": "aws_s3_bucket_public_access_block",
+      "name": "geofoodtruck_s3_bucket_log_public_access_block",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "block_public_acls": true,
+          "block_public_policy": true,
+          "ignore_public_acls": true,
+          "restrict_public_buckets": true
+        },
+        "after_unknown": {
+          "bucket": true,
+          "id": true
+        },
+        "before_sensitive": false,
         "after_sensitive": {}
       }
     },
@@ -4358,12 +3927,11 @@
       "provider_name": "registry.terraform.io/hashicorp/aws",
       "change": {
         "actions": [
-          "delete"
+          "create"
         ],
-        "before": {
-          "bucket": "geofoodtruck-log-bucket",
-          "expected_bucket_owner": "",
-          "id": "geofoodtruck-log-bucket",
+        "before": null,
+        "after": {
+          "expected_bucket_owner": null,
           "rule": [
             {
               "apply_server_side_encryption_by_default": [
@@ -4372,13 +3940,13 @@
                   "sse_algorithm": "aws:kms"
                 }
               ],
-              "bucket_key_enabled": false
+              "bucket_key_enabled": null
             }
           ]
         },
-        "after": null,
-        "after_unknown": {},
-        "before_sensitive": {
+        "after_unknown": {
+          "bucket": true,
+          "id": true,
           "rule": [
             {
               "apply_server_side_encryption_by_default": [
@@ -4387,9 +3955,17 @@
             }
           ]
         },
-        "after_sensitive": false
-      },
-      "action_reason": "delete_because_no_resource_config"
+        "before_sensitive": false,
+        "after_sensitive": {
+          "rule": [
+            {
+              "apply_server_side_encryption_by_default": [
+                {}
+              ]
+            }
+          ]
+        }
+      }
     },
     {
       "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_server_side_encryption_configuration",
@@ -4482,7 +4058,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "15f955a1db5695fe14a433812216e0dc",
+          "etag": "f545f221d897fdf1f7be55893037e494",
           "force_destroy": false,
           "id": "asset-manifest.json",
           "key": "asset-manifest.json",
@@ -4585,7 +4161,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/x-icon",
-          "etag": "d0caa34e4454a13e7e7018cd85aa2b33",
+          "etag": "56c7377e7df89ed17c121c58b74a29b8",
           "force_destroy": false,
           "id": "favicon.ico",
           "key": "favicon.ico",
@@ -4688,7 +4264,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/html",
-          "etag": "290285489c006594cdd95843b3aedbf7",
+          "etag": "6d16bb2ed438a1b812d6925cd577890e",
           "force_destroy": false,
           "id": "index.html",
           "key": "index.html",
@@ -4791,7 +4367,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "4ee8108dd3d4a26f9bf163e3329fb7a4",
+          "etag": "85c401104098fcaea2b15b7bb1749d29",
           "force_destroy": false,
           "id": "logo192.png",
           "key": "logo192.png",
@@ -4894,7 +4470,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "6a13fb28cbf751718eeeb6b5593f8c27",
+          "etag": "bcbd6fdbdbdd38a1b3bcd66a9f96c8a8",
           "force_destroy": false,
           "id": "logo512.png",
           "key": "logo512.png",
@@ -4997,7 +4573,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "4503a94a01f48d95b4ecb388ce3ce6b3",
+          "etag": "0f8891061ae850318414960e2d1de34a",
           "force_destroy": false,
           "id": "manifest.json",
           "key": "manifest.json",
@@ -5100,7 +4676,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "05524272d167475be7325d3ee68875d1",
+          "etag": "156fe4ccf321f7468553c7e7e58fb9e7",
           "force_destroy": false,
           "id": "robots.txt",
           "key": "robots.txt",
@@ -5203,7 +4779,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/css",
-          "etag": "c6972c957aa1d0fa2f679268e5caf8c5",
+          "etag": "e9e27fe9c222c4d41bac70ee73d84882",
           "force_destroy": false,
           "id": "static/css/main.414097bf.css",
           "key": "static/css/main.414097bf.css",
@@ -5306,7 +4882,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "fbfb9bc84c6f788db7a762ffbab13993",
+          "etag": "b50aa26fac82ca0c7edce5ddafcbba47",
           "force_destroy": false,
           "id": "static/js/206.85c6594b.chunk.js",
           "key": "static/js/206.85c6594b.chunk.js",
@@ -5409,7 +4985,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "0cfe381f1cb270f3c13cb60b61b9c90e",
+          "etag": "7afe21043a504809f99e3d5e401f2a41",
           "force_destroy": false,
           "id": "static/js/main.dc021fd1.js",
           "key": "static/js/main.dc021fd1.js",
@@ -5512,7 +5088,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "7831a54c7fba0c7ac599ed993355ef80",
+          "etag": "6bb20b7c21dd880449000f4bc1e671b1",
           "force_destroy": false,
           "id": "static/js/main.dc021fd1.js.LICENSE.txt",
           "key": "static/js/main.dc021fd1.js.LICENSE.txt",
@@ -5615,7 +5191,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "82ec25b47c266d5fc1640bba5b096d5e",
+          "etag": "3fd94c3e066a63a9ce66ccdec040f025",
           "force_destroy": false,
           "id": "truck-solid.png",
           "key": "truck-solid.png",
@@ -8894,103 +8470,6 @@
             }
           },
           {
-            "address": "aws_s3_bucket.geofoodtruck_log_bucket",
-            "mode": "managed",
-            "type": "aws_s3_bucket",
-            "name": "geofoodtruck_log_bucket",
-            "provider_name": "registry.terraform.io/hashicorp/aws",
-            "schema_version": 0,
-            "values": {
-              "acceleration_status": "",
-              "acl": null,
-              "arn": "arn:aws:s3:::geofoodtruck-log-bucket",
-              "bucket": "geofoodtruck-log-bucket",
-              "bucket_domain_name": "geofoodtruck-log-bucket.s3.amazonaws.com",
-              "bucket_prefix": "",
-              "bucket_regional_domain_name": "geofoodtruck-log-bucket.s3.us-east-1.amazonaws.com",
-              "cors_rule": [],
-              "force_destroy": false,
-              "grant": [
-                {
-                  "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
-                  "permissions": [
-                    "FULL_CONTROL"
-                  ],
-                  "type": "CanonicalUser",
-                  "uri": ""
-                }
-              ],
-              "hosted_zone_id": "Z3AQBSTGFYJSTF",
-              "id": "geofoodtruck-log-bucket",
-              "lifecycle_rule": [],
-              "logging": [],
-              "object_lock_configuration": [],
-              "object_lock_enabled": false,
-              "policy": "",
-              "region": "us-east-1",
-              "replication_configuration": [],
-              "request_payer": "BucketOwner",
-              "server_side_encryption_configuration": [
-                {
-                  "rule": [
-                    {
-                      "apply_server_side_encryption_by_default": [
-                        {
-                          "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
-                          "sse_algorithm": "aws:kms"
-                        }
-                      ],
-                      "bucket_key_enabled": false
-                    }
-                  ]
-                }
-              ],
-              "tags": {},
-              "tags_all": {},
-              "timeouts": null,
-              "versioning": [
-                {
-                  "enabled": false,
-                  "mfa_delete": false
-                }
-              ],
-              "website": [],
-              "website_domain": null,
-              "website_endpoint": null
-            },
-            "sensitive_values": {
-              "cors_rule": [],
-              "grant": [
-                {
-                  "permissions": [
-                    false
-                  ]
-                }
-              ],
-              "lifecycle_rule": [],
-              "logging": [],
-              "object_lock_configuration": [],
-              "replication_configuration": [],
-              "server_side_encryption_configuration": [
-                {
-                  "rule": [
-                    {
-                      "apply_server_side_encryption_by_default": [
-                        {}
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "tags": {},
-              "tags_all": {},
-              "versioning": [
-                {}
-              ],
-              "website": []
-            }
-          },
-          {
             "address": "aws_s3_bucket_policy.geofoodtruck_app_bucket_policy",
             "mode": "managed",
             "type": "aws_s3_bucket_policy",
@@ -9035,45 +8514,6 @@
             "sensitive_values": {},
             "depends_on": [
               "aws_s3_bucket.geofoodtruck_app_bucket"
-            ]
-          },
-          {
-            "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
-            "mode": "managed",
-            "type": "aws_s3_bucket_server_side_encryption_configuration",
-            "name": "geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
-            "provider_name": "registry.terraform.io/hashicorp/aws",
-            "schema_version": 0,
-            "values": {
-              "bucket": "geofoodtruck-log-bucket",
-              "expected_bucket_owner": "",
-              "id": "geofoodtruck-log-bucket",
-              "rule": [
-                {
-                  "apply_server_side_encryption_by_default": [
-                    {
-                      "kms_master_key_id": "arn:aws:kms:us-east-1:***:key/6c1ead8a-5e71-4e33-ae37-010dbcd3c063",
-                      "sse_algorithm": "aws:kms"
-                    }
-                  ],
-                  "bucket_key_enabled": false
-                }
-              ]
-            },
-            "sensitive_values": {
-              "rule": [
-                {
-                  "apply_server_side_encryption_by_default": [
-                    {}
-                  ]
-                }
-              ]
-            },
-            "depends_on": [
-              "aws_iam_role.aws_iam_role_geofoodtruck_kms_admin_role",
-              "aws_kms_key.geofoodtruck_kms_key",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
-              "data.aws_iam_policy.aws_key_management_service_power_user"
             ]
           },
           {
@@ -9140,7 +8580,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "15f955a1db5695fe14a433812216e0dc",
+              "etag": "f545f221d897fdf1f7be55893037e494",
               "force_destroy": false,
               "id": "asset-manifest.json",
               "key": "asset-manifest.json",
@@ -9171,7 +8611,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9205,7 +8644,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/x-icon",
-              "etag": "d0caa34e4454a13e7e7018cd85aa2b33",
+              "etag": "56c7377e7df89ed17c121c58b74a29b8",
               "force_destroy": false,
               "id": "favicon.ico",
               "key": "favicon.ico",
@@ -9236,7 +8675,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9270,7 +8708,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/html",
-              "etag": "290285489c006594cdd95843b3aedbf7",
+              "etag": "6d16bb2ed438a1b812d6925cd577890e",
               "force_destroy": false,
               "id": "index.html",
               "key": "index.html",
@@ -9301,7 +8739,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9335,7 +8772,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "4ee8108dd3d4a26f9bf163e3329fb7a4",
+              "etag": "85c401104098fcaea2b15b7bb1749d29",
               "force_destroy": false,
               "id": "logo192.png",
               "key": "logo192.png",
@@ -9366,7 +8803,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9400,7 +8836,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "6a13fb28cbf751718eeeb6b5593f8c27",
+              "etag": "bcbd6fdbdbdd38a1b3bcd66a9f96c8a8",
               "force_destroy": false,
               "id": "logo512.png",
               "key": "logo512.png",
@@ -9431,7 +8867,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9465,7 +8900,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "4503a94a01f48d95b4ecb388ce3ce6b3",
+              "etag": "0f8891061ae850318414960e2d1de34a",
               "force_destroy": false,
               "id": "manifest.json",
               "key": "manifest.json",
@@ -9496,7 +8931,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9530,7 +8964,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "05524272d167475be7325d3ee68875d1",
+              "etag": "156fe4ccf321f7468553c7e7e58fb9e7",
               "force_destroy": false,
               "id": "robots.txt",
               "key": "robots.txt",
@@ -9561,7 +8995,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9595,7 +9028,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/css",
-              "etag": "c6972c957aa1d0fa2f679268e5caf8c5",
+              "etag": "e9e27fe9c222c4d41bac70ee73d84882",
               "force_destroy": false,
               "id": "static/css/main.414097bf.css",
               "key": "static/css/main.414097bf.css",
@@ -9626,7 +9059,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9660,7 +9092,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "fbfb9bc84c6f788db7a762ffbab13993",
+              "etag": "b50aa26fac82ca0c7edce5ddafcbba47",
               "force_destroy": false,
               "id": "static/js/206.85c6594b.chunk.js",
               "key": "static/js/206.85c6594b.chunk.js",
@@ -9691,7 +9123,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9725,7 +9156,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "0cfe381f1cb270f3c13cb60b61b9c90e",
+              "etag": "7afe21043a504809f99e3d5e401f2a41",
               "force_destroy": false,
               "id": "static/js/main.dc021fd1.js",
               "key": "static/js/main.dc021fd1.js",
@@ -9756,7 +9187,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9790,7 +9220,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "7831a54c7fba0c7ac599ed993355ef80",
+              "etag": "6bb20b7c21dd880449000f4bc1e671b1",
               "force_destroy": false,
               "id": "static/js/main.dc021fd1.js.LICENSE.txt",
               "key": "static/js/main.dc021fd1.js.LICENSE.txt",
@@ -9821,7 +9251,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -9855,7 +9284,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "82ec25b47c266d5fc1640bba5b096d5e",
+              "etag": "3fd94c3e066a63a9ce66ccdec040f025",
               "force_destroy": false,
               "id": "truck-solid.png",
               "key": "truck-solid.png",
@@ -9886,7 +9315,6 @@
               "aws_cloudfront_origin_request_policy.sfgov_geofoodtruck_cloudfront_origin_request_policy",
               "aws_cloudfront_response_headers_policy.geofoodtruck_cloudfront_response_header_policy",
               "aws_s3_bucket.geofoodtruck_app_bucket",
-              "aws_s3_bucket.geofoodtruck_log_bucket",
               "aws_wafv2_web_acl.geofoodtruck_waf_web_acl",
               "data.aws_cloudfront_cache_policy.geofoodtruck_cloudfront_cache_policy",
               "data.aws_cloudfront_cache_policy.sfgov_geofoodtruck_cloudfront_cache_policy",
@@ -11426,6 +10854,19 @@
           "schema_version": 0
         },
         {
+          "address": "aws_s3_bucket.geofoodtruck_log_bucket",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "geofoodtruck_log_bucket",
+          "provider_config_key": "aws",
+          "expressions": {
+            "bucket": {
+              "constant_value": "geofoodtruck-log-bucket"
+            }
+          },
+          "schema_version": 0
+        },
+        {
           "address": "aws_s3_bucket_policy.geofoodtruck_app_bucket_policy",
           "mode": "managed",
           "type": "aws_s3_bucket_policy",
@@ -11453,6 +10894,34 @@
           ]
         },
         {
+          "address": "aws_s3_bucket_public_access_block.geofoodtruck_s3_bucket_log_public_access_block",
+          "mode": "managed",
+          "type": "aws_s3_bucket_public_access_block",
+          "name": "geofoodtruck_s3_bucket_log_public_access_block",
+          "provider_config_key": "aws",
+          "expressions": {
+            "block_public_acls": {
+              "constant_value": true
+            },
+            "block_public_policy": {
+              "constant_value": true
+            },
+            "bucket": {
+              "references": [
+                "aws_s3_bucket.geofoodtruck_log_bucket.id",
+                "aws_s3_bucket.geofoodtruck_log_bucket"
+              ]
+            },
+            "ignore_public_acls": {
+              "constant_value": true
+            },
+            "restrict_public_buckets": {
+              "constant_value": true
+            }
+          },
+          "schema_version": 0
+        },
+        {
           "address": "aws_s3_bucket_public_access_block.geofoodtruck_s3_bucket_public_access_block",
           "mode": "managed",
           "type": "aws_s3_bucket_public_access_block",
@@ -11477,6 +10946,39 @@
             "restrict_public_buckets": {
               "constant_value": true
             }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "aws_s3_bucket_server_side_encryption_configuration.geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
+          "mode": "managed",
+          "type": "aws_s3_bucket_server_side_encryption_configuration",
+          "name": "geofoodtruck_s3_bucket_log_server_side_encryption_configuration",
+          "provider_config_key": "aws",
+          "expressions": {
+            "bucket": {
+              "references": [
+                "aws_s3_bucket.geofoodtruck_log_bucket.id",
+                "aws_s3_bucket.geofoodtruck_log_bucket"
+              ]
+            },
+            "rule": [
+              {
+                "apply_server_side_encryption_by_default": [
+                  {
+                    "kms_master_key_id": {
+                      "references": [
+                        "aws_kms_key.geofoodtruck_kms_key.arn",
+                        "aws_kms_key.geofoodtruck_kms_key"
+                      ]
+                    },
+                    "sse_algorithm": {
+                      "constant_value": "aws:kms"
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "schema_version": 0
         },
@@ -12202,13 +11704,31 @@
   },
   "relevant_attributes": [
     {
+      "resource": "aws_s3_bucket.geofoodtruck_log_bucket",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "aws_iam_role.aws_iam_role_geofoodtruck_kms_admin_role",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "aws_kms_key.geofoodtruck_kms_key",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
       "resource": "aws_s3_bucket.geofoodtruck_app_bucket",
       "attribute": [
         "id"
       ]
     }
   ],
-  "timestamp": "2024-06-10T03:30:29Z",
+  "timestamp": "2024-06-10T04:16:33Z",
   "applyable": true,
   "complete": true,
   "errored": false
