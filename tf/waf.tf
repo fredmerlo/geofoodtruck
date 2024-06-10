@@ -212,7 +212,9 @@ resource "aws_wafv2_web_acl" "geofoodtruck_waf_web_acl" {
 }
 
 resource "aws_cloudwatch_log_group" "geofoodtruck_waf_log_group" {
-  name = "aws-waf-logs-geofoodtruck-log-group"
+  name              = "aws-waf-logs-geofoodtruck-log-group"
+  retention_in_days = 14
+  kms_key_id        = aws_kms_key.geofoodtruck_kms_key.arn
 }
 
 resource "aws_wafv2_web_acl_logging_configuration" "geofoodtruck_waf_logging_configuration" {
