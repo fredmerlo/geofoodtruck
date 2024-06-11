@@ -48,7 +48,7 @@ jobs:
         run: |
           checkov -f .github/tfplan.js -o cli -o sarif --repo-root-for-plan-enrichment ./tf \
           --output-file-path console,results.sarif --config-file .github/checkov.yaml \
-          --download-external-modules --enable-secret-scan-all-files 
+          --download-external-modules true --enable-secret-scan-all-files 
         env:
           TF_VAR_aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
 
