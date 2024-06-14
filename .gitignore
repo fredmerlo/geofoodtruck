@@ -24,7 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # terraform
-/tf/.terraform
+/tf/**/.terraform
 
 # playwright
 /test-results/
