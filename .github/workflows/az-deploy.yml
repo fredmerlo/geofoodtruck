@@ -14,6 +14,9 @@ jobs:
       contents: write
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: Azure login
       uses: azure/login@v2
       with:
@@ -23,16 +26,16 @@ jobs:
       uses: hashicorp/setup-terraform@v3
 
     - name: Initialize Terraform
-      working-directory: tf/azure
+      working-directory: ./tf/azure
       run: terraform init
       
     - name: Plan Terraform
-      working-directory: tf/azure
+      working-directory: ./tf/azure
       run: |
         terraform plan -out="../../.github/aztfplan.bin"
         terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
 
     - name: Apply Terraform
-      working-directory: tf/azure
+      working-directory: ./tf/azure
       run: |
         terraform apply -auto-approve "../../.github/aztfplan.bin"
