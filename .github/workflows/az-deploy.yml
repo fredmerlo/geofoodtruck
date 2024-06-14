@@ -1,0 +1,40 @@
+name: Azure GeoFoodTruck Live
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: dev
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+    - name: Azure login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Initialize Terraform
+      working-directory: ./tf/azure
+      run: terraform init
+      
+    - name: Plan Terraform
+      working-directory: ./tf/azure
+      run: |
+        terraform plan -out="../../.github/aztfplan.bin"
+        terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
+
+    - name: Apply Terraform
+      working-directory: ./tf/azure
+      run: |
+        terraform apply -auto-approve "../../.github/aztfplan.bin"
