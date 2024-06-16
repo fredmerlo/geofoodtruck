@@ -1,5 +1,10 @@
 provider "azurerm" {
+  use_oidc = true
+  skip_provider_registration = true
   features {}
+}
+
+provider "azuread" {
 }
 
 data "azurerm_client_config" "current" {

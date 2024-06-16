@@ -4,5 +4,6 @@ terraform {
     storage_account_name  = "geofoodtruckterraform"
     container_name        = "state"
     key                   = "terraform.tfstate"
+    use_oidc              = true
   }
 }
