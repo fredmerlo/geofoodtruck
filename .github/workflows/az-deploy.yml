@@ -58,7 +58,7 @@ jobs:
         terraform plan -out="../../.github/aztfplan.bin"
         terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
         sed -i -e 's/"primary_access_key": *"[^"]*"/"primary_access_key": "***"/' \
-        -e 's/"secondary_access_key": *"[^"]*"/"secondary_access_key": "***"/' "../../.github/aztfplan.json"
+        -e 's/"secondary_access_key": *"[^"]*"/"secondary_access_key": "***"/' ../../.github/aztfplan.json
 
     - name: Apply Terraform
       working-directory: ./tf/azure
