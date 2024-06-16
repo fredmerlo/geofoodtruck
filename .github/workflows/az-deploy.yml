@@ -56,7 +56,8 @@ jobs:
       working-directory: ./tf/azure
       run: |
         terraform plan -out="../../.github/aztfplan.bin"
-        terraform show -json "../../.github/aztfplan.bin" | jq 'walk(if type == "object" then with_entries(if .key == "primary_access_key" or .key == "secondary_access_key" then .value = "***" else . end) else . end)' > "../../.github/aztfplan.json"
+        terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
+        ../../.github/az-sanitize.sh primary_access_key secondary_access_key
 
     - name: Apply Terraform
       working-directory: ./tf/azure
