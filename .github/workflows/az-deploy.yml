@@ -57,7 +57,7 @@ jobs:
       run: |
         terraform plan -out="../../.github/aztfplan.bin"
         terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
-        ../../.github/az-sanitize.sh primary_access_key secondary_access_key
+        ../../.github/az-sanitize.sh primary_access_key primary_blob_connection_string primary_connection_string secondary_access_key secondary_connection_string 
 
     - name: Apply Terraform
       working-directory: ./tf/azure
