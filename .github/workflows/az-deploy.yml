@@ -12,7 +12,7 @@ jobs:
       ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
       ARM_USE_AZUREAD: true
 
-    environment: dev
+    environment: az-dev
 
     permissions:
       id-token: write
@@ -39,3 +39,12 @@ jobs:
       working-directory: ./tf/azure
       run: |
         terraform apply -auto-approve "../../.github/aztfplan.bin"
+
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      name: Commit Azure Terraform Plan
+      with:
+        commit_message: "Azure Terraform Plan"
+        file_pattern: ".github/aztfplan.*"
+        commit_user_name: fredmerlo
+        commit_user_email: fredmerlo@gmail.com
+        commit_author: fredmerlo <fredmerlo@gmail.com>
