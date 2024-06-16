@@ -15,13 +15,13 @@ data "azurerm_resource_group" "geofoodtruck_az_resource_group" {
 }
 
 resource "azurerm_key_vault" "geofoodtruck_az_key_vault" {
-  name                = "geofoodtruckkeyvault"
+  name                = "geofoodtruck-key-vault"
   location            = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
 
-  purge_protection_enabled    = true
+  purge_protection_enabled    = false
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
