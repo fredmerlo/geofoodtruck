@@ -1,4 +1,4 @@
-name: Checkov IaC Scan
+name: Azure Checkov IaC Scan
 
 on:
   workflow_run:
