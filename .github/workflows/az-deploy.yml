@@ -22,6 +22,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install --omit=dev
+
+    - name: Build the project
+      run: npm run build
+      env:
+        GENERATE_SOURCEMAP: false
+
+    - name: Save Build Output
+      id: build-output
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: ./build
+        overwrite: true
+        retention-days: 1
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v3
 
@@ -33,6 +56,9 @@ jobs:
       working-directory: ./tf/azure
       run: |
         terraform plan -out="../../.github/aztfplan.bin"
+        terraform show -json "../../.github/aztfplan.bin" | jq  > "../../.github/aztfplan.json"
+        sed -i -e 's/"primary_access_key": *"[^"]*"/"primary_access_key": "***"/' \
+        -e 's/"secondary_access_key": *"[^"]*"/"secondary_access_key": "***"/' "../../.github/aztfplan.json"
 
     - name: Apply Terraform
       working-directory: ./tf/azure

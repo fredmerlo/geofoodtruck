@@ -1,0 +1,58 @@
+name: Checkov IaC Scan
+
+on:
+  workflow_run:
+    workflows: ["Azure GeoFoodTruck Live"]
+    types:
+      - completed
+
+  workflow_dispatch:
+
+jobs:
+  scan:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Scan
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+      ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+      ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+      ARM_USE_AZUREAD: true
+
+    environment: az-iac
+
+    permissions:
+      id-token: write
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Checkov
+        run: |
+          pip3 install checkov
+
+      - name: Get Build Output
+        uses: actions/download-artifact@v4
+        with:
+         name: build-output
+         path: ./build
+         run-id: ${{ github.event.workflow_run.id }}
+         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Checkov
+        id: checkov
+        run: |
+          checkov -f .github/aztfplan.json -o cli -o sarif --repo-root-for-plan-enrichment ./tf/azure \
+          --output-file-path console,results.sarif --config-file .github/checkov.yaml \
+          --download-external-modules true --enable-secret-scan-all-files 
+        
+      - name: Upload SARIF file
+        id: sarif
+        uses: github/codeql-action/upload-sarif@v3
+        if: success() || failure()
+        with:
+          sarif_file: results.sarif
