@@ -100,13 +100,15 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   account_replication_type = "LRS"
   shared_access_key_enabled = false
 
-  azure_files_authentication {
-    directory_type = "AADDS"
-  }
-
   identity {
     type = "SystemAssigned"
   }
+}
+
+resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_" {
+  scope                = azurerm_storage_account.geofoodtruck_az_storage_account.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = azurerm_storage_account.geofoodtruck_az_storage_account.identity[0].principal_id
 }
 
 resource "azurerm_storage_encryption_scope" "geofoodtruck_az_storage_encryption_scope" {
