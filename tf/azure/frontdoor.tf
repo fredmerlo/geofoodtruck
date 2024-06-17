@@ -23,7 +23,7 @@ resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_ori
 }
 
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
-  name                     = "geofoodtruck-"
+  name                     = "geofoodtruck-app-storage-origin"
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
 
   certificate_name_check_enabled = true
