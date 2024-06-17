@@ -110,11 +110,11 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   }
 }
 
-# resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_" {
-#   scope                = azurerm_storage_account.geofoodtruck_az_storage_account.id
-#   role_definition_name = "Storage Blob Data Contributor"
-#   principal_id         = data.azurerm_client_config.current.object_id
-# }
+resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_" {
+  scope                = azurerm_storage_account.geofoodtruck_az_storage_account.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = data.azurerm_client_config.current.object_id
+}
 
 resource "azurerm_storage_encryption_scope" "geofoodtruck_az_storage_encryption_scope" {
   name               = "geofoodtruckmanagedscope"
