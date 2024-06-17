@@ -64,9 +64,4 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_
   https_redirect_enabled = true
   patterns_to_match      = ["/*"]
   supported_protocols    = ["Http", "Https"]
-
-  cache {
-    compression_enabled  = true
-  }
-
 }
