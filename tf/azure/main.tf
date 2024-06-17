@@ -57,6 +57,7 @@ resource "azurerm_key_vault_access_policy" "geofoodtruck_az_key_vault_access_pol
   key_permissions = [
     "Get",
     "Delete",
+    "List",
     "Encrypt",
     "Decrypt",
     "UnwrapKey",
