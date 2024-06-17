@@ -66,7 +66,7 @@ resource "azurerm_key_vault_access_policy" "geofoodtruck_az_key_vault_access_pol
 resource "azurerm_key_vault_key" "geofoodtruck_az_key_vault_key" {
   name         = "geofoodtruckkey"
   key_vault_id = azurerm_key_vault.geofoodtruck_az_key_vault.id
-  key_type     = "RSA-HSM"
+  key_type     = "RSA"
   key_size     = 2048
 
     key_opts = [
