@@ -1,4 +1,4 @@
-resource "azurerm_cdn_profile" "geofoodtruck_az_cdn_profile" {
+resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile" {
   name                = "geofoodtruck-frontdoor-profile"
   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
   location            = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
