@@ -134,17 +134,17 @@ resource "azurerm_storage_container" "geofoodtruck_az_storage_container" {
   storage_account_name  = azurerm_storage_account.geofoodtruck_az_storage_account.name
 }
 
-resource "azurerm_storage_blob" "app_files" {
-  for_each = { for file in local.app_build_files : file => file }
-  storage_account_name = azurerm_storage_account.geofoodtruck_az_storage_account.name
-  storage_container_name = azurerm_storage_container.geofoodtruck_az_storage_container.name
-  type         = "Block"
-  name         = each.value
-  source       = "${var.app_build_dir}/${each.value}"
-  content_type = lookup(
-    local.content_types,
-    element(split(".", each.value), length(split(".", each.value)) - 1),
-    "application/octet-stream"
-  )
-  content_md5  = filemd5("${var.app_build_dir}/${each.value}")
-}
+# resource "azurerm_storage_blob" "app_files" {
+#   for_each = { for file in local.app_build_files : file => file }
+#   storage_account_name = azurerm_storage_account.geofoodtruck_az_storage_account.name
+#   storage_container_name = azurerm_storage_container.geofoodtruck_az_storage_container.name
+#   type         = "Block"
+#   name         = each.value
+#   source       = "${var.app_build_dir}/${each.value}"
+#   content_type = lookup(
+#     local.content_types,
+#     element(split(".", each.value), length(split(".", each.value)) - 1),
+#     "application/octet-stream"
+#   )
+#   content_md5  = filemd5("${var.app_build_dir}/${each.value}")
+# }
