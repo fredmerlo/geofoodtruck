@@ -6,7 +6,8 @@ resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile"
 
 resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
   name                     = "geofoodtruck-frontdoor-endpoint"
-  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id  
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+  enabled                  = true
 }
 
 resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
@@ -15,16 +16,23 @@ resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_ori
   session_affinity_enabled = false
 
   health_probe {
-    protocol            = "Https"
-    interval_in_seconds = 30
+    protocol            = "Http"
+    interval_in_seconds = 100
+    path                = "/"
+    request_type        = "HEAD"
   }
 
-  load_balancing { }
+  load_balancing {
+    additional_latency_in_milliseconds = 50
+    sample_size                        = 4
+    successful_samples_required        = 3
+  }
 }
 
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
   name                     = "geofoodtruck-app-storage-origin"
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  enabled                       = true
 
   certificate_name_check_enabled = true
   host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
@@ -35,7 +43,7 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
   private_link {
     request_message        = "Request access for Private Link Origin CDN Frontdoor"
     target_type            = "blob"
-    location               = azurerm_storage_account.geofoodtruck_az_storage_account.location
+    location               = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
     private_link_target_id = azurerm_storage_account.geofoodtruck_az_storage_account.id
   }
 }
