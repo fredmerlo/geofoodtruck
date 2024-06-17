@@ -106,10 +106,6 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
 
   allow_nested_items_to_be_public = false
 
-  network_rules {
-    default_action = "Deny"
-  }
-
   identity {
     type = "SystemAssigned"
   }
