@@ -1,7 +1,7 @@
 resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile" {
   name                = "geofoodtruck-frontdoor-profile"
   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
-  sku_name                 = "Standard_AzureFrontDoor"
+  sku_name                 = "Premium_AzureFrontDoor"
 }
 
 resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
