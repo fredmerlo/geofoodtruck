@@ -110,13 +110,13 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   }
 }
 
-resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_" {
+resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_managed_id" {
   scope                = azurerm_storage_account.geofoodtruck_az_storage_account.id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
-resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_" {
+resource "azurerm_role_assignment" "geofoodtruck_az_role_assignment_storage" {
   scope                = azurerm_storage_account.geofoodtruck_az_storage_account.id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_storage_account.geofoodtruck_az_storage_account.identity[0].principal_id
