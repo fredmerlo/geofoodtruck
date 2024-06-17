@@ -1,18 +1,17 @@
 resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile" {
   name                = "geofoodtruck-frontdoor-profile"
   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
-  location            = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
-  sku                 = "Standard_AzureFrontDoor"
+  sku_name                 = "Standard_AzureFrontDoor"
 }
 
 resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
   name                     = "geofoodtruck-frontdoor-endpoint"
-  cdn_frontdoor_profile_id = azurerm_cdn_profile.geofoodtruck_az_cdn_profile.id  
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id  
 }
 
 resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
   name                     = "geofoodtruck-origin-group"
-  cdn_frontdoor_profile_id = azurerm_cdn_profile.geofoodtruck_az_cdn_profile.id
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
   session_affinity_enabled = false
 
   health_probe {
@@ -43,7 +42,7 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
 
 resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_rule_set" {
   name                     = "geofoodtruckruleset"
-  cdn_frontdoor_profile_id = azurerm_cdn_profile.geofoodtruck_az_cdn_profile.id
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
 }
 
 resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_route" {
