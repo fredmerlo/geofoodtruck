@@ -17,4 +17,6 @@ locals {
     "json"  = "application/json"
     "map"   = "application/json"
   }
+
+  frontdoor_postfix = "f2d12"
 }
