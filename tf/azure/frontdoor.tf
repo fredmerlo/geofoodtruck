@@ -2,7 +2,7 @@ resource "azurerm_cdn_profile" "geofoodtruck_az_cdn_profile" {
   name                = "geofoodtruck-frontdoor-profile"
   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
   location            = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
-  sku                 = "Standard_Microsoft"
+  sku                 = "Standard_AzureFrontDoor"
 }
 
 resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
@@ -11,7 +11,7 @@ resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoin
 }
 
 resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
-  name                     = "geofoodtruck-origin-group"
+  name                     = "geofoodtruckorigingroup"
   cdn_frontdoor_profile_id = azurerm_cdn_profile.geofoodtruck_az_cdn_profile.id
   session_affinity_enabled = false
 
