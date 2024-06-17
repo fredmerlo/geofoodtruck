@@ -17,34 +17,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 2,
           "values": {
-            "access_policy": [
-              {
-                "application_id": "",
-                "certificate_permissions": [],
-                "key_permissions": [
-                  "Get",
-                  "Create",
-                  "Delete",
-                  "List",
-                  "Restore",
-                  "Recover",
-                  "UnwrapKey",
-                  "WrapKey",
-                  "Purge",
-                  "Encrypt",
-                  "Decrypt",
-                  "Sign",
-                  "Verify",
-                  "GetRotationPolicy",
-                  "SetRotationPolicy",
-                  "Update"
-                ],
-                "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
-                "secret_permissions": [],
-                "storage_permissions": [],
-                "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
-              }
-            ],
+            "access_policy": [],
             "contact": [],
             "enable_rbac_authorization": false,
             "enabled_for_deployment": false,
@@ -72,31 +45,7 @@
             "vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/"
           },
           "sensitive_values": {
-            "access_policy": [
-              {
-                "certificate_permissions": [],
-                "key_permissions": [
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false
-                ],
-                "secret_permissions": [],
-                "storage_permissions": []
-              }
-            ],
+            "access_policy": [],
             "contact": [],
             "network_acls": [
               {
@@ -105,6 +54,70 @@
               }
             ],
             "tags": {}
+          }
+        },
+        {
+          "address": "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_identity",
+          "mode": "managed",
+          "type": "azurerm_key_vault_access_policy",
+          "name": "geofoodtruck_az_key_vault_access_policy_identity",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "application_id": null,
+            "certificate_permissions": null,
+            "key_permissions": [
+              "Get",
+              "Create",
+              "Delete",
+              "List",
+              "Restore",
+              "Recover",
+              "UnwrapKey",
+              "WrapKey",
+              "Purge",
+              "Encrypt",
+              "Decrypt",
+              "Sign",
+              "Verify",
+              "GetRotationPolicy",
+              "SetRotationPolicy",
+              "Update",
+              "Backup",
+              "Release",
+              "Rotate",
+              "Import"
+            ],
+            "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
+            "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
+            "secret_permissions": null,
+            "storage_permissions": null,
+            "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "key_permissions": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ]
           }
         },
         {
@@ -119,13 +132,11 @@
             "certificate_permissions": null,
             "key_permissions": [
               "Get",
-              "Delete",
               "UnwrapKey",
-              "WrapKey",
-              "Purge"
+              "WrapKey"
             ],
             "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-            "object_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+            "object_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
             "secret_permissions": null,
             "storage_permissions": null,
             "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
@@ -133,8 +144,6 @@
           },
           "sensitive_values": {
             "key_permissions": [
-              false,
-              false,
               false,
               false,
               false
@@ -149,10 +158,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "curve": "",
-            "e": "AQAB",
             "expiration_date": null,
-            "id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
             "key_opts": [
               "decrypt",
               "encrypt",
@@ -164,18 +170,13 @@
             "key_size": 2048,
             "key_type": "RSA",
             "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-            "n": "yUAnMzu0-kHj-B80BClHtzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg_H-tI02NTpDxyDr3nbe4yi6IvshOkR17TTcNUjjikRh_WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8uA7Nu-zhasp00n-jyiG3tRINmdZGrskZvbmOo007YLewoGOe3_ntcW30JA_B8fckYAbTpofi4_lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHAzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCgHQ",
             "name": "geofoodtruckkey",
             "not_before_date": null,
-            "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJQCczO7T6QeP4HzQEKUe3MHl55SownAiWkGKzGXcl9Eyg/pibQ+li4fZ7KD8f60jTY1OkPHIOvedt7jKLoi+yE6RHXtNNw1SOOKRGH9YdvlcSjls0esollZJvAXixWpDqsfzfieDOKImPa9vPHy4Ds277OFqynTSf6PKIbe1Eg2Z1kauyRm9uY6jTTtgt7CgY57f+e1xbfQkD8Hx9yRgBtOmh+Lj+VyGSLlT3bJ4QA8Wr2NAgZdPo0jLY2oyHuB3cbcE89EWPPv1NIXnE4cDO4SWDWktKjLyUdmCQnuSAvPjeyLCo43IS5z2HSkth1MWQvKfvr0AS9HgG6ygUMKAd\n",
-            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyUAnMzu0+kHj+B80BClH\ntzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg/H+tI02NTpDxyDr3nbe4yi6Iv\nshOkR17TTcNUjjikRh/WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8u\nA7Nu+zhasp00n+jyiG3tRINmdZGrskZvbmOo007YLewoGOe3/ntcW30JA/B8fckY\nAbTpofi4/lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHA\nzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCg\nHQIDAQAB\n-----END PUBLIC KEY-----\n",
-            "resource_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey/versions/881cf924be5c4479923224ac94958fc0",
-            "resource_versionless_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey",
             "rotation_policy": [
               {
                 "automatic": [
                   {
-                    "time_after_creation": "",
+                    "time_after_creation": null,
                     "time_before_expiry": "P30D"
                   }
                 ],
@@ -183,12 +184,8 @@
                 "notify_before_expiry": "P29D"
               }
             ],
-            "tags": {},
-            "timeouts": null,
-            "version": "881cf924be5c4479923224ac94958fc0",
-            "versionless_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-            "x": "",
-            "y": ""
+            "tags": null,
+            "timeouts": null
           },
           "sensitive_values": {
             "key_opts": [
@@ -205,9 +202,32 @@
                   {}
                 ]
               }
-            ],
-            "tags": {}
+            ]
           }
+        },
+        {
+          "address": "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+          "mode": "managed",
+          "type": "azurerm_role_assignment",
+          "name": "geofoodtruck_az_role_assignment_managed_id",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/providers/Microsoft.Authorization/roleAssignments/53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+            "name": "53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+            "principal_id": "17379688-6705-41d1-a5d8-cf557358e029",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+            "role_definition_name": "Storage Blob Data Contributor",
+            "scope": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_values": {}
         },
         {
           "address": "azurerm_storage_account.geofoodtruck_az_storage_account",
@@ -248,7 +268,7 @@
             "identity": [
               {
                 "identity_ids": [],
-                "principal_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+                "principal_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
                 "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
                 "type": "SystemAssigned"
               }
@@ -392,7 +412,7 @@
                 "smb": []
               }
             ],
-            "shared_access_key_enabled": true,
+            "shared_access_key_enabled": false,
             "static_website": [],
             "table_encryption_key_type": "Service",
             "tags": {},
@@ -469,18 +489,424 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "federated_identity_client_id": "",
-            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+            "federated_identity_client_id": null,
             "key_name": "geofoodtruckkey",
             "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-            "key_vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/",
-            "key_version": "",
+            "key_version": null,
             "managed_hsm_key_id": null,
             "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
             "timeouts": null,
-            "user_assigned_identity_id": ""
+            "user_assigned_identity_id": null
           },
           "sensitive_values": {}
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"asset-manifest.json\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "asset-manifest.json",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "c84d78252f40ba88b8fdfb912c9b93bf",
+            "content_type": "application/json",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json",
+            "metadata": {},
+            "name": "asset-manifest.json",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/asset-manifest.json",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"favicon.ico\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "favicon.ico",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "c92b85a5b907c70211f4ec25e29a8c4a",
+            "content_type": "image/x-icon",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico",
+            "metadata": {},
+            "name": "favicon.ico",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/favicon.ico",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"index.html\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "index.html",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "2f14b387837e20a9df5077a35c0aecfb",
+            "content_type": "text/html",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/index.html",
+            "metadata": {},
+            "name": "index.html",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/index.html",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/index.html"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"logo192.png\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "logo192.png",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "33dbdd0177549353eeeb785d02c294af",
+            "content_type": "image/png",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/logo192.png",
+            "metadata": {},
+            "name": "logo192.png",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/logo192.png",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/logo192.png"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"logo512.png\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "logo512.png",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "917515db74ea8d1aee6a246cfbcc0b45",
+            "content_type": "image/png",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/logo512.png",
+            "metadata": {},
+            "name": "logo512.png",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/logo512.png",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/logo512.png"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"manifest.json\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "manifest.json",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "9153e3ba94d29288a5aef74db1fb2dd1",
+            "content_type": "application/json",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/manifest.json",
+            "metadata": {},
+            "name": "manifest.json",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/manifest.json",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/manifest.json"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"robots.txt\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "robots.txt",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "fa1ded1ed7c11438a9b0385b1e112850",
+            "content_type": "text/plain",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/robots.txt",
+            "metadata": {},
+            "name": "robots.txt",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/robots.txt",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/robots.txt"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"static/css/main.414097bf.css\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "static/css/main.414097bf.css",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "22eaf37d16c7b6c0b38e8c88bcf4eef0",
+            "content_type": "text/css",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css",
+            "metadata": {},
+            "name": "static/css/main.414097bf.css",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/static/css/main.414097bf.css",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"static/js/206.85c6594b.chunk.js\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "static/js/206.85c6594b.chunk.js",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "07ae34e78f0ecc509b588cbec8cf683f",
+            "content_type": "application/javascript",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js",
+            "metadata": {},
+            "name": "static/js/206.85c6594b.chunk.js",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/static/js/206.85c6594b.chunk.js",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "static/js/main.dc021fd1.js",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "f4f12db4cff5bbe07c83adabc9209a0d",
+            "content_type": "application/javascript",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js",
+            "metadata": {},
+            "name": "static/js/main.dc021fd1.js",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/static/js/main.dc021fd1.js",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js.LICENSE.txt\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "static/js/main.dc021fd1.js.LICENSE.txt",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "724392fbfeeb6cde62aa6bad62361a60",
+            "content_type": "text/plain",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt",
+            "metadata": {},
+            "name": "static/js/main.dc021fd1.js.LICENSE.txt",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/static/js/main.dc021fd1.js.LICENSE.txt",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_blob.app_files[\"truck-solid.png\"]",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "index": "truck-solid.png",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "73391b6b4a8a07adff0fbb8ffdbe519c",
+            "content_type": "image/png",
+            "encryption_scope": "",
+            "id": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png",
+            "metadata": {},
+            "name": "truck-solid.png",
+            "parallelism": 8,
+            "size": 0,
+            "source": "../../build/truck-solid.png",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "geofoodtruck",
+            "storage_container_name": "app",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png"
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_container.geofoodtruck_az_storage_container",
+          "mode": "managed",
+          "type": "azurerm_storage_container",
+          "name": "geofoodtruck_az_storage_container",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 1,
+          "values": {
+            "container_access_type": "private",
+            "default_encryption_scope": "$account-encryption-key",
+            "encryption_scope_override_enabled": true,
+            "has_immutability_policy": false,
+            "has_legal_hold": false,
+            "id": "https://geofoodtruck.blob.core.windows.net/app",
+            "metadata": {},
+            "name": "app",
+            "resource_manager_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/blobServices/default/containers/app",
+            "storage_account_name": "geofoodtruck",
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "metadata": {}
+          }
         },
         {
           "address": "azurerm_storage_encryption_scope.geofoodtruck_az_storage_encryption_scope",
@@ -490,9 +916,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/encryptionScopes/geofoodtruckmanagedscope",
-            "infrastructure_encryption_required": false,
-            "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
+            "infrastructure_encryption_required": null,
             "name": "geofoodtruckmanagedscope",
             "source": "Microsoft.KeyVault",
             "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
@@ -503,53 +927,6 @@
       ]
     }
   },
-  "resource_drift": [
-    {
-      "address": "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
-      "mode": "managed",
-      "type": "azurerm_key_vault_access_policy",
-      "name": "geofoodtruck_az_key_vault_access_policy_storage",
-      "provider_name": "registry.terraform.io/hashicorp/azurerm",
-      "change": {
-        "actions": [
-          "delete"
-        ],
-        "before": {
-          "application_id": "",
-          "certificate_permissions": [],
-          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/objectId/bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
-          "key_permissions": [
-            "Get",
-            "Delete",
-            "UnwrapKey",
-            "WrapKey",
-            "Purge"
-          ],
-          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "object_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
-          "secret_permissions": [],
-          "storage_permissions": [],
-          "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
-          "timeouts": null
-        },
-        "after": null,
-        "after_unknown": {},
-        "before_sensitive": {
-          "certificate_permissions": [],
-          "key_permissions": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
-          "secret_permissions": [],
-          "storage_permissions": []
-        },
-        "after_sensitive": false
-      }
-    }
-  ],
   "resource_changes": [
     {
       "address": "azurerm_key_vault.geofoodtruck_az_key_vault",
@@ -562,34 +939,7 @@
           "no-op"
         ],
         "before": {
-          "access_policy": [
-            {
-              "application_id": "",
-              "certificate_permissions": [],
-              "key_permissions": [
-                "Get",
-                "Create",
-                "Delete",
-                "List",
-                "Restore",
-                "Recover",
-                "UnwrapKey",
-                "WrapKey",
-                "Purge",
-                "Encrypt",
-                "Decrypt",
-                "Sign",
-                "Verify",
-                "GetRotationPolicy",
-                "SetRotationPolicy",
-                "Update"
-              ],
-              "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
-              "secret_permissions": [],
-              "storage_permissions": [],
-              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
-            }
-          ],
+          "access_policy": [],
           "contact": [],
           "enable_rbac_authorization": false,
           "enabled_for_deployment": false,
@@ -617,34 +967,7 @@
           "vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/"
         },
         "after": {
-          "access_policy": [
-            {
-              "application_id": "",
-              "certificate_permissions": [],
-              "key_permissions": [
-                "Get",
-                "Create",
-                "Delete",
-                "List",
-                "Restore",
-                "Recover",
-                "UnwrapKey",
-                "WrapKey",
-                "Purge",
-                "Encrypt",
-                "Decrypt",
-                "Sign",
-                "Verify",
-                "GetRotationPolicy",
-                "SetRotationPolicy",
-                "Update"
-              ],
-              "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
-              "secret_permissions": [],
-              "storage_permissions": [],
-              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
-            }
-          ],
+          "access_policy": [],
           "contact": [],
           "enable_rbac_authorization": false,
           "enabled_for_deployment": false,
@@ -673,31 +996,7 @@
         },
         "after_unknown": {},
         "before_sensitive": {
-          "access_policy": [
-            {
-              "certificate_permissions": [],
-              "key_permissions": [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-              ],
-              "secret_permissions": [],
-              "storage_permissions": []
-            }
-          ],
+          "access_policy": [],
           "contact": [],
           "network_acls": [
             {
@@ -708,31 +1007,7 @@
           "tags": {}
         },
         "after_sensitive": {
-          "access_policy": [
-            {
-              "certificate_permissions": [],
-              "key_permissions": [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-              ],
-              "secret_permissions": [],
-              "storage_permissions": []
-            }
-          ],
+          "access_policy": [],
           "contact": [],
           "network_acls": [
             {
@@ -741,6 +1016,101 @@
             }
           ],
           "tags": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_identity",
+      "mode": "managed",
+      "type": "azurerm_key_vault_access_policy",
+      "name": "geofoodtruck_az_key_vault_access_policy_identity",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "application_id": null,
+          "certificate_permissions": null,
+          "key_permissions": [
+            "Get",
+            "Create",
+            "Delete",
+            "List",
+            "Restore",
+            "Recover",
+            "UnwrapKey",
+            "WrapKey",
+            "Purge",
+            "Encrypt",
+            "Decrypt",
+            "Sign",
+            "Verify",
+            "GetRotationPolicy",
+            "SetRotationPolicy",
+            "Update",
+            "Backup",
+            "Release",
+            "Rotate",
+            "Import"
+          ],
+          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
+          "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
+          "secret_permissions": null,
+          "storage_permissions": null,
+          "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "key_permissions": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "key_permissions": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
         }
       }
     },
@@ -760,13 +1130,11 @@
           "certificate_permissions": null,
           "key_permissions": [
             "Get",
-            "Delete",
             "UnwrapKey",
-            "WrapKey",
-            "Purge"
+            "WrapKey"
           ],
           "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "object_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+          "object_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
           "secret_permissions": null,
           "storage_permissions": null,
           "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
@@ -777,16 +1145,12 @@
           "key_permissions": [
             false,
             false,
-            false,
-            false,
             false
           ]
         },
         "before_sensitive": false,
         "after_sensitive": {
           "key_permissions": [
-            false,
-            false,
             false,
             false,
             false
@@ -802,55 +1166,11 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "no-op"
+          "create"
         ],
-        "before": {
-          "curve": "",
-          "e": "AQAB",
-          "expiration_date": null,
-          "id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
-          "key_opts": [
-            "decrypt",
-            "encrypt",
-            "sign",
-            "unwrapKey",
-            "verify",
-            "wrapKey"
-          ],
-          "key_size": 2048,
-          "key_type": "RSA",
-          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "n": "yUAnMzu0-kHj-B80BClHtzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg_H-tI02NTpDxyDr3nbe4yi6IvshOkR17TTcNUjjikRh_WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8uA7Nu-zhasp00n-jyiG3tRINmdZGrskZvbmOo007YLewoGOe3_ntcW30JA_B8fckYAbTpofi4_lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHAzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCgHQ",
-          "name": "geofoodtruckkey",
-          "not_before_date": null,
-          "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJQCczO7T6QeP4HzQEKUe3MHl55SownAiWkGKzGXcl9Eyg/pibQ+li4fZ7KD8f60jTY1OkPHIOvedt7jKLoi+yE6RHXtNNw1SOOKRGH9YdvlcSjls0esollZJvAXixWpDqsfzfieDOKImPa9vPHy4Ds277OFqynTSf6PKIbe1Eg2Z1kauyRm9uY6jTTtgt7CgY57f+e1xbfQkD8Hx9yRgBtOmh+Lj+VyGSLlT3bJ4QA8Wr2NAgZdPo0jLY2oyHuB3cbcE89EWPPv1NIXnE4cDO4SWDWktKjLyUdmCQnuSAvPjeyLCo43IS5z2HSkth1MWQvKfvr0AS9HgG6ygUMKAd\n",
-          "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyUAnMzu0+kHj+B80BClH\ntzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg/H+tI02NTpDxyDr3nbe4yi6Iv\nshOkR17TTcNUjjikRh/WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8u\nA7Nu+zhasp00n+jyiG3tRINmdZGrskZvbmOo007YLewoGOe3/ntcW30JA/B8fckY\nAbTpofi4/lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHA\nzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCg\nHQIDAQAB\n-----END PUBLIC KEY-----\n",
-          "resource_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey/versions/881cf924be5c4479923224ac94958fc0",
-          "resource_versionless_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey",
-          "rotation_policy": [
-            {
-              "automatic": [
-                {
-                  "time_after_creation": "",
-                  "time_before_expiry": "P30D"
-                }
-              ],
-              "expire_after": "P90D",
-              "notify_before_expiry": "P29D"
-            }
-          ],
-          "tags": {},
-          "timeouts": null,
-          "version": "881cf924be5c4479923224ac94958fc0",
-          "versionless_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-          "x": "",
-          "y": ""
-        },
+        "before": null,
         "after": {
-          "curve": "",
-          "e": "AQAB",
           "expiration_date": null,
-          "id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
           "key_opts": [
             "decrypt",
             "encrypt",
@@ -862,18 +1182,13 @@
           "key_size": 2048,
           "key_type": "RSA",
           "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "n": "yUAnMzu0-kHj-B80BClHtzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg_H-tI02NTpDxyDr3nbe4yi6IvshOkR17TTcNUjjikRh_WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8uA7Nu-zhasp00n-jyiG3tRINmdZGrskZvbmOo007YLewoGOe3_ntcW30JA_B8fckYAbTpofi4_lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHAzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCgHQ",
           "name": "geofoodtruckkey",
           "not_before_date": null,
-          "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJQCczO7T6QeP4HzQEKUe3MHl55SownAiWkGKzGXcl9Eyg/pibQ+li4fZ7KD8f60jTY1OkPHIOvedt7jKLoi+yE6RHXtNNw1SOOKRGH9YdvlcSjls0esollZJvAXixWpDqsfzfieDOKImPa9vPHy4Ds277OFqynTSf6PKIbe1Eg2Z1kauyRm9uY6jTTtgt7CgY57f+e1xbfQkD8Hx9yRgBtOmh+Lj+VyGSLlT3bJ4QA8Wr2NAgZdPo0jLY2oyHuB3cbcE89EWPPv1NIXnE4cDO4SWDWktKjLyUdmCQnuSAvPjeyLCo43IS5z2HSkth1MWQvKfvr0AS9HgG6ygUMKAd\n",
-          "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyUAnMzu0+kHj+B80BClH\ntzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg/H+tI02NTpDxyDr3nbe4yi6Iv\nshOkR17TTcNUjjikRh/WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8u\nA7Nu+zhasp00n+jyiG3tRINmdZGrskZvbmOo007YLewoGOe3/ntcW30JA/B8fckY\nAbTpofi4/lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHA\nzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCg\nHQIDAQAB\n-----END PUBLIC KEY-----\n",
-          "resource_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey/versions/881cf924be5c4479923224ac94958fc0",
-          "resource_versionless_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey",
           "rotation_policy": [
             {
               "automatic": [
                 {
-                  "time_after_creation": "",
+                  "time_after_creation": null,
                   "time_before_expiry": "P30D"
                 }
               ],
@@ -881,15 +1196,13 @@
               "notify_before_expiry": "P29D"
             }
           ],
-          "tags": {},
-          "timeouts": null,
-          "version": "881cf924be5c4479923224ac94958fc0",
-          "versionless_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-          "x": "",
-          "y": ""
+          "tags": null,
+          "timeouts": null
         },
-        "after_unknown": {},
-        "before_sensitive": {
+        "after_unknown": {
+          "curve": true,
+          "e": true,
+          "id": true,
           "key_opts": [
             false,
             false,
@@ -898,6 +1211,11 @@
             false,
             false
           ],
+          "n": true,
+          "public_key_openssh": true,
+          "public_key_pem": true,
+          "resource_id": true,
+          "resource_versionless_id": true,
           "rotation_policy": [
             {
               "automatic": [
@@ -905,8 +1223,12 @@
               ]
             }
           ],
-          "tags": {}
+          "version": true,
+          "versionless_id": true,
+          "x": true,
+          "y": true
         },
+        "before_sensitive": false,
         "after_sensitive": {
           "key_opts": [
             false,
@@ -922,9 +1244,53 @@
                 {}
               ]
             }
-          ],
-          "tags": {}
+          ]
         }
+      }
+    },
+    {
+      "address": "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "geofoodtruck_az_role_assignment_managed_id",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "condition": "",
+          "condition_version": "",
+          "delegated_managed_identity_resource_id": "",
+          "description": "",
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/providers/Microsoft.Authorization/roleAssignments/53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+          "name": "53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+          "principal_id": "17379688-6705-41d1-a5d8-cf557358e029",
+          "principal_type": "ServicePrincipal",
+          "role_definition_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+          "role_definition_name": "Storage Blob Data Contributor",
+          "scope": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+          "skip_service_principal_aad_check": null,
+          "timeouts": null
+        },
+        "after": {
+          "condition": "",
+          "condition_version": "",
+          "delegated_managed_identity_resource_id": "",
+          "description": "",
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/providers/Microsoft.Authorization/roleAssignments/53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+          "name": "53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+          "principal_id": "17379688-6705-41d1-a5d8-cf557358e029",
+          "principal_type": "ServicePrincipal",
+          "role_definition_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+          "role_definition_name": "Storage Blob Data Contributor",
+          "scope": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+          "skip_service_principal_aad_check": null,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
       }
     },
     {
@@ -935,7 +1301,7 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "update"
+          "no-op"
         ],
         "before": {
           "access_tier": "Hot",
@@ -960,13 +1326,7 @@
           ],
           "cross_tenant_replication_enabled": true,
           "custom_domain": [],
-          "customer_managed_key": [
-            {
-              "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-              "managed_hsm_key_id": "",
-              "user_assigned_identity_id": ""
-            }
-          ],
+          "customer_managed_key": [],
           "default_to_oauth_authentication": false,
           "dns_endpoint_type": "Standard",
           "edge_zone": "",
@@ -975,7 +1335,7 @@
           "identity": [
             {
               "identity_ids": [],
-              "principal_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+              "principal_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
               "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
               "type": "SystemAssigned"
             }
@@ -1119,7 +1479,7 @@
               "smb": []
             }
           ],
-          "shared_access_key_enabled": true,
+          "shared_access_key_enabled": false,
           "static_website": [],
           "table_encryption_key_type": "Service",
           "tags": {},
@@ -1157,7 +1517,7 @@
           "identity": [
             {
               "identity_ids": [],
-              "principal_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+              "principal_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
               "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
               "type": "SystemAssigned"
             }
@@ -1301,7 +1661,7 @@
               "smb": []
             }
           ],
-          "shared_access_key_enabled": true,
+          "shared_access_key_enabled": false,
           "static_website": [],
           "table_encryption_key_type": "Service",
           "tags": {},
@@ -1319,9 +1679,7 @@
             }
           ],
           "custom_domain": [],
-          "customer_managed_key": [
-            {}
-          ],
+          "customer_managed_key": [],
           "identity": [
             {
               "identity_ids": []
@@ -1444,35 +1802,790 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "federated_identity_client_id": null,
+          "key_name": "geofoodtruckkey",
+          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
+          "key_version": null,
+          "managed_hsm_key_id": null,
+          "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+          "timeouts": null,
+          "user_assigned_identity_id": null
+        },
+        "after_unknown": {
+          "id": true,
+          "key_vault_uri": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"asset-manifest.json\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "asset-manifest.json",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
           "no-op"
         ],
         "before": {
-          "federated_identity_client_id": "",
-          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
-          "key_name": "geofoodtruckkey",
-          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "key_vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/",
-          "key_version": "",
-          "managed_hsm_key_id": null,
-          "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "c84d78252f40ba88b8fdfb912c9b93bf",
+          "content_type": "application/json",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json",
+          "metadata": {},
+          "name": "asset-manifest.json",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/asset-manifest.json",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
           "timeouts": null,
-          "user_assigned_identity_id": ""
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json"
         },
         "after": {
-          "federated_identity_client_id": "",
-          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
-          "key_name": "geofoodtruckkey",
-          "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-          "key_vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/",
-          "key_version": "",
-          "managed_hsm_key_id": null,
-          "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "c84d78252f40ba88b8fdfb912c9b93bf",
+          "content_type": "application/json",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json",
+          "metadata": {},
+          "name": "asset-manifest.json",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/asset-manifest.json",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
           "timeouts": null,
-          "user_assigned_identity_id": ""
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json"
         },
         "after_unknown": {},
-        "before_sensitive": {},
-        "after_sensitive": {}
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"favicon.ico\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "favicon.ico",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "c92b85a5b907c70211f4ec25e29a8c4a",
+          "content_type": "image/x-icon",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico",
+          "metadata": {},
+          "name": "favicon.ico",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/favicon.ico",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "c92b85a5b907c70211f4ec25e29a8c4a",
+          "content_type": "image/x-icon",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico",
+          "metadata": {},
+          "name": "favicon.ico",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/favicon.ico",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"index.html\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "index.html",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "2f14b387837e20a9df5077a35c0aecfb",
+          "content_type": "text/html",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/index.html",
+          "metadata": {},
+          "name": "index.html",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/index.html",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/index.html"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "2f14b387837e20a9df5077a35c0aecfb",
+          "content_type": "text/html",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/index.html",
+          "metadata": {},
+          "name": "index.html",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/index.html",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/index.html"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"logo192.png\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "logo192.png",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "33dbdd0177549353eeeb785d02c294af",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/logo192.png",
+          "metadata": {},
+          "name": "logo192.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/logo192.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/logo192.png"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "33dbdd0177549353eeeb785d02c294af",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/logo192.png",
+          "metadata": {},
+          "name": "logo192.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/logo192.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/logo192.png"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"logo512.png\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "logo512.png",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "917515db74ea8d1aee6a246cfbcc0b45",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/logo512.png",
+          "metadata": {},
+          "name": "logo512.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/logo512.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/logo512.png"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "917515db74ea8d1aee6a246cfbcc0b45",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/logo512.png",
+          "metadata": {},
+          "name": "logo512.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/logo512.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/logo512.png"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"manifest.json\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "manifest.json",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "9153e3ba94d29288a5aef74db1fb2dd1",
+          "content_type": "application/json",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/manifest.json",
+          "metadata": {},
+          "name": "manifest.json",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/manifest.json",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/manifest.json"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "9153e3ba94d29288a5aef74db1fb2dd1",
+          "content_type": "application/json",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/manifest.json",
+          "metadata": {},
+          "name": "manifest.json",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/manifest.json",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/manifest.json"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"robots.txt\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "robots.txt",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "fa1ded1ed7c11438a9b0385b1e112850",
+          "content_type": "text/plain",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/robots.txt",
+          "metadata": {},
+          "name": "robots.txt",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/robots.txt",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/robots.txt"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "fa1ded1ed7c11438a9b0385b1e112850",
+          "content_type": "text/plain",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/robots.txt",
+          "metadata": {},
+          "name": "robots.txt",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/robots.txt",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/robots.txt"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"static/css/main.414097bf.css\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "static/css/main.414097bf.css",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "22eaf37d16c7b6c0b38e8c88bcf4eef0",
+          "content_type": "text/css",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css",
+          "metadata": {},
+          "name": "static/css/main.414097bf.css",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/css/main.414097bf.css",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "22eaf37d16c7b6c0b38e8c88bcf4eef0",
+          "content_type": "text/css",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css",
+          "metadata": {},
+          "name": "static/css/main.414097bf.css",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/css/main.414097bf.css",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"static/js/206.85c6594b.chunk.js\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "static/js/206.85c6594b.chunk.js",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "07ae34e78f0ecc509b588cbec8cf683f",
+          "content_type": "application/javascript",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js",
+          "metadata": {},
+          "name": "static/js/206.85c6594b.chunk.js",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/206.85c6594b.chunk.js",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "07ae34e78f0ecc509b588cbec8cf683f",
+          "content_type": "application/javascript",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js",
+          "metadata": {},
+          "name": "static/js/206.85c6594b.chunk.js",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/206.85c6594b.chunk.js",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "static/js/main.dc021fd1.js",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "f4f12db4cff5bbe07c83adabc9209a0d",
+          "content_type": "application/javascript",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js",
+          "metadata": {},
+          "name": "static/js/main.dc021fd1.js",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/main.dc021fd1.js",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "f4f12db4cff5bbe07c83adabc9209a0d",
+          "content_type": "application/javascript",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js",
+          "metadata": {},
+          "name": "static/js/main.dc021fd1.js",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/main.dc021fd1.js",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js.LICENSE.txt\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "static/js/main.dc021fd1.js.LICENSE.txt",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "724392fbfeeb6cde62aa6bad62361a60",
+          "content_type": "text/plain",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt",
+          "metadata": {},
+          "name": "static/js/main.dc021fd1.js.LICENSE.txt",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/main.dc021fd1.js.LICENSE.txt",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "724392fbfeeb6cde62aa6bad62361a60",
+          "content_type": "text/plain",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt",
+          "metadata": {},
+          "name": "static/js/main.dc021fd1.js.LICENSE.txt",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/static/js/main.dc021fd1.js.LICENSE.txt",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_blob.app_files[\"truck-solid.png\"]",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "app_files",
+      "index": "truck-solid.png",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "73391b6b4a8a07adff0fbb8ffdbe519c",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png",
+          "metadata": {},
+          "name": "truck-solid.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/truck-solid.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png"
+        },
+        "after": {
+          "access_tier": "Hot",
+          "cache_control": "",
+          "content_md5": "73391b6b4a8a07adff0fbb8ffdbe519c",
+          "content_type": "image/png",
+          "encryption_scope": "",
+          "id": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png",
+          "metadata": {},
+          "name": "truck-solid.png",
+          "parallelism": 8,
+          "size": 0,
+          "source": "../../build/truck-solid.png",
+          "source_content": null,
+          "source_uri": null,
+          "storage_account_name": "geofoodtruck",
+          "storage_container_name": "app",
+          "timeouts": null,
+          "type": "Block",
+          "url": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_container.geofoodtruck_az_storage_container",
+      "mode": "managed",
+      "type": "azurerm_storage_container",
+      "name": "geofoodtruck_az_storage_container",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "container_access_type": "private",
+          "default_encryption_scope": "$account-encryption-key",
+          "encryption_scope_override_enabled": true,
+          "has_immutability_policy": false,
+          "has_legal_hold": false,
+          "id": "https://geofoodtruck.blob.core.windows.net/app",
+          "metadata": {},
+          "name": "app",
+          "resource_manager_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/blobServices/default/containers/app",
+          "storage_account_name": "geofoodtruck",
+          "timeouts": null
+        },
+        "after": {
+          "container_access_type": "private",
+          "default_encryption_scope": "$account-encryption-key",
+          "encryption_scope_override_enabled": true,
+          "has_immutability_policy": false,
+          "has_legal_hold": false,
+          "id": "https://geofoodtruck.blob.core.windows.net/app",
+          "metadata": {},
+          "name": "app",
+          "resource_manager_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/blobServices/default/containers/app",
+          "storage_account_name": "geofoodtruck",
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
       }
     },
     {
@@ -1483,28 +2596,21 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "no-op"
+          "create"
         ],
-        "before": {
-          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/encryptionScopes/geofoodtruckmanagedscope",
-          "infrastructure_encryption_required": false,
-          "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
-          "name": "geofoodtruckmanagedscope",
-          "source": "Microsoft.KeyVault",
-          "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
-          "timeouts": null
-        },
+        "before": null,
         "after": {
-          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/encryptionScopes/geofoodtruckmanagedscope",
-          "infrastructure_encryption_required": false,
-          "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
+          "infrastructure_encryption_required": null,
           "name": "geofoodtruckmanagedscope",
           "source": "Microsoft.KeyVault",
           "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
           "timeouts": null
         },
-        "after_unknown": {},
-        "before_sensitive": {},
+        "after_unknown": {
+          "id": true,
+          "key_vault_key_id": true
+        },
+        "before_sensitive": false,
         "after_sensitive": {}
       }
     }
@@ -1559,34 +2665,7 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 2,
             "values": {
-              "access_policy": [
-                {
-                  "application_id": "",
-                  "certificate_permissions": [],
-                  "key_permissions": [
-                    "Get",
-                    "Create",
-                    "Delete",
-                    "List",
-                    "Restore",
-                    "Recover",
-                    "UnwrapKey",
-                    "WrapKey",
-                    "Purge",
-                    "Encrypt",
-                    "Decrypt",
-                    "Sign",
-                    "Verify",
-                    "GetRotationPolicy",
-                    "SetRotationPolicy",
-                    "Update"
-                  ],
-                  "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
-                  "secret_permissions": [],
-                  "storage_permissions": [],
-                  "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
-                }
-              ],
+              "access_policy": [],
               "contact": [],
               "enable_rbac_authorization": false,
               "enabled_for_deployment": false,
@@ -1614,31 +2693,7 @@
               "vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/"
             },
             "sensitive_values": {
-              "access_policy": [
-                {
-                  "certificate_permissions": [],
-                  "key_permissions": [
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false
-                  ],
-                  "secret_permissions": [],
-                  "storage_permissions": []
-                }
-              ],
+              "access_policy": [],
               "contact": [],
               "network_acls": [
                 {
@@ -1654,75 +2709,29 @@
             ]
           },
           {
-            "address": "azurerm_key_vault_key.geofoodtruck_az_key_vault_key",
+            "address": "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
             "mode": "managed",
-            "type": "azurerm_key_vault_key",
-            "name": "geofoodtruck_az_key_vault_key",
+            "type": "azurerm_role_assignment",
+            "name": "geofoodtruck_az_role_assignment_managed_id",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "curve": "",
-              "e": "AQAB",
-              "expiration_date": null,
-              "id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
-              "key_opts": [
-                "decrypt",
-                "encrypt",
-                "sign",
-                "unwrapKey",
-                "verify",
-                "wrapKey"
-              ],
-              "key_size": 2048,
-              "key_type": "RSA",
-              "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-              "n": "yUAnMzu0-kHj-B80BClHtzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg_H-tI02NTpDxyDr3nbe4yi6IvshOkR17TTcNUjjikRh_WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8uA7Nu-zhasp00n-jyiG3tRINmdZGrskZvbmOo007YLewoGOe3_ntcW30JA_B8fckYAbTpofi4_lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHAzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCgHQ",
-              "name": "geofoodtruckkey",
-              "not_before_date": null,
-              "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJQCczO7T6QeP4HzQEKUe3MHl55SownAiWkGKzGXcl9Eyg/pibQ+li4fZ7KD8f60jTY1OkPHIOvedt7jKLoi+yE6RHXtNNw1SOOKRGH9YdvlcSjls0esollZJvAXixWpDqsfzfieDOKImPa9vPHy4Ds277OFqynTSf6PKIbe1Eg2Z1kauyRm9uY6jTTtgt7CgY57f+e1xbfQkD8Hx9yRgBtOmh+Lj+VyGSLlT3bJ4QA8Wr2NAgZdPo0jLY2oyHuB3cbcE89EWPPv1NIXnE4cDO4SWDWktKjLyUdmCQnuSAvPjeyLCo43IS5z2HSkth1MWQvKfvr0AS9HgG6ygUMKAd\n",
-              "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyUAnMzu0+kHj+B80BClH\ntzB5eeUqMJwIlpBisxl3JfRMoP6Ym0PpYuH2eyg/H+tI02NTpDxyDr3nbe4yi6Iv\nshOkR17TTcNUjjikRh/WHb5XEo5bNHrKJZWSbwF4sVqQ6rH834ngziiJj2vbzx8u\nA7Nu+zhasp00n+jyiG3tRINmdZGrskZvbmOo007YLewoGOe3/ntcW30JA/B8fckY\nAbTpofi4/lchki5U92yeEAPFq9jQIGXT6NIy2NqMh7gd3G3BPPRFjz79TSF5xOHA\nzuElg1pLSoy8lHZgkJ7kgLz43siwqONyEuc9h0pLYdTFkLyn769AEvR4BusoFDCg\nHQIDAQAB\n-----END PUBLIC KEY-----\n",
-              "resource_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey/versions/881cf924be5c4479923224ac94958fc0",
-              "resource_versionless_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault/keys/geofoodtruckkey",
-              "rotation_policy": [
-                {
-                  "automatic": [
-                    {
-                      "time_after_creation": "",
-                      "time_before_expiry": "P30D"
-                    }
-                  ],
-                  "expire_after": "P90D",
-                  "notify_before_expiry": "P29D"
-                }
-              ],
-              "tags": {},
-              "timeouts": null,
-              "version": "881cf924be5c4479923224ac94958fc0",
-              "versionless_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-              "x": "",
-              "y": ""
+              "condition": "",
+              "condition_version": "",
+              "delegated_managed_identity_resource_id": "",
+              "description": "",
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/providers/Microsoft.Authorization/roleAssignments/53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+              "name": "53c99d50-93f1-cd0a-941d-93a57dd3a9b8",
+              "principal_id": "17379688-6705-41d1-a5d8-cf557358e029",
+              "principal_type": "ServicePrincipal",
+              "role_definition_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+              "role_definition_name": "Storage Blob Data Contributor",
+              "scope": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+              "skip_service_principal_aad_check": null,
+              "timeouts": null
             },
-            "sensitive_values": {
-              "key_opts": [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-              ],
-              "rotation_policy": [
-                {
-                  "automatic": [
-                    {}
-                  ]
-                }
-              ],
-              "tags": {}
-            },
+            "sensitive_values": {},
             "depends_on": [
-              "azurerm_key_vault.geofoodtruck_az_key_vault",
-              "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
               "azurerm_storage_account.geofoodtruck_az_storage_account",
               "data.azurerm_client_config.current",
               "data.azurerm_resource_group.geofoodtruck_az_resource_group"
@@ -1758,13 +2767,7 @@
               ],
               "cross_tenant_replication_enabled": true,
               "custom_domain": [],
-              "customer_managed_key": [
-                {
-                  "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey",
-                  "managed_hsm_key_id": "",
-                  "user_assigned_identity_id": ""
-                }
-              ],
+              "customer_managed_key": [],
               "default_to_oauth_authentication": false,
               "dns_endpoint_type": "Standard",
               "edge_zone": "",
@@ -1773,7 +2776,7 @@
               "identity": [
                 {
                   "identity_ids": [],
-                  "principal_id": "bb4bfcb8-55e3-40e5-9159-d723bb2263b0",
+                  "principal_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
                   "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
                   "type": "SystemAssigned"
                 }
@@ -1917,7 +2920,7 @@
                   "smb": []
                 }
               ],
-              "shared_access_key_enabled": true,
+              "shared_access_key_enabled": false,
               "static_website": [],
               "table_encryption_key_type": "Service",
               "tags": {},
@@ -1934,9 +2937,7 @@
                 }
               ],
               "custom_domain": [],
-              "customer_managed_key": [
-                {}
-              ],
+              "customer_managed_key": [],
               "identity": [
                 {
                   "identity_ids": []
@@ -1992,57 +2993,498 @@
             ]
           },
           {
-            "address": "azurerm_storage_account_customer_managed_key.geofoodtruck_az_storage_account_customer_managed_key",
+            "address": "azurerm_storage_blob.app_files[\"asset-manifest.json\"]",
             "mode": "managed",
-            "type": "azurerm_storage_account_customer_managed_key",
-            "name": "geofoodtruck_az_storage_account_customer_managed_key",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "asset-manifest.json",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
+            "schema_version": 1,
             "values": {
-              "federated_identity_client_id": "",
-              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
-              "key_name": "geofoodtruckkey",
-              "key_vault_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
-              "key_vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/",
-              "key_version": "",
-              "managed_hsm_key_id": null,
-              "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "c84d78252f40ba88b8fdfb912c9b93bf",
+              "content_type": "application/json",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json",
+              "metadata": {},
+              "name": "asset-manifest.json",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/asset-manifest.json",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
               "timeouts": null,
-              "user_assigned_identity_id": ""
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/asset-manifest.json"
             },
-            "sensitive_values": {},
+            "sensitive_values": {
+              "metadata": {}
+            },
             "depends_on": [
-              "azurerm_key_vault.geofoodtruck_az_key_vault",
-              "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
-              "azurerm_key_vault_key.geofoodtruck_az_key_vault_key",
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
               "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
               "data.azurerm_client_config.current",
               "data.azurerm_resource_group.geofoodtruck_az_resource_group"
             ]
           },
           {
-            "address": "azurerm_storage_encryption_scope.geofoodtruck_az_storage_encryption_scope",
+            "address": "azurerm_storage_blob.app_files[\"favicon.ico\"]",
             "mode": "managed",
-            "type": "azurerm_storage_encryption_scope",
-            "name": "geofoodtruck_az_storage_encryption_scope",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "favicon.ico",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
+            "schema_version": 1,
             "values": {
-              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/encryptionScopes/geofoodtruckmanagedscope",
-              "infrastructure_encryption_required": false,
-              "key_vault_key_id": "https://geofoodtruck-key-vault.vault.azure.net/keys/geofoodtruckkey/881cf924be5c4479923224ac94958fc0",
-              "name": "geofoodtruckmanagedscope",
-              "source": "Microsoft.KeyVault",
-              "storage_account_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck",
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "c92b85a5b907c70211f4ec25e29a8c4a",
+              "content_type": "image/x-icon",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico",
+              "metadata": {},
+              "name": "favicon.ico",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/favicon.ico",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/favicon.ico"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"index.html\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "index.html",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "2f14b387837e20a9df5077a35c0aecfb",
+              "content_type": "text/html",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/index.html",
+              "metadata": {},
+              "name": "index.html",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/index.html",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/index.html"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"logo192.png\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "logo192.png",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "33dbdd0177549353eeeb785d02c294af",
+              "content_type": "image/png",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/logo192.png",
+              "metadata": {},
+              "name": "logo192.png",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/logo192.png",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/logo192.png"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"logo512.png\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "logo512.png",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "917515db74ea8d1aee6a246cfbcc0b45",
+              "content_type": "image/png",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/logo512.png",
+              "metadata": {},
+              "name": "logo512.png",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/logo512.png",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/logo512.png"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"manifest.json\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "manifest.json",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "9153e3ba94d29288a5aef74db1fb2dd1",
+              "content_type": "application/json",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/manifest.json",
+              "metadata": {},
+              "name": "manifest.json",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/manifest.json",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/manifest.json"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"robots.txt\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "robots.txt",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "fa1ded1ed7c11438a9b0385b1e112850",
+              "content_type": "text/plain",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/robots.txt",
+              "metadata": {},
+              "name": "robots.txt",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/robots.txt",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/robots.txt"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"static/css/main.414097bf.css\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "static/css/main.414097bf.css",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "22eaf37d16c7b6c0b38e8c88bcf4eef0",
+              "content_type": "text/css",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css",
+              "metadata": {},
+              "name": "static/css/main.414097bf.css",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/static/css/main.414097bf.css",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/static/css/main.414097bf.css"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"static/js/206.85c6594b.chunk.js\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "static/js/206.85c6594b.chunk.js",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "07ae34e78f0ecc509b588cbec8cf683f",
+              "content_type": "application/javascript",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js",
+              "metadata": {},
+              "name": "static/js/206.85c6594b.chunk.js",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/static/js/206.85c6594b.chunk.js",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/206.85c6594b.chunk.js"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "static/js/main.dc021fd1.js",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "f4f12db4cff5bbe07c83adabc9209a0d",
+              "content_type": "application/javascript",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js",
+              "metadata": {},
+              "name": "static/js/main.dc021fd1.js",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/static/js/main.dc021fd1.js",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"static/js/main.dc021fd1.js.LICENSE.txt\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "static/js/main.dc021fd1.js.LICENSE.txt",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "724392fbfeeb6cde62aa6bad62361a60",
+              "content_type": "text/plain",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt",
+              "metadata": {},
+              "name": "static/js/main.dc021fd1.js.LICENSE.txt",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/static/js/main.dc021fd1.js.LICENSE.txt",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/static/js/main.dc021fd1.js.LICENSE.txt"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_blob.app_files[\"truck-solid.png\"]",
+            "mode": "managed",
+            "type": "azurerm_storage_blob",
+            "name": "app_files",
+            "index": "truck-solid.png",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "access_tier": "Hot",
+              "cache_control": "",
+              "content_md5": "73391b6b4a8a07adff0fbb8ffdbe519c",
+              "content_type": "image/png",
+              "encryption_scope": "",
+              "id": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png",
+              "metadata": {},
+              "name": "truck-solid.png",
+              "parallelism": 8,
+              "size": 0,
+              "source": "../../build/truck-solid.png",
+              "source_content": null,
+              "source_uri": null,
+              "storage_account_name": "geofoodtruck",
+              "storage_container_name": "app",
+              "timeouts": null,
+              "type": "Block",
+              "url": "https://geofoodtruck.blob.core.windows.net/app/truck-solid.png"
+            },
+            "sensitive_values": {
+              "metadata": {}
+            },
+            "depends_on": [
+              "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "azurerm_storage_container.geofoodtruck_az_storage_container",
+              "data.azurerm_client_config.current",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_storage_container.geofoodtruck_az_storage_container",
+            "mode": "managed",
+            "type": "azurerm_storage_container",
+            "name": "geofoodtruck_az_storage_container",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "container_access_type": "private",
+              "default_encryption_scope": "$account-encryption-key",
+              "encryption_scope_override_enabled": true,
+              "has_immutability_policy": false,
+              "has_legal_hold": false,
+              "id": "https://geofoodtruck.blob.core.windows.net/app",
+              "metadata": {},
+              "name": "app",
+              "resource_manager_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Storage/storageAccounts/geofoodtruck/blobServices/default/containers/app",
+              "storage_account_name": "geofoodtruck",
               "timeouts": null
             },
-            "sensitive_values": {},
+            "sensitive_values": {
+              "metadata": {}
+            },
             "depends_on": [
-              "azurerm_key_vault.geofoodtruck_az_key_vault",
-              "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
-              "azurerm_key_vault_key.geofoodtruck_az_key_vault_key",
               "azurerm_storage_account.geofoodtruck_az_storage_account",
-              "data.azurerm_client_config.current",
               "data.azurerm_resource_group.geofoodtruck_az_resource_group"
             ]
           }
@@ -2066,6 +3508,9 @@
           "skip_provider_registration": {
             "constant_value": true
           },
+          "storage_use_azuread": {
+            "constant_value": true
+          },
           "use_oidc": {
             "constant_value": true
           }
@@ -2081,14 +3526,6 @@
           "name": "geofoodtruck_az_key_vault",
           "provider_config_key": "azurerm",
           "expressions": {
-            "access_policy": {
-              "references": [
-                "data.azurerm_client_config.current.tenant_id",
-                "data.azurerm_client_config.current",
-                "data.azurerm_client_config.current.object_id",
-                "data.azurerm_client_config.current"
-              ]
-            },
             "location": {
               "references": [
                 "data.azurerm_resource_group.geofoodtruck_az_resource_group.location",
@@ -2120,6 +3557,58 @@
           "schema_version": 2
         },
         {
+          "address": "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_identity",
+          "mode": "managed",
+          "type": "azurerm_key_vault_access_policy",
+          "name": "geofoodtruck_az_key_vault_access_policy_identity",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "key_permissions": {
+              "constant_value": [
+                "Get",
+                "Create",
+                "Delete",
+                "List",
+                "Restore",
+                "Recover",
+                "UnwrapKey",
+                "WrapKey",
+                "Purge",
+                "Encrypt",
+                "Decrypt",
+                "Sign",
+                "Verify",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Update",
+                "Backup",
+                "Release",
+                "Rotate",
+                "Import"
+              ]
+            },
+            "key_vault_id": {
+              "references": [
+                "azurerm_key_vault.geofoodtruck_az_key_vault.id",
+                "azurerm_key_vault.geofoodtruck_az_key_vault"
+              ]
+            },
+            "object_id": {
+              "references": [
+                "data.azurerm_client_config.current.object_id",
+                "data.azurerm_client_config.current"
+              ]
+            },
+            "tenant_id": {
+              "references": [
+                "data.azurerm_client_config.current.tenant_id",
+                "data.azurerm_client_config.current"
+              ]
+            }
+          },
+          "schema_version": 0
+        },
+        {
           "address": "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
           "mode": "managed",
           "type": "azurerm_key_vault_access_policy",
@@ -2129,10 +3618,8 @@
             "key_permissions": {
               "constant_value": [
                 "Get",
-                "Delete",
                 "UnwrapKey",
-                "WrapKey",
-                "Purge"
+                "WrapKey"
               ]
             },
             "key_vault_id": {
@@ -2210,8 +3697,34 @@
           },
           "schema_version": 0,
           "depends_on": [
-            "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage"
+            "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_storage",
+            "azurerm_key_vault_access_policy.geofoodtruck_az_key_vault_access_policy_identity"
           ]
+        },
+        {
+          "address": "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id",
+          "mode": "managed",
+          "type": "azurerm_role_assignment",
+          "name": "geofoodtruck_az_role_assignment_managed_id",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "principal_id": {
+              "references": [
+                "data.azurerm_client_config.current.object_id",
+                "data.azurerm_client_config.current"
+              ]
+            },
+            "role_definition_name": {
+              "constant_value": "Storage Blob Data Contributor"
+            },
+            "scope": {
+              "references": [
+                "azurerm_storage_account.geofoodtruck_az_storage_account.id",
+                "azurerm_storage_account.geofoodtruck_az_storage_account"
+              ]
+            }
+          },
+          "schema_version": 0
         },
         {
           "address": "azurerm_storage_account.geofoodtruck_az_storage_account",
@@ -2247,6 +3760,9 @@
                 "data.azurerm_resource_group.geofoodtruck_az_resource_group.name",
                 "data.azurerm_resource_group.geofoodtruck_az_resource_group"
               ]
+            },
+            "shared_access_key_enabled": {
+              "constant_value": false
             }
           },
           "schema_version": 4
@@ -2278,6 +3794,82 @@
             }
           },
           "schema_version": 0
+        },
+        {
+          "address": "azurerm_storage_blob.app_files",
+          "mode": "managed",
+          "type": "azurerm_storage_blob",
+          "name": "app_files",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "content_md5": {
+              "references": [
+                "var.app_build_dir",
+                "each.value"
+              ]
+            },
+            "content_type": {
+              "references": [
+                "local.content_types",
+                "each.value",
+                "each.value"
+              ]
+            },
+            "name": {
+              "references": [
+                "each.value"
+              ]
+            },
+            "source": {
+              "references": [
+                "var.app_build_dir",
+                "each.value"
+              ]
+            },
+            "storage_account_name": {
+              "references": [
+                "azurerm_storage_account.geofoodtruck_az_storage_account.name",
+                "azurerm_storage_account.geofoodtruck_az_storage_account"
+              ]
+            },
+            "storage_container_name": {
+              "references": [
+                "azurerm_storage_container.geofoodtruck_az_storage_container.name",
+                "azurerm_storage_container.geofoodtruck_az_storage_container"
+              ]
+            },
+            "type": {
+              "constant_value": "Block"
+            }
+          },
+          "schema_version": 1,
+          "for_each_expression": {
+            "references": [
+              "local.app_build_files"
+            ]
+          },
+          "depends_on": [
+            "azurerm_role_assignment.geofoodtruck_az_role_assignment_managed_id"
+          ]
+        },
+        {
+          "address": "azurerm_storage_container.geofoodtruck_az_storage_container",
+          "mode": "managed",
+          "type": "azurerm_storage_container",
+          "name": "geofoodtruck_az_storage_container",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "name": {
+              "constant_value": "app"
+            },
+            "storage_account_name": {
+              "references": [
+                "azurerm_storage_account.geofoodtruck_az_storage_account.name",
+                "azurerm_storage_account.geofoodtruck_az_storage_account"
+              ]
+            }
+          },
+          "schema_version": 1
         },
         {
           "address": "azurerm_storage_encryption_scope.geofoodtruck_az_storage_encryption_scope",
@@ -2339,15 +3931,15 @@
   },
   "relevant_attributes": [
     {
-      "resource": "data.azurerm_resource_group.geofoodtruck_az_resource_group",
+      "resource": "azurerm_key_vault_key.geofoodtruck_az_key_vault_key",
       "attribute": [
-        "name"
+        "id"
       ]
     },
     {
-      "resource": "data.azurerm_resource_group.geofoodtruck_az_resource_group",
+      "resource": "azurerm_key_vault_key.geofoodtruck_az_key_vault_key",
       "attribute": [
-        "location"
+        "name"
       ]
     },
     {
@@ -2363,15 +3955,27 @@
       ]
     },
     {
+      "resource": "data.azurerm_client_config.current",
+      "attribute": [
+        "object_id"
+      ]
+    },
+    {
       "resource": "azurerm_storage_account.geofoodtruck_az_storage_account",
       "attribute": [
         "identity",
         0,
         "principal_id"
       ]
+    },
+    {
+      "resource": "azurerm_storage_account.geofoodtruck_az_storage_account",
+      "attribute": [
+        "id"
+      ]
     }
   ],
-  "timestamp": "2024-06-16T23:49:12Z",
+  "timestamp": "2024-06-17T07:08:50Z",
   "applyable": true,
   "complete": true,
   "errored": false
