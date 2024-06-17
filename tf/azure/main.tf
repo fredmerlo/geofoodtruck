@@ -100,6 +100,10 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   account_replication_type = "LRS"
   shared_access_key_enabled = false
 
+  azure_files_authentication {
+    directory_type = "AADDS"
+  }
+
   identity {
     type = "SystemAssigned"
   }
