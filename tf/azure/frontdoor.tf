@@ -23,12 +23,12 @@ resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_ori
 }
 
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
-  name                     = "geofoodtruck-app-storage-origin"
+  name                     = "geofoodtruck-"
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
 
   certificate_name_check_enabled = true
-  host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_endpoint
-  origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_endpoint
+  host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
+  origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
   priority                        = 1
   weight                         = 500
 
