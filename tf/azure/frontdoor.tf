@@ -35,8 +35,8 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
   enabled                       = true
 
   certificate_name_check_enabled = true
-  host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_microsoft_host
-  origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_microsoft_host
+  host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_internet_host
+  origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_internet_host
   priority                        = 1
   weight                         = 500
 
