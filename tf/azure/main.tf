@@ -65,7 +65,7 @@ resource "azurerm_key_vault_access_policy" "geofoodtruck_az_key_vault_access_pol
 resource "azurerm_key_vault_key" "geofoodtruck_az_key_vault_key" {
   name         = "geofoodtruckkey"
   key_vault_id = azurerm_key_vault.geofoodtruck_az_key_vault.id
-  key_type     = "RSA"
+  key_type     = "RSA-HSM"
   key_size     = 2048
 
     key_opts = [
@@ -97,6 +97,7 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   location                 = data.azurerm_resource_group.geofoodtruck_az_resource_group.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  shared_access_key_enabled = false
 
   identity {
     type = "SystemAssigned"
@@ -114,4 +115,9 @@ resource "azurerm_storage_account_customer_managed_key" "geofoodtruck_az_storage
   storage_account_id = azurerm_storage_account.geofoodtruck_az_storage_account.id
   key_vault_id       = azurerm_key_vault.geofoodtruck_az_key_vault.id
   key_name           = azurerm_key_vault_key.geofoodtruck_az_key_vault_key.name
+}
+
+resource "azurerm_storage_container" "geofoodtruck_az_storage_container" {
+  name                  = "app"
+  storage_account_name  = azurerm_storage_account.geofoodtruck_az_storage_account.name
 }
