@@ -104,8 +104,6 @@ resource "azurerm_storage_account" "geofoodtruck_az_storage_account" {
   account_replication_type = "LRS"
   shared_access_key_enabled = false
 
-  allow_nested_items_to_be_public = false
-
   identity {
     type = "SystemAssigned"
   }
