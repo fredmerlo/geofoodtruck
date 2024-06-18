@@ -125,7 +125,8 @@ resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_
   conditions {
     request_header_condition {
       header_name = "X-App-Token"
-      operator     = "NotAny"
+      operator     = "Any"
+      negate_condition = true
     }
   }
 }
