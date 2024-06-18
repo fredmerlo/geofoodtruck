@@ -18,5 +18,5 @@ locals {
     "map"   = "application/json"
   }
 
-  frontdoor_postfix = "f2d12"
+  frontdoor_postfix = "19aab"
 }

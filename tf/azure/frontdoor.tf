@@ -1,67 +1,76 @@
-# resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile" {
-#   name                = "geofoodtruck-frontdoor-profile-${local.frontdoor_postfix}"
-#   resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
-#   sku_name                 = "Premium_AzureFrontDoor"
-# }
+resource "azurerm_cdn_frontdoor_profile" "geofoodtruck_az_cdn_frontdoor_profile" {
+  name                = "geofoodtruck-frontdoor-profile-${local.frontdoor_postfix}"
+  resource_group_name = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
+  sku_name                 = "Premium_AzureFrontDoor"
+}
 
-# resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
-#   name                     = "geofoodtruckfrontdoorendpoint${local.frontdoor_postfix}"
-#   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
-#   enabled                  = true
-# }
+resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoint" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile]
 
-# resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
-#   name                     = "geofoodtruck-origin-group-${local.frontdoor_postfix}"
-#   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
-#   session_affinity_enabled = false
+  name                     = "geofoodtruck-${local.frontdoor_postfix}"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+  enabled                  = true
+}
 
-#   health_probe {
-#     protocol            = "Http"
-#     interval_in_seconds = 100
-#     path                = "/"
-#     request_type        = "HEAD"
-#   }
+resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile]
 
-#   load_balancing {
-#     additional_latency_in_milliseconds = 50
-#     sample_size                        = 4
-#     successful_samples_required        = 3
-#   }
-# }
+  name                     = "geofoodtruck-origin-group-${local.frontdoor_postfix}"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+  session_affinity_enabled = false
 
-# resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
-#   name                     = "geofoodtruck-app-storage-origin-${local.frontdoor_postfix}"
-#   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
-#   enabled                       = true
+  health_probe {
+    protocol            = "Http"
+    interval_in_seconds = 100
+    path                = "/"
+    request_type        = "HEAD"
+  }
 
-#   certificate_name_check_enabled = true
-#   host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
-#   origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
-#   priority                        = 1
-#   weight                         = 500
+  load_balancing {
+    additional_latency_in_milliseconds = 50
+    sample_size                        = 4
+    successful_samples_required        = 3
+  }
+}
 
-#   private_link {
-#     request_message        = "Request access for Private Link Origin CDN Frontdoor"
-#     target_type            = "blob"
-#     location               = azurerm_storage_account.geofoodtruck_az_storage_account.location
-#     private_link_target_id = azurerm_storage_account.geofoodtruck_az_storage_account.id
-#   }
-# }
+resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group]
 
-# resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_rule_set" {
-#   name                     = "geofoodtruckruleset"
-#   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
-# }
+  name                     = "geofoodtruck-app-storage-origin-${local.frontdoor_postfix}"
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  enabled                       = true
 
-# resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_route" {
-#   name                     = "geofoodtruck-app-storage-route-${local.frontdoor_postfix}"
-#   cdn_frontdoor_endpoint_id = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.id
-#   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
-#   cdn_frontdoor_origin_ids = [azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin.id]
-#   cdn_frontdoor_rule_set_ids = [azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_rule_set.id]
+  certificate_name_check_enabled = true
+  host_name                       = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
+  origin_host_header              = azurerm_storage_account.geofoodtruck_az_storage_account.primary_blob_host
+  priority                        = 1
+  weight                         = 500
 
-#   forwarding_protocol    = "HttpsOnly"
-#   https_redirect_enabled = true
-#   patterns_to_match      = ["/*"]
-#   supported_protocols    = ["Http", "Https"]
-# }
+  private_link {
+    request_message        = "Request access for Private Link Origin CDN Frontdoor"
+    target_type            = "blob"
+    location               = azurerm_storage_account.geofoodtruck_az_storage_account.location
+    private_link_target_id = azurerm_storage_account.geofoodtruck_az_storage_account.id
+  }
+}
+
+resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_route" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin]
+
+  name                     = "geofoodtruck-app-storage-route-${local.frontdoor_postfix}"
+  cdn_frontdoor_endpoint_id = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.id
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  cdn_frontdoor_origin_ids = [azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin.id]
+  cdn_frontdoor_origin_path = "/app"
+
+  link_to_default_domain = true
+  forwarding_protocol    = "HttpsOnly"
+  https_redirect_enabled = true
+  patterns_to_match      = ["/*"]
+  supported_protocols    = ["Http", "Https"]
+
+}
