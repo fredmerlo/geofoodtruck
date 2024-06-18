@@ -33,6 +33,27 @@ resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_ori
   }
 }
 
+resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_sforg_origin_group" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile]
+
+  name                     = "geofoodtruck-sforg-origin-group-${local.frontdoor_postfix}"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+  session_affinity_enabled = false
+
+  health_probe {
+    protocol            = "Http"
+    interval_in_seconds = 100
+    path                = "/"
+    request_type        = "HEAD"
+  }
+
+  load_balancing {
+    additional_latency_in_milliseconds = 50
+    sample_size                        = 4
+    successful_samples_required        = 3
+  }
+}
+
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store_origin" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
                               azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group]
@@ -57,11 +78,10 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
 
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_data_sforg_origin" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
-                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin]
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_sforg_origin_group]
 
   name                     = "geofoodtruck-data-sforg-origin-${local.frontdoor_postfix}"
-  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group.id
   enabled                       = true
 
   certificate_name_check_enabled = false
@@ -93,8 +113,7 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_
 resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
                               azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
-                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group,
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin]
 
   name                     = "geofoodtruckdatasforgruleset${local.frontdoor_postfix}"
@@ -104,8 +123,7 @@ resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sf
 resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_rule" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
                               azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
-                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group,
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
                               azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route,
                               azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set]
@@ -134,16 +152,14 @@ resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_
 resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_data_sforg_route" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
                               azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
-                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group,
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
-                              azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route,
                               azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set,
                               azurerm_cdn_frontdoor_rule.geofoodtruck_az_cdn_frontdoor_data_sforg_rule]
 
   name                     = "geofoodtruck-data-sforg-route-${local.frontdoor_postfix}"
   cdn_frontdoor_endpoint_id = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.id
-  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group.id
   cdn_frontdoor_origin_ids = [azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin.id]
   cdn_frontdoor_rule_set_ids = [azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id]
 
