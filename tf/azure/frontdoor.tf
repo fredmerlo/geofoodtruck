@@ -78,7 +78,7 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
 
 resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_data_sforg_origin" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_sforg_origin_group]
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group]
 
   name                     = "geofoodtruck-data-sforg-origin-${local.frontdoor_postfix}"
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group.id
