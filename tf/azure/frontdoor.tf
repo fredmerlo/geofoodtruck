@@ -112,6 +112,7 @@ resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_
 
   name                      = "geofoodtruckdatasforgrule${local.frontdoor_postfix}"
   cdn_frontdoor_rule_set_id = azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id
+  order                    = 1
 
   actions {
     request_header_action {
