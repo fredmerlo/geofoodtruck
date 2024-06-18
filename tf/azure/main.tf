@@ -137,6 +137,7 @@ resource "azurerm_storage_account_customer_managed_key" "geofoodtruck_az_storage
 resource "azurerm_storage_container" "geofoodtruck_az_storage_container" {
   name                  = "app"
   storage_account_name  = azurerm_storage_account.geofoodtruck_az_storage_account.name
+  container_access_type = "blob"
 }
 
 resource "azurerm_storage_blob" "app_files" {
