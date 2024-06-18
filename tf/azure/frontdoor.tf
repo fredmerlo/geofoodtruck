@@ -97,7 +97,7 @@ resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sf
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin]
 
-  name                     = "geofoodtruck-data-sforg-rule-set-${local.frontdoor_postfix}"
+  name                     = "geofoodtruck-data-sforgruleset-${local.frontdoor_postfix}"
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
 }
 
@@ -110,7 +110,7 @@ resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_
                               azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route,
                               azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set]
 
-  name                      = "geofoodtruck-data-sforg-rule-${local.frontdoor_postfix}"
+  name                      = "geofoodtruck-data-sforgrule-${local.frontdoor_postfix}"
   cdn_frontdoor_rule_set_id = azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id
 
   actions {
