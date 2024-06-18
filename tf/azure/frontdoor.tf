@@ -55,6 +55,22 @@ resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_app_store
   }
 }
 
+resource "azurerm_cdn_frontdoor_origin" "geofoodtruck_az_cdn_frontdoor_data_sforg_origin" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin]
+
+  name                     = "geofoodtruck-data-sforg-origin-${local.frontdoor_postfix}"
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  enabled                       = true
+
+  certificate_name_check_enabled = false
+  host_name                       = "data.sforg.gov"
+  origin_host_header              = "data.sforg.gov"
+  priority                        = 1
+  weight                         = 500
+}
+
 resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_route" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
                               azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
@@ -72,5 +88,67 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_
   https_redirect_enabled = true
   patterns_to_match      = ["/*"]
   supported_protocols    = ["Http", "Https"]
+}
 
+resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
+                              azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_data_sforg_route]
+
+  name                     = "geofoodtruck-data-sforg-rule-set-${local.frontdoor_postfix}"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+}
+
+resource "azurerm_cdn_frontdoor_rule" "geofoodtruck_az_cdn_frontdoor_data_sforg_rule" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
+                              azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route,
+                              azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set]
+
+  name                      = "geofoodtruck-data-sforg-rule-${local.frontdoor_postfix}"
+  cdn_frontdoor_rule_set_id = azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id
+
+  actions {
+    request_header_action {
+      header_action = "Append"
+      header_name   = "X-App-Token"
+      value         = "GrXGgigVGyUzWjE0ppVRMRUgR"
+    }
+  }
+
+  conditions {
+    request_header_condition {
+      header_name = "X-App-Token"
+      operator     = "NotAny"
+    }
+  }
+}
+
+resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_data_sforg_route" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
+                              azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
+                              azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route,
+                              azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set,
+                              azurerm_cdn_frontdoor_rule.geofoodtruck_az_cdn_frontdoor_data_sforg_rule]
+
+  name                     = "geofoodtruck-data-sforg-route-${local.frontdoor_postfix}"
+  cdn_frontdoor_endpoint_id = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.id
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group.id
+  cdn_frontdoor_origin_ids = [azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin.id]
+  cdn_frontdoor_rule_set_ids = [azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id]
+
+  link_to_default_domain = true
+  forwarding_protocol    = "HttpsOnly"
+  https_redirect_enabled = true
+  patterns_to_match      = ["/resource/rqzj-sfat.json"]
+  supported_protocols    = ["Http", "Https"]
 }
