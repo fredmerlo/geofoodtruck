@@ -95,8 +95,7 @@ resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sf
                               azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
                               azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group,
                               azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin,
-                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin,
-                              azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_data_sforg_route]
+                              azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin]
 
   name                     = "geofoodtruck-data-sforg-rule-set-${local.frontdoor_postfix}"
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
