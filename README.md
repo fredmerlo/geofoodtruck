@@ -32,6 +32,7 @@ The goal of my implementation is to present a foundational `Cloud Product Delive
 And of course showcase my applied expertise in Architecture and Engineering, to create and integrate the technologies to make it work.
 
 The key techonlogies are:
+#### Common
 | Tech | Purpose |
 | --- | --- |
 | React | `GeoFoodTruck` web application |
@@ -39,12 +40,24 @@ The key techonlogies are:
 | Terraform | Infrastructure as Code |
 | Checkov | IaC Security Compliance Scan |
 | Git Workflow | CI / CD for Deploy and Test |
-| AWS KMS | Managed Encryption |
-| AWS Cloudfront | Content Delivery, Caching and TLS Encryption in Transit |
-| AWS OAC | Token Authorization for Cloudfront to S3 |
-| AWS S3 | KMS Encrypted at Rest of Application Files |
-| AWS WAFv2 | Cloudfont Traffic Telemetry, DoS Protection, Bot Filter, Malicious Agents Filter |
 | Docker | Container for running UATs from Test Git Workflow |
+#### AWS
+| Tech | Purpose |
+| --- | --- |
+| KMS | Managed Encryption |
+| Cloudfront | Content Delivery, Caching and TLS Encryption in Transit |
+| OAC | Token Authorization for Cloudfront to S3 |
+| S3 | KMS Encrypted at Rest of Application Files |
+| WAFv2 | Cloudfont Traffic Telemetry, DoS Protection, Bot Filter, Malicious Agents Filter |
+#### Azure
+| Tech | Purpose |
+| --- | --- |
+| Key Vault | Managed Encryption |
+| FrontDoor | Content Delivery, Caching and TLS Encryption in Transit |
+| Private Link | Private Endpoint for FrontDoor to Storage Account |
+| Storage Container | Managed Encryption at Rest of Application Files |
+| WAF | FrontDoor Traffic Telemetry, DoS Protection, Bot Filter, Malicious Agents Filter |
+
 <details>
 <summary>NOTE</summary>
 
