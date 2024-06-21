@@ -158,3 +158,7 @@ resource "azurerm_storage_blob" "app_files" {
   )
   content_md5  = filemd5("${var.app_build_dir}/${each.value}")
 }
+
+output "frontdoor_endpoint_host_name" {
+  value = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.host_name
+}

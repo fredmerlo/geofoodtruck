@@ -1,0 +1,48 @@
+name: Azure Playwright Report
+
+on:
+  workflow_run:
+    workflows: ["Azure GeoFoodTruck Live"]
+    types:
+      - completed
+
+jobs:
+  container-test-job:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Playwright Container
+    runs-on: ubuntu-latest
+    environment: az-test
+
+    permissions:
+      id-token: write
+      contents: read
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.0-jammy
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Playwright tests
+      id: run-playwright
+      run: npx playwright test
+      continue-on-error: true
+      env:
+        HOME: /root
+        BASE_URL: ${{ vars.AZ_BASE_URL }}
+
+    - name: Check Playwright Tests Outcome
+      if: failure()
+      run: |
+        echo "Playwright tests failed"
+        exit 1
