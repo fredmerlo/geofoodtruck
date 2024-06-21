@@ -148,7 +148,7 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_
 
   cache {
     compression_enabled           = true
-    content_types_to_compress     = ["text/html", "text/javascript", "application/javascript", "text/css", "image/png", "image/jpeg", "image/svg", "image/x-icon", "application/json", "text/plain"]
+    content_types_to_compress     = ["text/html", "text/javascript", "application/javascript", "text/css", "image/png", "image/jpeg", "image/svg", "application/json", "text/plain"]
   }
 }
 
