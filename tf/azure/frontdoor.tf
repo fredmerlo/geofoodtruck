@@ -12,6 +12,52 @@ resource "azurerm_cdn_frontdoor_endpoint" "geofoodtruck_az_cdn_frontdoor_endpoin
   enabled                  = true
 }
 
+resource "azurerm_cdn_frontdoor_firewall_policy" "geofoodtruck_az_cdn_frontdoor_firewall_policy" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile]
+
+  name                     = "geofoodtruckfirewallpolicy${local.frontdoor_postfix}"
+  resource_group_name      = data.azurerm_resource_group.geofoodtruck_az_resource_group.name
+  sku_name                 = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.sku_name
+  enabled                  = true
+  mode = "Detection"
+
+  managed_rule {
+    type    = "Microsoft_DefaultRuleSet"
+    version = "2.1"
+    action  = "Log"
+  }
+
+  managed_rule {
+    type    = "Microsoft_BotManagerRuleSet"
+    version = "1.1"
+    action  = "Log"
+  }
+}
+
+resource "azurerm_cdn_frontdoor_security_policy" "geofoodtruck_az_cdn_frontdoor_security_policy" {
+  depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile,
+                              azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint,
+                              azurerm_cdn_frontdoor_firewall_policy.geofoodtruck_az_cdn_frontdoor_firewall_policy]
+
+  name                     = "geofoodtrucksecuritypolicy${local.frontdoor_postfix}"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
+
+  enabled                  = true
+
+  security_policies {
+    firewall {
+      azurerm_cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.geofoodtruck_az_cdn_frontdoor_firewall_policy.id
+
+      association {
+        domain {
+          cdn_frontdoor_domain_id = azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint.id
+        }
+        patterns_to_match = ["/*"]
+      }
+    }
+  }
+}
+
 resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_origin_group" {
   depends_on               = [azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile]
 
