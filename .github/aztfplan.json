@@ -73,11 +73,14 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
+            "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
             "certificate_name_check_enabled": false,
             "enabled": true,
+            "health_probes_enabled": true,
             "host_name": "data.sforg.gov",
             "http_port": 80,
             "https_port": 443,
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab",
             "name": "geofoodtruck-data-sforg-origin-19aab",
             "origin_host_header": "data.sforg.gov",
             "priority": 1,
@@ -137,14 +140,8 @@
           "schema_version": 0,
           "values": {
             "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
-            "health_probe": [
-              {
-                "interval_in_seconds": 100,
-                "path": "/",
-                "protocol": "Http",
-                "request_type": "HEAD"
-              }
-            ],
+            "health_probe": [],
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
             "load_balancing": [
               {
                 "additional_latency_in_milliseconds": 50,
@@ -158,9 +155,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "health_probe": [
-              {}
-            ],
+            "health_probe": [],
             "load_balancing": [
               {}
             ]
@@ -244,12 +239,20 @@
           "schema_version": 0,
           "values": {
             "cache": [],
-            "cdn_frontdoor_custom_domain_ids": null,
+            "cdn_frontdoor_custom_domain_ids": [],
             "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
-            "cdn_frontdoor_origin_path": null,
+            "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+            "cdn_frontdoor_origin_ids": [
+              "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+            ],
+            "cdn_frontdoor_origin_path": "",
+            "cdn_frontdoor_rule_set_ids": [
+              "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+            ],
             "enabled": true,
             "forwarding_protocol": "HttpsOnly",
             "https_redirect_enabled": true,
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
             "link_to_default_domain": true,
             "name": "geofoodtruck-data-sforg-route-19aab",
             "patterns_to_match": [
@@ -263,8 +266,13 @@
           },
           "sensitive_values": {
             "cache": [],
-            "cdn_frontdoor_origin_ids": [],
-            "cdn_frontdoor_rule_set_ids": [],
+            "cdn_frontdoor_custom_domain_ids": [],
+            "cdn_frontdoor_origin_ids": [
+              false
+            ],
+            "cdn_frontdoor_rule_set_ids": [
+              false
+            ],
             "patterns_to_match": [
               false
             ],
@@ -298,6 +306,8 @@
               }
             ],
             "behavior_on_match": "Continue",
+            "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+            "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
             "conditions": [
               {
                 "client_port_condition": [],
@@ -312,10 +322,10 @@
                 "request_header_condition": [
                   {
                     "header_name": "X-App-Token",
-                    "match_values": null,
+                    "match_values": [],
                     "negate_condition": true,
                     "operator": "Any",
-                    "transforms": null
+                    "transforms": []
                   }
                 ],
                 "request_method_condition": [],
@@ -329,6 +339,7 @@
                 "url_path_condition": []
               }
             ],
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
             "name": "geofoodtruckdatasforgrule19aab",
             "order": 1,
             "timeouts": null
@@ -357,7 +368,10 @@
                 "remote_address_condition": [],
                 "request_body_condition": [],
                 "request_header_condition": [
-                  {}
+                  {
+                    "match_values": [],
+                    "transforms": []
+                  }
                 ],
                 "request_method_condition": [],
                 "request_scheme_condition": [],
@@ -381,6 +395,7 @@
           "schema_version": 0,
           "values": {
             "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+            "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
             "name": "geofoodtruckdatasforgruleset19aab",
             "timeouts": null
           },
@@ -1476,6 +1491,376 @@
       ]
     }
   },
+  "resource_drift": [
+    {
+      "address": "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_origin_group",
+      "name": "geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+          "health_probe": [
+            {
+              "interval_in_seconds": 100,
+              "path": "/",
+              "protocol": "Http",
+              "request_type": "HEAD"
+            }
+          ],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "load_balancing": [
+            {
+              "additional_latency_in_milliseconds": 50,
+              "sample_size": 4,
+              "successful_samples_required": 3
+            }
+          ],
+          "name": "geofoodtruck-sforg-origin-group-19aab",
+          "restore_traffic_time_to_healed_or_new_endpoint_in_minutes": 10,
+          "session_affinity_enabled": false,
+          "timeouts": null
+        },
+        "after": {
+          "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+          "health_probe": [],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "load_balancing": [
+            {
+              "additional_latency_in_milliseconds": 50,
+              "sample_size": 4,
+              "successful_samples_required": 3
+            }
+          ],
+          "name": "geofoodtruck-sforg-origin-group-19aab",
+          "restore_traffic_time_to_healed_or_new_endpoint_in_minutes": 10,
+          "session_affinity_enabled": false,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "health_probe": [
+            {}
+          ],
+          "load_balancing": [
+            {}
+          ]
+        },
+        "after_sensitive": {
+          "health_probe": [],
+          "load_balancing": [
+            {}
+          ]
+        }
+      }
+    },
+    {
+      "address": "azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_data_sforg_route",
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_route",
+      "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_route",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "cache": [],
+          "cdn_frontdoor_custom_domain_ids": null,
+          "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "cdn_frontdoor_origin_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+          ],
+          "cdn_frontdoor_origin_path": "",
+          "cdn_frontdoor_rule_set_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+          ],
+          "enabled": true,
+          "forwarding_protocol": "HttpsOnly",
+          "https_redirect_enabled": true,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
+          "link_to_default_domain": true,
+          "name": "geofoodtruck-data-sforg-route-19aab",
+          "patterns_to_match": [
+            "/resource/rqzj-sfat.json"
+          ],
+          "supported_protocols": [
+            "Http",
+            "Https"
+          ],
+          "timeouts": null
+        },
+        "after": {
+          "cache": [],
+          "cdn_frontdoor_custom_domain_ids": [],
+          "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "cdn_frontdoor_origin_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+          ],
+          "cdn_frontdoor_origin_path": "",
+          "cdn_frontdoor_rule_set_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+          ],
+          "enabled": true,
+          "forwarding_protocol": "HttpsOnly",
+          "https_redirect_enabled": true,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
+          "link_to_default_domain": true,
+          "name": "geofoodtruck-data-sforg-route-19aab",
+          "patterns_to_match": [
+            "/resource/rqzj-sfat.json"
+          ],
+          "supported_protocols": [
+            "Http",
+            "Https"
+          ],
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "cache": [],
+          "cdn_frontdoor_origin_ids": [
+            false
+          ],
+          "cdn_frontdoor_rule_set_ids": [
+            false
+          ],
+          "patterns_to_match": [
+            false
+          ],
+          "supported_protocols": [
+            false,
+            false
+          ]
+        },
+        "after_sensitive": {
+          "cache": [],
+          "cdn_frontdoor_custom_domain_ids": [],
+          "cdn_frontdoor_origin_ids": [
+            false
+          ],
+          "cdn_frontdoor_rule_set_ids": [
+            false
+          ],
+          "patterns_to_match": [
+            false
+          ],
+          "supported_protocols": [
+            false,
+            false
+          ]
+        }
+      }
+    },
+    {
+      "address": "azurerm_cdn_frontdoor_rule.geofoodtruck_az_cdn_frontdoor_data_sforg_rule",
+      "mode": "managed",
+      "type": "azurerm_cdn_frontdoor_rule",
+      "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_rule",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "actions": [
+            {
+              "request_header_action": [
+                {
+                  "header_action": "Append",
+                  "header_name": "X-App-Token",
+                  "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                }
+              ],
+              "response_header_action": [],
+              "route_configuration_override_action": [],
+              "url_redirect_action": [],
+              "url_rewrite_action": []
+            }
+          ],
+          "behavior_on_match": "Continue",
+          "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+          "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
+          "conditions": [
+            {
+              "client_port_condition": [],
+              "cookies_condition": [],
+              "host_name_condition": [],
+              "http_version_condition": [],
+              "is_device_condition": [],
+              "post_args_condition": [],
+              "query_string_condition": [],
+              "remote_address_condition": [],
+              "request_body_condition": [],
+              "request_header_condition": [
+                {
+                  "header_name": "X-App-Token",
+                  "match_values": null,
+                  "negate_condition": true,
+                  "operator": "Any",
+                  "transforms": null
+                }
+              ],
+              "request_method_condition": [],
+              "request_scheme_condition": [],
+              "request_uri_condition": [],
+              "server_port_condition": [],
+              "socket_address_condition": [],
+              "ssl_protocol_condition": [],
+              "url_file_extension_condition": [],
+              "url_filename_condition": [],
+              "url_path_condition": []
+            }
+          ],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
+          "name": "geofoodtruckdatasforgrule19aab",
+          "order": 1,
+          "timeouts": null
+        },
+        "after": {
+          "actions": [
+            {
+              "request_header_action": [
+                {
+                  "header_action": "Append",
+                  "header_name": "X-App-Token",
+                  "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                }
+              ],
+              "response_header_action": [],
+              "route_configuration_override_action": [],
+              "url_redirect_action": [],
+              "url_rewrite_action": []
+            }
+          ],
+          "behavior_on_match": "Stop",
+          "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+          "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
+          "conditions": [
+            {
+              "client_port_condition": [],
+              "cookies_condition": [],
+              "host_name_condition": [],
+              "http_version_condition": [],
+              "is_device_condition": [],
+              "post_args_condition": [],
+              "query_string_condition": [],
+              "remote_address_condition": [],
+              "request_body_condition": [],
+              "request_header_condition": [
+                {
+                  "header_name": "X-App-Token",
+                  "match_values": [],
+                  "negate_condition": true,
+                  "operator": "Any",
+                  "transforms": []
+                }
+              ],
+              "request_method_condition": [],
+              "request_scheme_condition": [],
+              "request_uri_condition": [],
+              "server_port_condition": [],
+              "socket_address_condition": [],
+              "ssl_protocol_condition": [],
+              "url_file_extension_condition": [],
+              "url_filename_condition": [],
+              "url_path_condition": []
+            }
+          ],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
+          "name": "geofoodtruckdatasforgrule19aab",
+          "order": 1,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "actions": [
+            {
+              "request_header_action": [
+                {}
+              ],
+              "response_header_action": [],
+              "route_configuration_override_action": [],
+              "url_redirect_action": [],
+              "url_rewrite_action": []
+            }
+          ],
+          "conditions": [
+            {
+              "client_port_condition": [],
+              "cookies_condition": [],
+              "host_name_condition": [],
+              "http_version_condition": [],
+              "is_device_condition": [],
+              "post_args_condition": [],
+              "query_string_condition": [],
+              "remote_address_condition": [],
+              "request_body_condition": [],
+              "request_header_condition": [
+                {}
+              ],
+              "request_method_condition": [],
+              "request_scheme_condition": [],
+              "request_uri_condition": [],
+              "server_port_condition": [],
+              "socket_address_condition": [],
+              "ssl_protocol_condition": [],
+              "url_file_extension_condition": [],
+              "url_filename_condition": [],
+              "url_path_condition": []
+            }
+          ]
+        },
+        "after_sensitive": {
+          "actions": [
+            {
+              "request_header_action": [
+                {}
+              ],
+              "response_header_action": [],
+              "route_configuration_override_action": [],
+              "url_redirect_action": [],
+              "url_rewrite_action": []
+            }
+          ],
+          "conditions": [
+            {
+              "client_port_condition": [],
+              "cookies_condition": [],
+              "host_name_condition": [],
+              "http_version_condition": [],
+              "is_device_condition": [],
+              "post_args_condition": [],
+              "query_string_condition": [],
+              "remote_address_condition": [],
+              "request_body_condition": [],
+              "request_header_condition": [
+                {
+                  "match_values": [],
+                  "transforms": []
+                }
+              ],
+              "request_method_condition": [],
+              "request_scheme_condition": [],
+              "request_uri_condition": [],
+              "server_port_condition": [],
+              "socket_address_condition": [],
+              "ssl_protocol_condition": [],
+              "url_file_extension_condition": [],
+              "url_filename_condition": [],
+              "url_path_condition": []
+            }
+          ]
+        }
+      }
+    }
+  ],
   "resource_changes": [
     {
       "address": "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
@@ -1591,15 +1976,17 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "create"
+          "no-op"
         ],
-        "before": null,
-        "after": {
+        "before": {
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
           "certificate_name_check_enabled": false,
           "enabled": true,
+          "health_probes_enabled": true,
           "host_name": "data.sforg.gov",
           "http_port": 80,
           "https_port": 443,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab",
           "name": "geofoodtruck-data-sforg-origin-19aab",
           "origin_host_header": "data.sforg.gov",
           "priority": 1,
@@ -1607,13 +1994,26 @@
           "timeouts": null,
           "weight": 500
         },
-        "after_unknown": {
-          "cdn_frontdoor_origin_group_id": true,
+        "after": {
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "certificate_name_check_enabled": false,
+          "enabled": true,
           "health_probes_enabled": true,
-          "id": true,
+          "host_name": "data.sforg.gov",
+          "http_port": 80,
+          "https_port": 443,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab",
+          "name": "geofoodtruck-data-sforg-origin-19aab",
+          "origin_host_header": "data.sforg.gov",
+          "priority": 1,
+          "private_link": [],
+          "timeouts": null,
+          "weight": 500
+        },
+        "after_unknown": {},
+        "before_sensitive": {
           "private_link": []
         },
-        "before_sensitive": false,
         "after_sensitive": {
           "private_link": []
         }
@@ -1702,19 +2102,12 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "create"
+          "no-op"
         ],
-        "before": null,
-        "after": {
+        "before": {
           "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
-          "health_probe": [
-            {
-              "interval_in_seconds": 100,
-              "path": "/",
-              "protocol": "Http",
-              "request_type": "HEAD"
-            }
-          ],
+          "health_probe": [],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
           "load_balancing": [
             {
               "additional_latency_in_milliseconds": 50,
@@ -1727,20 +2120,31 @@
           "session_affinity_enabled": false,
           "timeouts": null
         },
-        "after_unknown": {
-          "health_probe": [
-            {}
+        "after": {
+          "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+          "health_probe": [],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "load_balancing": [
+            {
+              "additional_latency_in_milliseconds": 50,
+              "sample_size": 4,
+              "successful_samples_required": 3
+            }
           ],
-          "id": true,
+          "name": "geofoodtruck-sforg-origin-group-19aab",
+          "restore_traffic_time_to_healed_or_new_endpoint_in_minutes": 10,
+          "session_affinity_enabled": false,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "health_probe": [],
           "load_balancing": [
             {}
           ]
         },
-        "before_sensitive": false,
         "after_sensitive": {
-          "health_probe": [
-            {}
-          ],
+          "health_probe": [],
           "load_balancing": [
             {}
           ]
@@ -1887,17 +2291,24 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "create"
+          "no-op"
         ],
-        "before": null,
-        "after": {
+        "before": {
           "cache": [],
-          "cdn_frontdoor_custom_domain_ids": null,
+          "cdn_frontdoor_custom_domain_ids": [],
           "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
-          "cdn_frontdoor_origin_path": null,
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "cdn_frontdoor_origin_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+          ],
+          "cdn_frontdoor_origin_path": "",
+          "cdn_frontdoor_rule_set_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+          ],
           "enabled": true,
           "forwarding_protocol": "HttpsOnly",
           "https_redirect_enabled": true,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
           "link_to_default_domain": true,
           "name": "geofoodtruck-data-sforg-route-19aab",
           "patterns_to_match": [
@@ -1909,12 +2320,43 @@
           ],
           "timeouts": null
         },
-        "after_unknown": {
+        "after": {
           "cache": [],
-          "cdn_frontdoor_origin_group_id": true,
-          "cdn_frontdoor_origin_ids": true,
-          "cdn_frontdoor_rule_set_ids": true,
-          "id": true,
+          "cdn_frontdoor_custom_domain_ids": [],
+          "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
+          "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+          "cdn_frontdoor_origin_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+          ],
+          "cdn_frontdoor_origin_path": "",
+          "cdn_frontdoor_rule_set_ids": [
+            "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+          ],
+          "enabled": true,
+          "forwarding_protocol": "HttpsOnly",
+          "https_redirect_enabled": true,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
+          "link_to_default_domain": true,
+          "name": "geofoodtruck-data-sforg-route-19aab",
+          "patterns_to_match": [
+            "/resource/rqzj-sfat.json"
+          ],
+          "supported_protocols": [
+            "Http",
+            "Https"
+          ],
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "cache": [],
+          "cdn_frontdoor_custom_domain_ids": [],
+          "cdn_frontdoor_origin_ids": [
+            false
+          ],
+          "cdn_frontdoor_rule_set_ids": [
+            false
+          ],
           "patterns_to_match": [
             false
           ],
@@ -1923,11 +2365,15 @@
             false
           ]
         },
-        "before_sensitive": false,
         "after_sensitive": {
           "cache": [],
-          "cdn_frontdoor_origin_ids": [],
-          "cdn_frontdoor_rule_set_ids": [],
+          "cdn_frontdoor_custom_domain_ids": [],
+          "cdn_frontdoor_origin_ids": [
+            false
+          ],
+          "cdn_frontdoor_rule_set_ids": [
+            false
+          ],
           "patterns_to_match": [
             false
           ],
@@ -1946,9 +2392,63 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "create"
+          "update"
         ],
-        "before": null,
+        "before": {
+          "actions": [
+            {
+              "request_header_action": [
+                {
+                  "header_action": "Append",
+                  "header_name": "X-App-Token",
+                  "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                }
+              ],
+              "response_header_action": [],
+              "route_configuration_override_action": [],
+              "url_redirect_action": [],
+              "url_rewrite_action": []
+            }
+          ],
+          "behavior_on_match": "Stop",
+          "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+          "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
+          "conditions": [
+            {
+              "client_port_condition": [],
+              "cookies_condition": [],
+              "host_name_condition": [],
+              "http_version_condition": [],
+              "is_device_condition": [],
+              "post_args_condition": [],
+              "query_string_condition": [],
+              "remote_address_condition": [],
+              "request_body_condition": [],
+              "request_header_condition": [
+                {
+                  "header_name": "X-App-Token",
+                  "match_values": [],
+                  "negate_condition": true,
+                  "operator": "Any",
+                  "transforms": []
+                }
+              ],
+              "request_method_condition": [],
+              "request_scheme_condition": [],
+              "request_uri_condition": [],
+              "server_port_condition": [],
+              "socket_address_condition": [],
+              "ssl_protocol_condition": [],
+              "url_file_extension_condition": [],
+              "url_filename_condition": [],
+              "url_path_condition": []
+            }
+          ],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
+          "name": "geofoodtruckdatasforgrule19aab",
+          "order": 1,
+          "timeouts": null
+        },
         "after": {
           "actions": [
             {
@@ -1966,6 +2466,8 @@
             }
           ],
           "behavior_on_match": "Continue",
+          "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+          "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
           "conditions": [
             {
               "client_port_condition": [],
@@ -1980,10 +2482,10 @@
               "request_header_condition": [
                 {
                   "header_name": "X-App-Token",
-                  "match_values": null,
+                  "match_values": [],
                   "negate_condition": true,
                   "operator": "Any",
-                  "transforms": null
+                  "transforms": []
                 }
               ],
               "request_method_condition": [],
@@ -1997,11 +2499,13 @@
               "url_path_condition": []
             }
           ],
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
           "name": "geofoodtruckdatasforgrule19aab",
           "order": 1,
           "timeouts": null
         },
-        "after_unknown": {
+        "after_unknown": {},
+        "before_sensitive": {
           "actions": [
             {
               "request_header_action": [
@@ -2013,8 +2517,6 @@
               "url_rewrite_action": []
             }
           ],
-          "cdn_frontdoor_rule_set_id": true,
-          "cdn_frontdoor_rule_set_name": true,
           "conditions": [
             {
               "client_port_condition": [],
@@ -2027,7 +2529,10 @@
               "remote_address_condition": [],
               "request_body_condition": [],
               "request_header_condition": [
-                {}
+                {
+                  "match_values": [],
+                  "transforms": []
+                }
               ],
               "request_method_condition": [],
               "request_scheme_condition": [],
@@ -2039,10 +2544,8 @@
               "url_filename_condition": [],
               "url_path_condition": []
             }
-          ],
-          "id": true
+          ]
         },
-        "before_sensitive": false,
         "after_sensitive": {
           "actions": [
             {
@@ -2067,7 +2570,10 @@
               "remote_address_condition": [],
               "request_body_condition": [],
               "request_header_condition": [
-                {}
+                {
+                  "match_values": [],
+                  "transforms": []
+                }
               ],
               "request_method_condition": [],
               "request_scheme_condition": [],
@@ -2091,18 +2597,22 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "create"
+          "no-op"
         ],
-        "before": null,
-        "after": {
+        "before": {
           "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
           "name": "geofoodtruckdatasforgruleset19aab",
           "timeouts": null
         },
-        "after_unknown": {
-          "id": true
+        "after": {
+          "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+          "name": "geofoodtruckdatasforgruleset19aab",
+          "timeouts": null
         },
-        "before_sensitive": false,
+        "after_unknown": {},
+        "before_sensitive": {},
         "after_sensitive": {}
       }
     },
@@ -4315,6 +4825,38 @@
             ]
           },
           {
+            "address": "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
+            "mode": "managed",
+            "type": "azurerm_cdn_frontdoor_origin",
+            "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+              "certificate_name_check_enabled": false,
+              "enabled": true,
+              "health_probes_enabled": true,
+              "host_name": "data.sforg.gov",
+              "http_port": 80,
+              "https_port": 443,
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab",
+              "name": "geofoodtruck-data-sforg-origin-19aab",
+              "origin_host_header": "data.sforg.gov",
+              "priority": 1,
+              "private_link": [],
+              "timeouts": null,
+              "weight": 500
+            },
+            "sensitive_values": {
+              "private_link": []
+            },
+            "depends_on": [
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+              "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
             "address": "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group",
             "mode": "managed",
             "type": "azurerm_cdn_frontdoor_origin_group",
@@ -4348,6 +4890,40 @@
               "health_probe": [
                 {}
               ],
+              "load_balancing": [
+                {}
+              ]
+            },
+            "depends_on": [
+              "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+            "mode": "managed",
+            "type": "azurerm_cdn_frontdoor_origin_group",
+            "name": "geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+              "health_probe": [],
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+              "load_balancing": [
+                {
+                  "additional_latency_in_milliseconds": 50,
+                  "sample_size": 4,
+                  "successful_samples_required": 3
+                }
+              ],
+              "name": "geofoodtruck-sforg-origin-group-19aab",
+              "restore_traffic_time_to_healed_or_new_endpoint_in_minutes": 10,
+              "session_affinity_enabled": false,
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "health_probe": [],
               "load_balancing": [
                 {}
               ]
@@ -4434,6 +5010,209 @@
               "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group",
               "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
               "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_data_sforg_route",
+            "mode": "managed",
+            "type": "azurerm_cdn_frontdoor_route",
+            "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_route",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "cache": [],
+              "cdn_frontdoor_custom_domain_ids": [],
+              "cdn_frontdoor_endpoint_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab",
+              "cdn_frontdoor_origin_group_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab",
+              "cdn_frontdoor_origin_ids": [
+                "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/originGroups/geofoodtruck-sforg-origin-group-19aab/origins/geofoodtruck-data-sforg-origin-19aab"
+              ],
+              "cdn_frontdoor_origin_path": "",
+              "cdn_frontdoor_rule_set_ids": [
+                "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab"
+              ],
+              "enabled": true,
+              "forwarding_protocol": "HttpsOnly",
+              "https_redirect_enabled": true,
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/afdEndpoints/geofoodtruck-19aab/routes/geofoodtruck-data-sforg-route-19aab",
+              "link_to_default_domain": true,
+              "name": "geofoodtruck-data-sforg-route-19aab",
+              "patterns_to_match": [
+                "/resource/rqzj-sfat.json"
+              ],
+              "supported_protocols": [
+                "Http",
+                "Https"
+              ],
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "cache": [],
+              "cdn_frontdoor_custom_domain_ids": [],
+              "cdn_frontdoor_origin_ids": [
+                false
+              ],
+              "cdn_frontdoor_rule_set_ids": [
+                false
+              ],
+              "patterns_to_match": [
+                false
+              ],
+              "supported_protocols": [
+                false,
+                false
+              ]
+            },
+            "depends_on": [
+              "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
+              "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin",
+              "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group",
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+              "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
+              "azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route",
+              "azurerm_cdn_frontdoor_rule.geofoodtruck_az_cdn_frontdoor_data_sforg_rule",
+              "azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_cdn_frontdoor_rule.geofoodtruck_az_cdn_frontdoor_data_sforg_rule",
+            "mode": "managed",
+            "type": "azurerm_cdn_frontdoor_rule",
+            "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_rule",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "actions": [
+                {
+                  "request_header_action": [
+                    {
+                      "header_action": "Append",
+                      "header_name": "X-App-Token",
+                      "value": "GrXGgigVGyUzWjE0ppVRMRUgR"
+                    }
+                  ],
+                  "response_header_action": [],
+                  "route_configuration_override_action": [],
+                  "url_redirect_action": [],
+                  "url_rewrite_action": []
+                }
+              ],
+              "behavior_on_match": "Stop",
+              "cdn_frontdoor_rule_set_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+              "cdn_frontdoor_rule_set_name": "geofoodtruckdatasforgruleset19aab",
+              "conditions": [
+                {
+                  "client_port_condition": [],
+                  "cookies_condition": [],
+                  "host_name_condition": [],
+                  "http_version_condition": [],
+                  "is_device_condition": [],
+                  "post_args_condition": [],
+                  "query_string_condition": [],
+                  "remote_address_condition": [],
+                  "request_body_condition": [],
+                  "request_header_condition": [
+                    {
+                      "header_name": "X-App-Token",
+                      "match_values": [],
+                      "negate_condition": true,
+                      "operator": "Any",
+                      "transforms": []
+                    }
+                  ],
+                  "request_method_condition": [],
+                  "request_scheme_condition": [],
+                  "request_uri_condition": [],
+                  "server_port_condition": [],
+                  "socket_address_condition": [],
+                  "ssl_protocol_condition": [],
+                  "url_file_extension_condition": [],
+                  "url_filename_condition": [],
+                  "url_path_condition": []
+                }
+              ],
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab/rules/geofoodtruckdatasforgrule19aab",
+              "name": "geofoodtruckdatasforgrule19aab",
+              "order": 1,
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "actions": [
+                {
+                  "request_header_action": [
+                    {}
+                  ],
+                  "response_header_action": [],
+                  "route_configuration_override_action": [],
+                  "url_redirect_action": [],
+                  "url_rewrite_action": []
+                }
+              ],
+              "conditions": [
+                {
+                  "client_port_condition": [],
+                  "cookies_condition": [],
+                  "host_name_condition": [],
+                  "http_version_condition": [],
+                  "is_device_condition": [],
+                  "post_args_condition": [],
+                  "query_string_condition": [],
+                  "remote_address_condition": [],
+                  "request_body_condition": [],
+                  "request_header_condition": [
+                    {
+                      "match_values": [],
+                      "transforms": []
+                    }
+                  ],
+                  "request_method_condition": [],
+                  "request_scheme_condition": [],
+                  "request_uri_condition": [],
+                  "server_port_condition": [],
+                  "socket_address_condition": [],
+                  "ssl_protocol_condition": [],
+                  "url_file_extension_condition": [],
+                  "url_filename_condition": [],
+                  "url_path_condition": []
+                }
+              ]
+            },
+            "depends_on": [
+              "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
+              "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_app_store_origin",
+              "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_origin_group",
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+              "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
+              "azurerm_cdn_frontdoor_route.geofoodtruck_az_cdn_frontdoor_app_store_route",
+              "azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set",
+              "azurerm_storage_account.geofoodtruck_az_storage_account",
+              "data.azurerm_resource_group.geofoodtruck_az_resource_group"
+            ]
+          },
+          {
+            "address": "azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set",
+            "mode": "managed",
+            "type": "azurerm_cdn_frontdoor_rule_set",
+            "name": "geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "cdn_frontdoor_profile_id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab",
+              "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.Cdn/profiles/geofoodtruck-frontdoor-profile-19aab/ruleSets/geofoodtruckdatasforgruleset19aab",
+              "name": "geofoodtruckdatasforgruleset19aab",
+              "timeouts": null
+            },
+            "sensitive_values": {},
+            "depends_on": [
+              "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
+              "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
+              "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
+              "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
               "data.azurerm_resource_group.geofoodtruck_az_resource_group"
             ]
           },
@@ -5902,22 +6681,6 @@
                 "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile"
               ]
             },
-            "health_probe": [
-              {
-                "interval_in_seconds": {
-                  "constant_value": 100
-                },
-                "path": {
-                  "constant_value": "/"
-                },
-                "protocol": {
-                  "constant_value": "Http"
-                },
-                "request_type": {
-                  "constant_value": "HEAD"
-                }
-              }
-            ],
             "load_balancing": [
               {
                 "additional_latency_in_milliseconds": {
@@ -6066,9 +6829,6 @@
               "constant_value": "HttpsOnly"
             },
             "https_redirect_enabled": {
-              "constant_value": true
-            },
-            "link_to_default_domain": {
               "constant_value": true
             },
             "name": {
@@ -6606,37 +7366,13 @@
   },
   "relevant_attributes": [
     {
-      "resource": "azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "azurerm_cdn_frontdoor_origin_group.geofoodtruck_az_cdn_frontdoor_sforg_origin_group",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
       "resource": "azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
       "attribute": [
         "id"
       ]
     }
   ],
-  "timestamp": "2024-06-18T12:12:36Z",
+  "timestamp": "2024-06-21T02:39:54Z",
   "applyable": true,
   "complete": true,
   "errored": false
