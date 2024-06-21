@@ -145,6 +145,11 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_app_store_
   https_redirect_enabled = true
   patterns_to_match      = ["/*"]
   supported_protocols    = ["Http", "Https"]
+
+  cache {
+    compression_enabled           = true
+    content_types_to_compress     = ["text/html", "text/javascript", "application/javascript", "text/css", "image/png", "image/jpeg", "image/svg", "image/x-icon", "application/json", "text/plain"]
+  }
 }
 
 resource "azurerm_cdn_frontdoor_rule_set" "geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set" {
