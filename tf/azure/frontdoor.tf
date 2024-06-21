@@ -40,12 +40,12 @@ resource "azurerm_cdn_frontdoor_origin_group" "geofoodtruck_az_cdn_frontdoor_sfo
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
   session_affinity_enabled = false
 
-  health_probe {
-    protocol            = "Http"
-    interval_in_seconds = 100
-    path                = "/"
-    request_type        = "HEAD"
-  }
+  # health_probe {
+  #   protocol            = "Http"
+  #   interval_in_seconds = 100
+  #   path                = "/"
+  #   request_type        = "HEAD"
+  # }
 
   load_balancing {
     additional_latency_in_milliseconds = 50
@@ -163,7 +163,7 @@ resource "azurerm_cdn_frontdoor_route" "geofoodtruck_az_cdn_frontdoor_data_sforg
   cdn_frontdoor_origin_ids = [azurerm_cdn_frontdoor_origin.geofoodtruck_az_cdn_frontdoor_data_sforg_origin.id]
   cdn_frontdoor_rule_set_ids = [azurerm_cdn_frontdoor_rule_set.geofoodtruck_az_cdn_frontdoor_data_sforg_rule_set.id]
 
-  link_to_default_domain = true
+  # link_to_default_domain = true
   forwarding_protocol    = "HttpsOnly"
   https_redirect_enabled = true
   patterns_to_match      = ["/resource/rqzj-sfat.json"]
