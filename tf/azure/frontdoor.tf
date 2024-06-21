@@ -42,11 +42,9 @@ resource "azurerm_cdn_frontdoor_security_policy" "geofoodtruck_az_cdn_frontdoor_
   name                     = "geofoodtrucksecuritypolicy${local.frontdoor_postfix}"
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.geofoodtruck_az_cdn_frontdoor_profile.id
 
-  enabled                  = true
-
   security_policies {
     firewall {
-      azurerm_cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.geofoodtruck_az_cdn_frontdoor_firewall_policy.id
+      cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.geofoodtruck_az_cdn_frontdoor_firewall_policy.id
 
       association {
         domain {
