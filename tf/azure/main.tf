@@ -23,12 +23,6 @@ resource "azurerm_key_vault" "geofoodtruck_az_key_vault" {
   sku_name            = "standard"
 
   purge_protection_enabled    = true
-  public_network_access_enabled = false
-
-  network_acls {
-    default_action = "Deny"
-    bypass = "AzureServices"
-  }
 }
 
 resource "azurerm_key_vault_access_policy" "geofoodtruck_az_key_vault_access_policy_storage" {
