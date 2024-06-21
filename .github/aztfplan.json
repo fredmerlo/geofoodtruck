@@ -665,12 +665,12 @@
             "network_acls": [
               {
                 "bypass": "AzureServices",
-                "default_action": "Deny",
+                "default_action": "Allow",
                 "ip_rules": [],
                 "virtual_network_subnet_ids": []
               }
             ],
-            "public_network_access_enabled": false,
+            "public_network_access_enabled": true,
             "purge_protection_enabled": true,
             "resource_group_name": "geofoodtruck-rgp",
             "sku_name": "standard",
@@ -1687,6 +1687,481 @@
       ]
     }
   },
+  "resource_drift": [
+    {
+      "address": "azurerm_key_vault.geofoodtruck_az_key_vault",
+      "mode": "managed",
+      "type": "azurerm_key_vault",
+      "name": "geofoodtruck_az_key_vault",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "access_policy": [
+            {
+              "application_id": "",
+              "certificate_permissions": [],
+              "key_permissions": [
+                "Get",
+                "Create",
+                "Delete",
+                "List",
+                "Restore",
+                "Recover",
+                "UnwrapKey",
+                "WrapKey",
+                "Purge",
+                "Encrypt",
+                "Decrypt",
+                "Sign",
+                "Verify",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Update",
+                "Backup",
+                "Release",
+                "Rotate",
+                "Import"
+              ],
+              "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
+              "secret_permissions": [],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            },
+            {
+              "application_id": "",
+              "certificate_permissions": [],
+              "key_permissions": [
+                "Get",
+                "UnwrapKey",
+                "WrapKey"
+              ],
+              "object_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
+              "secret_permissions": [],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            },
+            {
+              "application_id": "",
+              "certificate_permissions": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers",
+                "Purge"
+              ],
+              "key_permissions": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate",
+                "Encrypt",
+                "Decrypt",
+                "UnwrapKey",
+                "WrapKey",
+                "Verify",
+                "Sign",
+                "Purge",
+                "Release"
+              ],
+              "object_id": "9168981e-e1db-475e-871f-854205bc6354",
+              "secret_permissions": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "Purge"
+              ],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            }
+          ],
+          "contact": [],
+          "enable_rbac_authorization": false,
+          "enabled_for_deployment": false,
+          "enabled_for_disk_encryption": false,
+          "enabled_for_template_deployment": false,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
+          "location": "eastus",
+          "name": "geofoodtruck-key-vault",
+          "network_acls": [
+            {
+              "bypass": "AzureServices",
+              "default_action": "Deny",
+              "ip_rules": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "public_network_access_enabled": false,
+          "purge_protection_enabled": true,
+          "resource_group_name": "geofoodtruck-rgp",
+          "sku_name": "standard",
+          "soft_delete_retention_days": 90,
+          "tags": {},
+          "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
+          "timeouts": null,
+          "vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/"
+        },
+        "after": {
+          "access_policy": [
+            {
+              "application_id": "",
+              "certificate_permissions": [],
+              "key_permissions": [
+                "Get",
+                "Create",
+                "Delete",
+                "List",
+                "Restore",
+                "Recover",
+                "UnwrapKey",
+                "WrapKey",
+                "Purge",
+                "Encrypt",
+                "Decrypt",
+                "Sign",
+                "Verify",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Update",
+                "Backup",
+                "Release",
+                "Rotate",
+                "Import"
+              ],
+              "object_id": "17379688-6705-41d1-a5d8-cf557358e029",
+              "secret_permissions": [],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            },
+            {
+              "application_id": "",
+              "certificate_permissions": [],
+              "key_permissions": [
+                "Get",
+                "UnwrapKey",
+                "WrapKey"
+              ],
+              "object_id": "adadff2d-df36-4aa1-bc71-a141be4af501",
+              "secret_permissions": [],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            },
+            {
+              "application_id": "",
+              "certificate_permissions": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "ManageContacts",
+                "ManageIssuers",
+                "GetIssuers",
+                "ListIssuers",
+                "SetIssuers",
+                "DeleteIssuers",
+                "Purge"
+              ],
+              "key_permissions": [
+                "Get",
+                "List",
+                "Update",
+                "Create",
+                "Import",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "GetRotationPolicy",
+                "SetRotationPolicy",
+                "Rotate",
+                "Encrypt",
+                "Decrypt",
+                "UnwrapKey",
+                "WrapKey",
+                "Verify",
+                "Sign",
+                "Purge",
+                "Release"
+              ],
+              "object_id": "9168981e-e1db-475e-871f-854205bc6354",
+              "secret_permissions": [
+                "Get",
+                "List",
+                "Set",
+                "Delete",
+                "Recover",
+                "Backup",
+                "Restore",
+                "Purge"
+              ],
+              "storage_permissions": [],
+              "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1"
+            }
+          ],
+          "contact": [],
+          "enable_rbac_authorization": false,
+          "enabled_for_deployment": false,
+          "enabled_for_disk_encryption": false,
+          "enabled_for_template_deployment": false,
+          "id": "/subscriptions/1e84fd89-4a3b-41e1-b83c-e85bfb7ea419/resourceGroups/geofoodtruck-rgp/providers/Microsoft.KeyVault/vaults/geofoodtruck-key-vault",
+          "location": "eastus",
+          "name": "geofoodtruck-key-vault",
+          "network_acls": [
+            {
+              "bypass": "AzureServices",
+              "default_action": "Allow",
+              "ip_rules": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "public_network_access_enabled": true,
+          "purge_protection_enabled": true,
+          "resource_group_name": "geofoodtruck-rgp",
+          "sku_name": "standard",
+          "soft_delete_retention_days": 90,
+          "tags": {},
+          "tenant_id": "ebe3b00b-03f5-4683-9385-9eae759d7ab1",
+          "timeouts": null,
+          "vault_uri": "https://geofoodtruck-key-vault.vault.azure.net/"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "access_policy": [
+            {
+              "certificate_permissions": [],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [],
+              "storage_permissions": []
+            },
+            {
+              "certificate_permissions": [],
+              "key_permissions": [
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [],
+              "storage_permissions": []
+            },
+            {
+              "certificate_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "storage_permissions": []
+            }
+          ],
+          "contact": [],
+          "network_acls": [
+            {
+              "ip_rules": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "tags": {}
+        },
+        "after_sensitive": {
+          "access_policy": [
+            {
+              "certificate_permissions": [],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [],
+              "storage_permissions": []
+            },
+            {
+              "certificate_permissions": [],
+              "key_permissions": [
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [],
+              "storage_permissions": []
+            },
+            {
+              "certificate_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "storage_permissions": []
+            }
+          ],
+          "contact": [],
+          "network_acls": [
+            {
+              "ip_rules": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "tags": {}
+        }
+      }
+    }
+  ],
   "resource_changes": [
     {
       "address": "azurerm_cdn_frontdoor_endpoint.geofoodtruck_az_cdn_frontdoor_endpoint",
@@ -2718,7 +3193,7 @@
       "provider_name": "registry.terraform.io/hashicorp/azurerm",
       "change": {
         "actions": [
-          "update"
+          "no-op"
         ],
         "before": {
           "access_policy": [
@@ -2961,12 +3436,12 @@
           "network_acls": [
             {
               "bypass": "AzureServices",
-              "default_action": "Deny",
+              "default_action": "Allow",
               "ip_rules": [],
               "virtual_network_subnet_ids": []
             }
           ],
-          "public_network_access_enabled": false,
+          "public_network_access_enabled": true,
           "purge_protection_enabled": true,
           "resource_group_name": "geofoodtruck-rgp",
           "sku_name": "standard",
@@ -7532,19 +8007,6 @@
             "name": {
               "constant_value": "geofoodtruck-key-vault"
             },
-            "network_acls": [
-              {
-                "bypass": {
-                  "constant_value": "AzureServices"
-                },
-                "default_action": {
-                  "constant_value": "Deny"
-                }
-              }
-            ],
-            "public_network_access_enabled": {
-              "constant_value": false
-            },
             "purge_protection_enabled": {
               "constant_value": true
             },
@@ -7942,28 +8404,8 @@
       }
     }
   },
-  "relevant_attributes": [
-    {
-      "resource": "data.azurerm_client_config.current",
-      "attribute": [
-        "tenant_id"
-      ]
-    },
-    {
-      "resource": "data.azurerm_resource_group.geofoodtruck_az_resource_group",
-      "attribute": [
-        "location"
-      ]
-    },
-    {
-      "resource": "data.azurerm_resource_group.geofoodtruck_az_resource_group",
-      "attribute": [
-        "name"
-      ]
-    }
-  ],
-  "timestamp": "2024-06-21T11:42:59Z",
-  "applyable": true,
+  "timestamp": "2024-06-21T12:00:41Z",
+  "applyable": false,
   "complete": true,
   "errored": false
 }
