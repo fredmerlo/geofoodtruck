@@ -2,13 +2,15 @@ import { test, Page } from '@playwright/test';
 import { DirectionX, DirectionY, MapPage } from '../pom/MapPage';
 
 test.use({viewport: { width: 1400, height: 1050 }});
+// test.use({viewport: { width: 1400, height: 1050 }, video: 'on'});
 
 let page: Page;
 
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage();
+  // page = await browser.newPage({recordVideo: {dir: 'videos/'}});
   
-  await page.goto('/?isTest=true');
+  await page.goto('/index.html');
   await page.waitForSelector('.leaflet-container');
 });
 

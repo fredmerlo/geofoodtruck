@@ -63,7 +63,7 @@ jobs:
       working-directory: ./tf/azure
       run: |
         terraform apply -auto-approve "../../.github/aztfplan.bin"
-          echo '{"value":"https://'`terraform output -raw frontdoor_endpoint_host_name`'/index.html"}' | \
+          echo '{"value":"https://'`terraform output -raw frontdoor_endpoint_host_name`'"}' | \
           curl -L \
           -X PATCH \
           -H "Accept: application/vnd.github+json" \

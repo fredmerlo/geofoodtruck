@@ -73,9 +73,8 @@
     };
     
     function getConfig() {
-      const queryParams = new URLSearchParams(window.location.search);
       const hostName = window.location.hostname;
-      const isTest = queryParams.get('isTest') === 'true' || hostName === 'localhost';
+      const isTest = hostName === 'localhost';
 
       if (isTest) {
         return { "distribution": "d3n9iqvbhzuqoh.cloudfront.net" }
