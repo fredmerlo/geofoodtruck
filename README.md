@@ -11,7 +11,7 @@ Techinical Highlights:
 - Configurable LLM Endpoint with Proxy LiteLLM
 - Sample Jupyter Notebook for GenAI Inference Quality Analysis
 - Docker / Kubernates Setup
-[View Screen Cast](https://geofoodtruck-test-report.s3.amazonaws.com/rag-information-extraction.gif)
+- [View Screencast](https://geofoodtruck-test-report.s3.amazonaws.com/rag-information-extraction.gif)
 
 ### Overview
 `GeoFoodTruck` is a GIS (Geographic Information System) application that performs proximity searches of Food Truck vendors using [LeafletJS](https://leafletjs.com/) and the City of San Francisco, public dataset of [Mobile Food Facility Permits](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data).
