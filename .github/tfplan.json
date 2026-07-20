@@ -1,6 +1,6 @@
 {
   "format_version": "1.2",
-  "terraform_version": "1.8.5",
+  "terraform_version": "1.15.8",
   "variables": {
     "app_build_dir": {
       "value": "../build"
@@ -836,9 +836,9 @@
                   {
                     "grantee": [
                       {
-                        "display_name": "awslogsdelivery+s3_us-east-1",
+                        "display_name": "",
                         "email_address": "",
-                        "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                        "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
                         "type": "CanonicalUser",
                         "uri": ""
                       }
@@ -848,9 +848,9 @@
                   {
                     "grantee": [
                       {
-                        "display_name": "fredmerlo",
+                        "display_name": "",
                         "email_address": "",
-                        "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                        "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
                         "type": "CanonicalUser",
                         "uri": ""
                       }
@@ -860,7 +860,7 @@
                 ],
                 "owner": [
                   {
-                    "display_name": "fredmerlo",
+                    "display_name": "",
                     "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
                   }
                 ]
@@ -2641,6 +2641,147 @@
       ]
     }
   },
+  "resource_drift": [
+    {
+      "address": "aws_s3_bucket_acl.geofoodtruck_log_bucket_acl",
+      "mode": "managed",
+      "type": "aws_s3_bucket_acl",
+      "name": "geofoodtruck_log_bucket_acl",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "access_control_policy": [
+            {
+              "grant": [
+                {
+                  "grantee": [
+                    {
+                      "display_name": "awslogsdelivery+s3_us-east-1",
+                      "email_address": "",
+                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                      "type": "CanonicalUser",
+                      "uri": ""
+                    }
+                  ],
+                  "permission": "FULL_CONTROL"
+                },
+                {
+                  "grantee": [
+                    {
+                      "display_name": "fredmerlo",
+                      "email_address": "",
+                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                      "type": "CanonicalUser",
+                      "uri": ""
+                    }
+                  ],
+                  "permission": "FULL_CONTROL"
+                }
+              ],
+              "owner": [
+                {
+                  "display_name": "fredmerlo",
+                  "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
+                }
+              ]
+            }
+          ],
+          "acl": "private",
+          "bucket": "geofoodtruck-log-bucket",
+          "expected_bucket_owner": "",
+          "id": "geofoodtruck-log-bucket,private"
+        },
+        "after": {
+          "access_control_policy": [
+            {
+              "grant": [
+                {
+                  "grantee": [
+                    {
+                      "display_name": "",
+                      "email_address": "",
+                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                      "type": "CanonicalUser",
+                      "uri": ""
+                    }
+                  ],
+                  "permission": "FULL_CONTROL"
+                },
+                {
+                  "grantee": [
+                    {
+                      "display_name": "",
+                      "email_address": "",
+                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                      "type": "CanonicalUser",
+                      "uri": ""
+                    }
+                  ],
+                  "permission": "FULL_CONTROL"
+                }
+              ],
+              "owner": [
+                {
+                  "display_name": "",
+                  "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
+                }
+              ]
+            }
+          ],
+          "acl": "private",
+          "bucket": "geofoodtruck-log-bucket",
+          "expected_bucket_owner": "",
+          "id": "geofoodtruck-log-bucket,private"
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "access_control_policy": [
+            {
+              "grant": [
+                {
+                  "grantee": [
+                    {}
+                  ]
+                },
+                {
+                  "grantee": [
+                    {}
+                  ]
+                }
+              ],
+              "owner": [
+                {}
+              ]
+            }
+          ]
+        },
+        "after_sensitive": {
+          "access_control_policy": [
+            {
+              "grant": [
+                {
+                  "grantee": [
+                    {}
+                  ]
+                },
+                {
+                  "grantee": [
+                    {}
+                  ]
+                }
+              ],
+              "owner": [
+                {}
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
   "resource_changes": [
     {
       "address": "aws_cloudfront_distribution.geofoodtruck_app_distribution",
@@ -4219,9 +4360,9 @@
                 {
                   "grantee": [
                     {
-                      "display_name": "awslogsdelivery+s3_us-east-1",
+                      "display_name": "",
                       "email_address": "",
-                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
                       "type": "CanonicalUser",
                       "uri": ""
                     }
@@ -4231,9 +4372,9 @@
                 {
                   "grantee": [
                     {
-                      "display_name": "fredmerlo",
+                      "display_name": "",
                       "email_address": "",
-                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
                       "type": "CanonicalUser",
                       "uri": ""
                     }
@@ -4243,7 +4384,7 @@
               ],
               "owner": [
                 {
-                  "display_name": "fredmerlo",
+                  "display_name": "",
                   "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
                 }
               ]
@@ -4261,9 +4402,9 @@
                 {
                   "grantee": [
                     {
-                      "display_name": "awslogsdelivery+s3_us-east-1",
+                      "display_name": "",
                       "email_address": "",
-                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
                       "type": "CanonicalUser",
                       "uri": ""
                     }
@@ -4273,9 +4414,9 @@
                 {
                   "grantee": [
                     {
-                      "display_name": "fredmerlo",
+                      "display_name": "",
                       "email_address": "",
-                      "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                      "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
                       "type": "CanonicalUser",
                       "uri": ""
                     }
@@ -4285,7 +4426,7 @@
               ],
               "owner": [
                 {
-                  "display_name": "fredmerlo",
+                  "display_name": "",
                   "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
                 }
               ]
@@ -4623,7 +4764,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "bf6c5a7e26b4421145c5c2273e52797e",
+          "etag": "2526f95509ab9f5691e3d662712970eb",
           "force_destroy": false,
           "id": "asset-manifest.json",
           "key": "asset-manifest.json",
@@ -4726,7 +4867,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/x-icon",
-          "etag": "7092de69298d175ff25cc8592b0957c7",
+          "etag": "814b74e46beba0a92d954b9d6a56358a",
           "force_destroy": false,
           "id": "favicon.ico",
           "key": "favicon.ico",
@@ -4829,7 +4970,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/html",
-          "etag": "e483e8c7755ad9bd7d1a77956c2571c8",
+          "etag": "d4b3df3b1db2081e9632a70c21bfa984",
           "force_destroy": false,
           "id": "index.html",
           "key": "index.html",
@@ -4932,7 +5073,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "5b7c4bd58a355c0cee80c5283d7e2d85",
+          "etag": "11f800126c352490d7cb89c3c40c5a91",
           "force_destroy": false,
           "id": "logo192.png",
           "key": "logo192.png",
@@ -5035,7 +5176,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "32ce9e585868d5f9e365edebcaa9534e",
+          "etag": "f1d5f0bb1a3cbcfb4b520a7bad1496c5",
           "force_destroy": false,
           "id": "logo512.png",
           "key": "logo512.png",
@@ -5138,7 +5279,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/json",
-          "etag": "873e90227d42871f35713390f21af124",
+          "etag": "364fc48f20599cc6faa55d69262b29fc",
           "force_destroy": false,
           "id": "manifest.json",
           "key": "manifest.json",
@@ -5241,7 +5382,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "6edae42b8e583e21a80767aea03a9c53",
+          "etag": "a6037d9ad65de929dfe5f25b07048fd7",
           "force_destroy": false,
           "id": "robots.txt",
           "key": "robots.txt",
@@ -5344,7 +5485,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/css",
-          "etag": "b528c83ef9f996dfb43923c62ae051d6",
+          "etag": "5f2870e54932ca6dc861f345a063592b",
           "force_destroy": false,
           "id": "static/css/main.414097bf.css",
           "key": "static/css/main.414097bf.css",
@@ -5447,7 +5588,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "6c127893df711334363fc6024ea8845c",
+          "etag": "b36807cfce247b4a4fd7d0ae14b384bc",
           "force_destroy": false,
           "id": "static/js/206.85c6594b.chunk.js",
           "key": "static/js/206.85c6594b.chunk.js",
@@ -5550,7 +5691,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "application/javascript",
-          "etag": "065c635cd8ea33f87f8b599f930cdfab",
+          "etag": "3aef5497f8fb5c55069b0ea41aab6b37",
           "force_destroy": false,
           "id": "static/js/main.dc021fd1.js",
           "key": "static/js/main.dc021fd1.js",
@@ -5653,7 +5794,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "text/plain",
-          "etag": "77c693ebb3a838393ba32cdce50b90dc",
+          "etag": "b39a98b131c64316c83e135727b9a4ac",
           "force_destroy": false,
           "id": "static/js/main.dc021fd1.js.LICENSE.txt",
           "key": "static/js/main.dc021fd1.js.LICENSE.txt",
@@ -5756,7 +5897,7 @@
           "content_encoding": "",
           "content_language": "",
           "content_type": "image/png",
-          "etag": "73373193e2958bfb203a749c642b47d0",
+          "etag": "f37c3b0cbfcf1ca85f3ccf14bb44c742",
           "force_destroy": false,
           "id": "truck-solid.png",
           "key": "truck-solid.png",
@@ -7868,7 +8009,7 @@
   },
   "prior_state": {
     "format_version": "1.0",
-    "terraform_version": "1.8.5",
+    "terraform_version": "1.15.8",
     "values": {
       "outputs": {
         "cloudfront_distribution_domain": {
@@ -9177,9 +9318,9 @@
                     {
                       "grantee": [
                         {
-                          "display_name": "awslogsdelivery+s3_us-east-1",
+                          "display_name": "",
                           "email_address": "",
-                          "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
+                          "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
                           "type": "CanonicalUser",
                           "uri": ""
                         }
@@ -9189,9 +9330,9 @@
                     {
                       "grantee": [
                         {
-                          "display_name": "fredmerlo",
+                          "display_name": "",
                           "email_address": "",
-                          "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e",
+                          "id": "c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0",
                           "type": "CanonicalUser",
                           "uri": ""
                         }
@@ -9201,7 +9342,7 @@
                   ],
                   "owner": [
                     {
-                      "display_name": "fredmerlo",
+                      "display_name": "",
                       "id": "38a6d1dcf9481cb7b268cb327c83bc600980dda287ac43350ed03e2883f2282e"
                     }
                   ]
@@ -9436,7 +9577,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "bf6c5a7e26b4421145c5c2273e52797e",
+              "etag": "2526f95509ab9f5691e3d662712970eb",
               "force_destroy": false,
               "id": "asset-manifest.json",
               "key": "asset-manifest.json",
@@ -9501,7 +9642,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/x-icon",
-              "etag": "7092de69298d175ff25cc8592b0957c7",
+              "etag": "814b74e46beba0a92d954b9d6a56358a",
               "force_destroy": false,
               "id": "favicon.ico",
               "key": "favicon.ico",
@@ -9566,7 +9707,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/html",
-              "etag": "e483e8c7755ad9bd7d1a77956c2571c8",
+              "etag": "d4b3df3b1db2081e9632a70c21bfa984",
               "force_destroy": false,
               "id": "index.html",
               "key": "index.html",
@@ -9631,7 +9772,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "5b7c4bd58a355c0cee80c5283d7e2d85",
+              "etag": "11f800126c352490d7cb89c3c40c5a91",
               "force_destroy": false,
               "id": "logo192.png",
               "key": "logo192.png",
@@ -9696,7 +9837,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "32ce9e585868d5f9e365edebcaa9534e",
+              "etag": "f1d5f0bb1a3cbcfb4b520a7bad1496c5",
               "force_destroy": false,
               "id": "logo512.png",
               "key": "logo512.png",
@@ -9761,7 +9902,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/json",
-              "etag": "873e90227d42871f35713390f21af124",
+              "etag": "364fc48f20599cc6faa55d69262b29fc",
               "force_destroy": false,
               "id": "manifest.json",
               "key": "manifest.json",
@@ -9826,7 +9967,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "6edae42b8e583e21a80767aea03a9c53",
+              "etag": "a6037d9ad65de929dfe5f25b07048fd7",
               "force_destroy": false,
               "id": "robots.txt",
               "key": "robots.txt",
@@ -9891,7 +10032,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/css",
-              "etag": "b528c83ef9f996dfb43923c62ae051d6",
+              "etag": "5f2870e54932ca6dc861f345a063592b",
               "force_destroy": false,
               "id": "static/css/main.414097bf.css",
               "key": "static/css/main.414097bf.css",
@@ -9956,7 +10097,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "6c127893df711334363fc6024ea8845c",
+              "etag": "b36807cfce247b4a4fd7d0ae14b384bc",
               "force_destroy": false,
               "id": "static/js/206.85c6594b.chunk.js",
               "key": "static/js/206.85c6594b.chunk.js",
@@ -10021,7 +10162,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "application/javascript",
-              "etag": "065c635cd8ea33f87f8b599f930cdfab",
+              "etag": "3aef5497f8fb5c55069b0ea41aab6b37",
               "force_destroy": false,
               "id": "static/js/main.dc021fd1.js",
               "key": "static/js/main.dc021fd1.js",
@@ -10086,7 +10227,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "text/plain",
-              "etag": "77c693ebb3a838393ba32cdce50b90dc",
+              "etag": "b39a98b131c64316c83e135727b9a4ac",
               "force_destroy": false,
               "id": "static/js/main.dc021fd1.js.LICENSE.txt",
               "key": "static/js/main.dc021fd1.js.LICENSE.txt",
@@ -10151,7 +10292,7 @@
               "content_encoding": "",
               "content_language": "",
               "content_type": "image/png",
-              "etag": "73373193e2958bfb203a749c642b47d0",
+              "etag": "f37c3b0cbfcf1ca85f3ccf14bb44c742",
               "force_destroy": false,
               "id": "truck-solid.png",
               "key": "truck-solid.png",
@@ -12651,7 +12792,7 @@
       ]
     }
   ],
-  "timestamp": "2024-06-21T09:44:51Z",
+  "timestamp": "2026-07-20T07:41:22Z",
   "applyable": true,
   "complete": true,
   "errored": false
