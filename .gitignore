@@ -25,6 +25,10 @@ yarn-error.log*
 
 # terraform
 /tf/**/.terraform
+/infra/**/.terraform
+
+# kiro
+/.kiro/specs/**/tasks.meta.json
 
 # playwright
 /test-results/
